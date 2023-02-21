@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class testCSV {
 	public static void main(String[] args) {
-		String Path = "C:\\Users\\cmlko\\Downloads\\Spring-2019-Files\\2019 files\\CSCI1191.csv";
+		String Path = "C:\\Users\\jcwga\\Downloads\\CSCI1191.csv";
 		String line = "";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(Path));
