@@ -9,28 +9,21 @@ public class Line {
 
 	public Line(String input)
 	{
+		//Set this a non-class line
+		type = false;
 		line = new String[38];
 		Scanner parser = new Scanner(input);
 		//Fancy regex to ignore , within " " to handle fields containing ,
 		parser.useDelimiter(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-		int i = 0;//Count for if line is class or filler
+		int i = 0;
 		while(parser.hasNext())
 		{
 			line[i]=parser.next();
-			//Special case for comma used in prof name
-			if (i==15)
-			{
-				line[i] = line[i].concat(parser.next());
-			}
-			//Case of last field having multiple commas because professors are terrorists
-			while(i==38 && parser.hasNext())
-			{
-				line[i] = line[i].concat(parser.next());
-			}
 			i++;
 		}
 		parser.close();
-		if(i==38)
+		//Set this a class line if it has purely numeric content in CLSS ID(this excludes header line)
+		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
 	}
 }
