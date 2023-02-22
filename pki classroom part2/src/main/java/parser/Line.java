@@ -11,7 +11,8 @@ public class Line {
 	{
 		line = new String[38];
 		Scanner parser = new Scanner(input);
-		parser.useDelimiter(",");
+		//Fancy regex to ignore , within " " to handle fields containing ,
+		parser.useDelimiter(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 		int i = 0;//Count for if line is class or filler
 		while(parser.hasNext())
 		{
