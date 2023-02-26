@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Line {
 	//Each line is size 38
-	boolean type;//Is this a class line(true) or filler line(false)?
-	String[] line;
+	protected boolean type;//Is this a class line(true) or filler line(false)?
+	protected String[] line;
 
 	public Line(String input)
 	{
@@ -26,4 +26,5 @@ public class Line {
 		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
 	}
+	//Standard accessor/setter methods
 }
