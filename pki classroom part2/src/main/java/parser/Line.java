@@ -21,10 +21,23 @@ public class Line {
 			line[i]=parser.next();
 			i++;
 		}
+		for (int j = 0; j<38; j++) {
+			if(line[j]==null)
+				line[j]="";
+		}
 		parser.close();
 		//Set this a class line if it has purely numeric content in CLSS ID(this excludes header line)
 		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
 	}
 	//Standard accessor/setter methods
+	
+	@Override
+	public String toString() {
+		String ret = "";
+		for (int i = 0; i<line.length;i++) {
+			ret = ret.concat(line[i]);
+		}
+		return ret;
+	}
 }

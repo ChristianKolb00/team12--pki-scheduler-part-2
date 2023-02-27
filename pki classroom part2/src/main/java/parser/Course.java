@@ -14,7 +14,8 @@ public class Course {
 		docIndex = doc;
 		rowIndex = row;
 		//Copy contents of line to diff for editing
-		System.arraycopy(line.line, 0, diff, 0, 38);
+		diff = new String[38];
+		System.arraycopy(line.line, 0, diff, 0, 37);
 		//Logic to detect parent/child class relationships
 		//aggEnroll = enrollment or sum of enrollments if parent
 	}
@@ -22,4 +23,13 @@ public class Course {
 	//Setter via diff
 	//Apply will apply diff to line
 	//Discard will reclone line over diff
+	public String toString()
+	{
+		String ret = "";
+		for(int i = 0; i<diff.length; i++)
+		{
+			ret = ret.concat(diff[i]);
+		}
+		return ret;
+	}
 }
