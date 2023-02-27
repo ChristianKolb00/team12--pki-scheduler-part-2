@@ -34,10 +34,10 @@ public class Document {
 		//Store list of paths
 		files = paths;
 		//Parse lines into a list of all courses
-		courses = this.parseCourses();
+		this.parseCourses();
 	}
 	
-	private Course[] parseCourses() {
+	private void parseCourses() {
 		ArrayList<Course> courses = new ArrayList<Course>();
 		//Iterate through entire set of all lines
 		for (int i = 0; i < docLines.length; i++) {
@@ -51,7 +51,6 @@ public class Document {
 		}
 		//Convert arrayList to array to return
 		Course[] ret = new Course[courses.size()];
-		ret = courses.toArray(ret);
-		return ret;
+		this.courses = courses.toArray(ret);
 	}
 }
