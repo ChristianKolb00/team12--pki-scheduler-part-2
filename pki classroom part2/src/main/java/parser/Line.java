@@ -35,9 +35,10 @@ public class Line {
 	@Override
 	public String toString() {
 		String ret = "";
-		for (int i = 0; i<line.length;i++) {
-			ret = ret.concat(line[i]);
+		for (int i = 0; i<line.length-1;i++) {
+			ret = ret.concat(line[i] + " ");
 		}
+		ret = ret.concat(line[line.length-1]);
 		return ret;
 	}
 }

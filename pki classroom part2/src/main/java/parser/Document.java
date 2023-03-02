@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Document {
 	private String file;
@@ -18,6 +19,10 @@ public class Document {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			while ((line = br.readLine())!= null) {
+				//To handle the \n in some comment fields
+				if (!line.endsWith("\"") && !line.endsWith(",")) {
+					line = line.concat(br.readLine());
+				}
 				docLines.add(new Line(line));
 			}
 			br.close();
@@ -29,8 +34,16 @@ public class Document {
 		file = path;
 	}
 	
-	protected ArrayList<Line> getLines()
-	{
+	@Override
+	public String toString() {
+		String ret = "";
+		for(int i = 0; i<docLines.size(); i++) {
+			ret = ret.concat(docLines.get(i).toString() + "\n");
+		}
+		return ret;
+	}
+	
+	protected ArrayList<Line> getLines(){
 		return docLines;
 	}
 }

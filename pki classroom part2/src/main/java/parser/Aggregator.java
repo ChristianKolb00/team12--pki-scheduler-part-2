@@ -28,4 +28,14 @@ public class Aggregator {
 		courses.toArray(ret);
 		return ret;
 	}
+	
+	@Override
+	public String toString()
+	{
+		String ret ="";
+		for(int i = 0; i< documents.length; i++) {
+			ret = ret.concat(documents[i].toString() + "\n\n");
+		}
+		return ret;
+	}
 }
