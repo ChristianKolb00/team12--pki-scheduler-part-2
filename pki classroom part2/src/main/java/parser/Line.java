@@ -19,6 +19,7 @@ public class Line {
 		while(parser.hasNext())
 		{
 			line[i]=parser.next();
+			line[i]=line[i].replace("\"", "");
 			i++;
 		}
 		for (int j = 0; j<38; j++) {
