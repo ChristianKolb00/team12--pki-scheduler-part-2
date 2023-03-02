@@ -21,7 +21,7 @@ public class Document {
 			while ((line = br.readLine())!= null) {
 				//To handle the \n in some comment fields
 				if (!line.endsWith("\"") && !line.endsWith(",")) {
-					line = line.concat(br.readLine());
+					line = line.concat("\n" + br.readLine());
 				}
 				docLines.add(new Line(line));
 			}
