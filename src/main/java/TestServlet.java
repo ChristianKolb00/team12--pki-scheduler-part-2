@@ -84,6 +84,7 @@ public class TestServlet extends HttpServlet {
 		out.println("table{ margin-left:auto; margin-right:auto; }");
 		out.println("table, th, td { border: 1px solid black; border-collapse:collapse;}");
 		out.println("td { padding:15px; text-align:left;}");
+		out.println("h1 { margin-left:50%; transform: translate(-50%);}");
 		out.println("</style>");
 		out.println("<h1> Welcome to the PKI building's Courses!</h1>");
 		
@@ -91,7 +92,6 @@ public class TestServlet extends HttpServlet {
 		for(int i=0; i<AllFile.length; i++) {
 			printOutCSV(request, response, AllFile[i]);
 		}
-		
 		out.println("</body> </html>");
 	}
 

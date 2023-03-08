@@ -9,7 +9,7 @@
 <body>
 	<h1>This is the attempt Changes page and list of potential changes</h1>
 	<div>
-	<form>
+	<form class="container">
 	<table class="table">
 		<tr>
 			<th>Course</th>
@@ -40,7 +40,7 @@
 	</form>
 	</div>
 	
-	<section>
+	<section class="container2">
 		<a href="/pkiClassroom/attemptChanges.jsp"><button > Attempt to Apply </button> </a>
 		<a href="/pkiClassroom/home.jsp"><button> Back </button> </a>
 		<a href="/pkiClassroom/summary.jsp"><button> Finalize </button> </a>
@@ -51,12 +51,25 @@
 	
 	body{
 		background-color: gray;
+		color:#fff;
 		}
+	h1, .container{
+		margin-left:50%;
+		transform:translate(-50%);
+	}
+	 .container2{
+	 	border:2px solid black;
+	 	border-radius:5px;
+	 	height:100px;
+	 	margin-top:5%;
+	 	margin-left:50%;
+		transform:translate(-50%);
+	 }
 	.table{
 		float:left;
 		border: 2px solid black;
 		height:300px;
-		margin-right: 3%;
+		margin:5%;
 		}
 	th,td{
 		border: 2px solid black;
@@ -64,10 +77,17 @@
 	section{
 		clear:left;
 		}
+	
 	button{
+		background:#787f86;
+		cursor:pointer;
+		color:#fff;
+		border-radius:5px;
 		height:40px; 
 		width: 120px;
-		margin-top: 10px;
-		margin-left: 5px;}
+		margin:3% 10% 3% 10%;}
+	button:hover{
+		background:#fff;
+		color:#3a3ac5;}
 </style>
 </html>

@@ -33,6 +33,12 @@ public class Line {
 	}
 	//Standard accessor/setter methods
 	
+	
+	public String getCourseTitle() {
+		String ret="";
+		ret = line[9];
+		return ret;
+	}
 	@Override
 	public String toString() {
 		String ret = "";

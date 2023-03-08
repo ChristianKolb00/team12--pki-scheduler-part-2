@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class Document {
 	private String file;
 	protected ArrayList<Line> docLines;//First index correlates to index of files
@@ -42,7 +44,13 @@ public class Document {
 		}
 		return ret;
 	}
-	
+	public String getCourses() {
+		String ret="";
+		for(int i = 0; i<docLines.size(); i++) {
+			ret = ret.concat((docLines.get(i)).getCourseTitle()+"\n");
+		}
+		return ret;
+	}
 	protected ArrayList<Line> getLines(){
 		return docLines;
 	}

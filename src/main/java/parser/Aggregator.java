@@ -11,7 +11,7 @@ public class Aggregator {
 			documents[i] = new Document(paths[i]);
 		}
 	}
-	private Course[] parseCourses() {
+	/*private*/ Course[] parseCourses() {
 		ArrayList<Course> courses = new ArrayList<Course>();
 		//Iterate through entire set of all lines
 		for (int i = 0; i < documents.length; i++) {
@@ -38,4 +38,5 @@ public class Aggregator {
 		}
 		return ret;
 	}
+	
 }

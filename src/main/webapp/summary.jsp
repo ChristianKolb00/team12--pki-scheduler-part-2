@@ -45,17 +45,17 @@
 	</tr>
 	</table>
 	</form>
-	<div>
-		<button class="left">Download CSV</button>
-		<a href="/pkiClassroom/home.jsp"><button class="mid">Back</button></a>
-		<button class="right"> Download per room schedule</button>
+	<div class="container2">
+		<button class="btn">Download CSV</button>
+		<a href="/pkiClassroom/attemptChanges.jsp"><button class="btn">Back</button></a>
+		<button class="btn"> Download per room schedule</button>
 	</div>
 	
 </body>
 <style>
-	body{
+	*{
 		background:gray;
-    	
+    	color:#fff;
 	}
 	h1{
 		display:flex;
@@ -71,23 +71,28 @@
 		width:60%;
 		border:2px solid black;
 		}
-	.left{
-		margin-left:10%;
-		margin-top:10%;
-		float:left;
-		height:60px;
-		width:150px;}
-	.mid{
-		margin-top:10%;
-		margin-left:25%;
-		text-aligh:center;
-		height:60px;
-		width:150px;}
-	.right{
-		margin-right:10%;
-		margin-top:10%;
-		float:right;
-		height:60px;
-		width:150px;}
+	.container2{
+		align-item:center;
+		justify-content:center;
+		margin-top:5%;
+		height:150px;
+		width:auto;
+		border: 2px solid black;
+		margin-left:50%;
+		transform:translate(-50%);
+		display:flex;
+		border-radius:7px;
+	}
+	.btn{
+		margin:40px;
+		cursor:pointer;
+		border-radius:6px;
+		width:100px;
+		height:70px;
+	}
+	.btn:hover{
+		background:#fff;
+		color:#3a3ac5;
+	}
 </style>
 </html>
