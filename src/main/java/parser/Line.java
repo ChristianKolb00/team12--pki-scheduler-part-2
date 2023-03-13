@@ -7,6 +7,7 @@ public class Line {
 	protected boolean type;//Is this a class line(true) or filler line(false)?
 	protected String[] line;
 	protected String[] webOriginal;
+	protected int aggEnrollOriginal;
 
 	public Line(String input)
 	{
@@ -31,12 +32,6 @@ public class Line {
 		//Set this a class line if it has purely numeric content in CLSS ID(this excludes header line)
 		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
-	}
-
-	protected void processWeb()
-	{
-		//Decide what data to put into webOriginal
-		webOriginal = line;
 	}
 	
 	@Override

@@ -15,8 +15,8 @@ public class Course extends Line{
 		diff = new String[38];
 		//Copy the line contents to the Course for possible editting
 		System.arraycopy(this.line, 0, diff, 0, 37);
-		//TODO: Initialize web/webOriginal to size
-		super.processWeb();
+		//By processing original line now, the values are locked in as immutable
+		processWebOriginal();
 		changed = true;
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
@@ -25,19 +25,23 @@ public class Course extends Line{
 	//Accessor methods for formatted output to display on web
 	public String[] getOriginalWebDisplay()
 	{
-		return this.webOriginal;
+		return webOriginal;
 	}
 	public String[] getWebDisplay()
 	{
 		if(changed)
 			processWeb();
-		return this.web;
+		return web;
 	}
 	
-	@Override
+	protected void processWebOriginal()
+	{
+		//Decide what data to put into webOriginal
+		String[] webOriginal = {line[1], line[8] + "-" + line[9], line[11], line[13], line[14], line[15], line[19], line[28],line[29], String.valueOf(aggEnrollOriginal)};
+	}
 	private void processWeb() {
 		//Decide what to put in display
-		web = diff;
+		String[] web = {diff[1], diff[8] + "-" + diff[9], diff[11], diff[13], diff[14], diff[15], diff[19], diff[28], diff[29], String.valueOf(aggEnroll)};
 		changed = false;
 	}
 	
