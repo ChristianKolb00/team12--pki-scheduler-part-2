@@ -6,6 +6,7 @@ public class Line {
 	//Each line is size 38
 	protected boolean type;//Is this a class line(true) or filler line(false)?
 	protected String[] line;
+	protected String[] webOriginal;
 
 	public Line(String input)
 	{
@@ -31,11 +32,11 @@ public class Line {
 		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
 	}
-	//Special super constructor
-	protected Line(Line line)
+
+	protected void processWeb()
 	{
-		this.line = line.line;
-		type = true;
+		//Decide what data to put into webOriginal
+		webOriginal = line;
 	}
 	
 	@Override
