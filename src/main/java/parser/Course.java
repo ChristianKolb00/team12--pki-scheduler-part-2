@@ -4,6 +4,7 @@ package parser;
 public class Course extends Line{
 	private String[] diff;
 	private String[] web;
+	private int parent;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
@@ -20,6 +21,23 @@ public class Course extends Line{
 		changed = true;
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
+	}
+	
+	public void setMeetingPattern(String p)
+	{
+		diff[13]=p;
+	}
+	
+	public void setRoom(String r)
+	{
+		diff[15]=r;
+		//Cascad max enrollment set
+	}
+	
+	public void setEnrollment(String e)
+	{
+		diff[28]=e;
+		//Update aggEnroll
 	}
 	
 	//Accessor methods for formatted output to display on web
