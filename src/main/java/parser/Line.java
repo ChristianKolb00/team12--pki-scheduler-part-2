@@ -31,7 +31,12 @@ public class Line {
 		if(line[1].contains("[a-zA-Z]+") == false )
 			type=true;
 	}
-	//Standard accessor/setter methods
+	//Special super constructor
+	protected Line(Line line)
+	{
+		this.line = line.line;
+		type = true;
+	}
 	
 	@Override
 	public String toString() {

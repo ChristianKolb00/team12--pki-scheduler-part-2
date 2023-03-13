@@ -17,9 +17,10 @@ public class Aggregator {
 		for (int i = 0; i < documents.length; i++) {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
 				//If line is a valid course, add it to courses
-				if (documents[i].docLines.get(j).type == true)
+				Line temp = documents[i].docLines.get(j);
+				if (temp.type == true)
 				{
-					courses.add(new Course(documents[i].docLines.get(j),i,j));
+					courses.add((Course) temp);
 				}
 			}
 		}
