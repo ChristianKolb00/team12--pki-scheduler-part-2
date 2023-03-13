@@ -26,18 +26,21 @@ public class Course extends Line{
 	public void setMeetingPattern(String p)
 	{
 		diff[13]=p;
+		changed = true;
 	}
 	
 	public void setRoom(String r)
 	{
 		diff[15]=r;
 		//Cascad max enrollment set
+		changed = true;
 	}
 	
 	public void setEnrollment(String e)
 	{
 		diff[28]=e;
 		//Update aggEnroll
+		changed = true;
 	}
 	
 	//Accessor methods for formatted output to display on web
@@ -50,6 +53,12 @@ public class Course extends Line{
 		if(changed)
 			processWeb();
 		return web;
+	}
+	
+	public void revert()
+	{
+		System.arraycopy(this.line, 0, diff, 0, 37);
+		changed = true;
 	}
 	
 	protected void processWebOriginal()
