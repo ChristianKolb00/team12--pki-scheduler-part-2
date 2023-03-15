@@ -44,13 +44,6 @@ public class Document {
 		}
 		return ret;
 	}
-	public String getCourses() {
-		String ret="";
-		for(int i = 0; i<docLines.size(); i++) {
-			ret = ret.concat((docLines.get(i)).getCourseTitle()+"\n");
-		}
-		return ret;
-	}
 	protected ArrayList<Line> getLines(){
 		return docLines;
 	}
