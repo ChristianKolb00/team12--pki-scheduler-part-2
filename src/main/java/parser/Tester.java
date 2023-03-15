@@ -12,9 +12,6 @@ public class Tester {
 		
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		for(int i=0; i<tester.parseCourses().length;i++) {
-			System.out.println(tester.parseCourses()[i]);
-		}
 		
 		
 		//column needed to access & update are Meeting Pattern, Room, Inst. Method, 
