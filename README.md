@@ -11,3 +11,8 @@ Our project will
 2. Time change either affected because of the reassignment or just want a time change
 3. Give user some possible choice to choose what changes they want when they want to change classroom
 4. Print out a per classroom CSV files which will show all the courses per classroom 
+
+Release Notes-
+Local Copies of Schedule files in program
+Parser functioning with single document tester, should work with multidocument but untested
+Web pages exist, awaiting connection to real content

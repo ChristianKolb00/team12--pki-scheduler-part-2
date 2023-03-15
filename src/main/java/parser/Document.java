@@ -25,7 +25,12 @@ public class Document {
 				if (!line.endsWith("\"") && !line.endsWith(",")) {
 					line = line.concat("\n" + br.readLine());
 				}
-				docLines.add(new Line(line));
+				//Is a course
+				if(line.startsWith(",\"") && Character.isDigit(line.charAt(2)))
+					docLines.add(new Course(line));
+				//Else is filler
+				else
+					docLines.add(new Line(line));
 			}
 			br.close();
 		}catch(FileNotFoundException e) {
