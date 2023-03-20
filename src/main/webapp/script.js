@@ -1,5 +1,5 @@
 
-document.getElementById("field").onchange= function(){
+/*document.getElementById("field").onchange= function(){
 	document.getElementById('s2').disabled = false; //enabling s2 select
 	document.getElementById('s2').innerHTML = "";
     var h4 = document.getElementById('h4');
@@ -71,16 +71,30 @@ document.getElementById("field").onchange= function(){
 		document.getElementById('s2').appendChild(opt3);
 		document.getElementById('s2').appendChild(opt4);
 	}
-};
-const btn = document.getElementById("add");
-	btn.addEventListener("click", () => {
-  
-    const div = document.createElement("div");
-    const div2 = document.getElementById("course").value;
-    const div3 = document.getElementById("field").value;
-    const div4 = document.getElementById("s2").value;
-    div.innerHTML = div2 + ", field to change: "+div3+": "+ div4;
-    document.body.appendChild(div);  
-});
-
+};*/
+    const add = document.getElementById("add");
+	add.addEventListener("click", () => {
+  		const s3 = document.getElementById("s3");
+    	const div = document.createElement("div");
+    	div.setAttribute('id','elementChange');
+    	const div2 = document.getElementById("course").value;
+    	const div3 = document.getElementById("field").value;
+    	//const div4 = document.getElementById("s2").value;
+    	div.innerHTML = "Course: "+div2 + ", enrollment change: "+div3;
+    	s3.appendChild(div);  
+});	
+//clear 
+	const clear = document.getElementById("clear");
+	clear.addEventListener("click",()=>{
+		const child = document.getElementById("elementChange");
+		child.remove();
+	})
+	const clearAll = document.getElementById("clearAll");
+	clearAll.addEventListener("click",()=>{
+		
+		var children = document.querySelectorAll("[id='elementChange']");
+		for(var i=0; i<children.length;i++){
+			children[i].remove();
+		}
+	});
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Attemp Change</title>
 <link rel="stylesheet" href= "style.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
 
@@ -21,11 +21,18 @@
 		<tr >
 		<td> CSCI XXXX </td>
 		<td> Time from 3-4 to 5-6 </td>
+		<td> Room change to PKI 277 from 3-4 </td>
 		</tr> 
 		
 		<tr >
 		<td> CSCI XXXX </td>
-		<td> Time from 3-4 to 5-6 </td>
+		<td> Time from 3-4 to 5-6 with same room</td>
+		<td> Room change to PKI 256 from 3-4 </td>
+		</tr> 
+		<tr >
+		<td> CSCI XXXX </td>
+		<td> Room Change to PKI 260 from 3-5 </td>
+		<td> Time Change 4-6 to 10-12 with same room </td>
 		</tr> 
 	</table>
 	</section>
