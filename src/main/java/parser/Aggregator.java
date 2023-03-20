@@ -19,6 +19,17 @@ public class Aggregator {
 		return courses;
 	}
 	
+	public String[] getCourseNames()
+	{
+		ArrayList<String> names = new ArrayList<String>();
+		for (int i = 0; i < courses.length; i++) {
+			names.add(courses[i].getCourseSection());
+		}
+		String[] ret = new String[names.size()];
+		names.toArray(ret);
+		return ret;
+	}
+	
 	//Iterate through all documents finding the Lines that are course flagged
 	private Course[] findCourses() {
 		ArrayList<Course> courses = new ArrayList<Course>();

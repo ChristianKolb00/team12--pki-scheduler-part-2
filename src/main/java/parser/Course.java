@@ -37,12 +37,13 @@ public class Course extends Line{
 		changed = true;
 	}
 	
-	public void setEnrollment(String e)
+	public void setMaxEnrollment(String e)
 	{
-		diff[28]=e;
+		diff[29]=e;
 		//Update aggEnroll
 		changed = true;
 	}
+	
 	//TODO: build, base 15 timescale
 	protected int[] parseTime()
 	{
@@ -81,7 +82,7 @@ public class Course extends Line{
 		return web;
 	}
 	
-	public String getCourseSection()
+	protected String getCourseSection()
 	{
 		return line[8] + "-" + line[9];
 	}
