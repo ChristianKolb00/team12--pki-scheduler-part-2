@@ -11,7 +11,7 @@ public class Aggregator {
 		for(int i = 0; i < paths.length; i++) {
 			documents[i] = new Document(paths[i]);
 		}
-		//courses = getCourses();
+		courses = getCourses();
 	}
 	
 	//Iterate through all documents finding the Lines that are course flagged
@@ -22,7 +22,7 @@ public class Aggregator {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
 				//If line is a valid course, add it to courses
 				Line temp = documents[i].docLines.get(j);
-				if (temp.type == true)
+				if (temp instanceof Course)
 				{
 					courses.add((Course) temp);
 				}
