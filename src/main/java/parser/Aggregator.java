@@ -20,7 +20,7 @@ public class Aggregator {
 		for (int i = 0; i < documents.length; i++) {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
 				//If line is a valid course, add it to courses
-				Line temp = documents[i].docLines.get(j);
+				Line temp =documents[i].docLines.get(j);
 				if (temp.type == true)
 				{
 					courses.add((Course) temp);

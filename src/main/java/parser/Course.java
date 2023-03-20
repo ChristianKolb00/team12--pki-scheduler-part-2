@@ -4,7 +4,7 @@ package parser;
 public class Course extends Line{
 	private String[] diff;
 	private String[] web;
-	private int parent;//-1 when neither, 0 when parent, 1 when child
+	private int parents;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
