@@ -4,7 +4,8 @@ package parser;
 public class Course extends Line{
 	private String[] diff;
 	private String[] web;
-	private int parents;//-1 when neither, 0 when parent, 1 when child
+	
+	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
@@ -15,7 +16,7 @@ public class Course extends Line{
 		super(line);
 		diff = new String[38];
 		//Copy the line contents to the Course for possible editting
-		System.arraycopy(this.line, 0, diff, 0, 37);
+		this.revert();
 		//By processing original line now, the values are locked in as immutable
 		processWebOriginal();
 		changed = true;
@@ -57,18 +58,21 @@ public class Course extends Line{
 	
 	public void revert()
 	{
-		System.arraycopy(this.line, 0, diff, 0, 37);
+		for(int i = 0; i<line.length; i++)
+		{
+			diff[i] = line[i];//Since string is immutable this is a deep copy
+		}
 		changed = true;
 	}
 	
 	protected void processWebOriginal()
 	{
 		//Decide what data to put into webOriginal
-		String[] webOriginal = {line[1], line[8] + "-" + line[9], line[11], line[13], line[14], line[15], line[19], line[28],line[29], String.valueOf(aggEnrollOriginal)};
+		String[] webOriginal = {line[8] + "-" + line[9], line[11], line[13], line[14], line[15], line[28],line[29], String.valueOf(aggEnrollOriginal)};
 	}
 	private void processWeb() {
 		//Decide what to put in display
-		String[] web = {diff[1], diff[8] + "-" + diff[9], diff[11], diff[13], diff[14], diff[15], diff[19], diff[28], diff[29], String.valueOf(aggEnroll)};
+		String[] web = {diff[8] + "-" + diff[9], diff[11], diff[13], diff[14], diff[15], diff[28], diff[29], String.valueOf(aggEnroll)};
 		changed = false;
 	}
 	

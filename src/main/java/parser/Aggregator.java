@@ -20,13 +20,11 @@ public class Aggregator {
 		for (int i = 0; i < documents.length; i++) {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
 				//If line is a valid course, add it to courses
-				Line temp =documents[i].docLines.get(j);
-				if (temp.type == true)
-				{
+				Line temp = documents[i].docLines.get(j);
+				if (temp instanceof Course)
 					courses.add((Course) temp);
 				}
 			}
-		}
 		//Convert arrayList to array to return
 		Course[] ret = new Course[courses.size()];
 		courses.toArray(ret);
