@@ -24,6 +24,7 @@ public class Course extends Line{
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 	}
 	
+	//Possibly split this
 	public void setMeetingPattern(String p)
 	{
 		diff[13]=p;
@@ -79,6 +80,11 @@ public class Course extends Line{
 		if(changed)
 			processWeb();
 		return web;
+	}
+	
+	public String getCourseSection()
+	{
+		return line[8] + "-" + line[9];
 	}
 	
 	public void revert()
