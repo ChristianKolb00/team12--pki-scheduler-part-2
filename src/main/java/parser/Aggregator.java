@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 public class Aggregator {
 	private Document[] documents;
-	private Course[] courses;
+	private Course[] allCourses, courses;
 	public Aggregator(String[] paths)
 	{
 		documents = new Document[paths.length];
 		for(int i = 0; i < paths.length; i++) {
 			documents[i] = new Document(paths[i]);
 		}
-		courses = findCourses();
+		allCourses = findCourses();//Isolate all courses in document
+		courses = refineCourses();//Isolate all courses we can modify/care about
 	}
 	
 	public Course[] getCourses()
@@ -32,7 +33,7 @@ public class Aggregator {
 	
 	//Iterate through all documents finding the Lines that are course flagged
 	private Course[] findCourses() {
-		ArrayList<Course> courses = new ArrayList<Course>();
+		ArrayList<Course> course = new ArrayList<Course>();
 		//Iterate through entire set of all lines
 		for (int i = 0; i < documents.length; i++) {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
@@ -40,14 +41,25 @@ public class Aggregator {
 				Line temp = documents[i].docLines.get(j);
 				if (temp instanceof Course)
 				{
-					courses.add((Course) temp);
+					course.add((Course) temp);
 				}
 			}
 		}
 		//Convert arrayList to array to return
-		Course[] ret = new Course[courses.size()];
-		courses.toArray(ret);
+		Course[] ret = new Course[course.size()];
+		course.toArray(ret);
 		return ret;
+	}
+	
+	private Course[] refineCourses()
+	{
+		ArrayList<Course> course = new ArrayList<Course>();
+		for(int i = 0; i < allCourses.length; i++) {
+			if(allCourses[i].getBuilding().contentEquals("PKI"))
+				course.add(allCourses[i]);
+		}
+		//TODO: filter by classroom to PKI only
+		return courses;
 	}
 	
 	@Override
