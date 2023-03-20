@@ -43,6 +43,7 @@ public class TimeTable {
 		}
 		//Once confirmed
 		releaseTime(c);
+		//Add new time
 		for(int j = 0; j < days.length; j++)
 			for(int k = td[0]; k < td[0] + td[1]; k++)
 				table[j][k]=c;
