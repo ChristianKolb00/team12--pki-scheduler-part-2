@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 public class Document {
 	private String file;
 	protected ArrayList<Line> docLines;//First index correlates to index of files
