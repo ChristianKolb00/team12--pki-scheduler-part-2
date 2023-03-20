@@ -19,7 +19,7 @@ public class Aggregator {
 		return courses;
 	}
 	//Iterate through all documents finding the Lines that are course flagged
-	private Course[] findCourses() {
+	public Course[] findCourses() {
 		ArrayList<Course> courses = new ArrayList<Course>();
 		//Iterate through entire set of all lines
 		for (int i = 0; i < documents.length; i++) {

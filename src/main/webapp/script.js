@@ -74,14 +74,18 @@
 };*/
     const add = document.getElementById("add");
 	add.addEventListener("click", () => {
-  		const s3 = document.getElementById("s3");
+		var children = document.querySelectorAll("[id='elementChange']");
+		while(children.length<=10){
+			
+		const s3 = document.getElementById("s3");
     	const div = document.createElement("div");
     	div.setAttribute('id','elementChange');
     	const div2 = document.getElementById("course").value;
     	const div3 = document.getElementById("field").value;
     	//const div4 = document.getElementById("s2").value;
-    	div.innerHTML = "Course: "+div2 + ", enrollment change: "+div3;
+    	div.innerHTML = "Course: "+div2 +", enrollment change: "+div3;
     	s3.appendChild(div);  
+		}
 });	
 //clear 
 	const clear = document.getElementById("clear");
