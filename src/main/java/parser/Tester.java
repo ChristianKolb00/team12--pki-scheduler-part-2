@@ -12,7 +12,11 @@ public class Tester {
 		
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		System.out.println(tester.toString());
+		Course[] allCourses = tester.findCourses();
+		for(int i=0; i<allCourses.length;i++) {
+			System.out.println(allCourses[i]);
+		}
+			
 		//column needed to access & update are Meeting Pattern, Room, Inst. Method, 
 		//Enrollment, and Maximum Enrollment. 
 		
