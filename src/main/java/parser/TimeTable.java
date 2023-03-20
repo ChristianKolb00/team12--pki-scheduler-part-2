@@ -5,7 +5,7 @@ public class TimeTable {
 	private Course blocker;
 	public TimeTable()
 	{
-		table = new Course[5][96];
+		table = new Course[5][95];
 		//Preset table loops
 		blocker = new Course(null);//Might need special handling to create a good readable blocker?
 		//Use a blocker course to blackout times
