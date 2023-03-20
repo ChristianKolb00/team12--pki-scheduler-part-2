@@ -23,7 +23,7 @@ public class Document {
 				if (!line.endsWith("\"") && !line.endsWith(",")) {
 					line = line.concat("\n" + br.readLine());
 				}
-				//Is a course
+				//Is a course, this breaks due to Sheets
 				if(line.startsWith(",\"") && Character.isDigit(line.charAt(2)))
 					docLines.add(new Course(line));
 				//Else is filler
@@ -43,7 +43,7 @@ public class Document {
 	public String toString() {
 		String ret = "";
 		for(int i = 0; i<docLines.size(); i++) {
-			ret = ret.concat(docLines.get(i).toString() + "\n");
+			ret = ret.concat(docLines.get(i).toString() + "\n\n");
 		}
 		return ret;
 	}

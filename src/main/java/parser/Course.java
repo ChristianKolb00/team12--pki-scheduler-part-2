@@ -4,7 +4,7 @@ package parser;
 public class Course extends Line{
 	private String[] diff;
 	private String[] web;
-	private int parent;//-1 when neither, 0 when parent, 1 when child
+	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
@@ -15,7 +15,7 @@ public class Course extends Line{
 		super(line);
 		diff = new String[38];
 		//Copy the line contents to the Course for possible editting
-		System.arraycopy(this.line, 0, diff, 0, 37);
+		this.revert();
 		//By processing original line now, the values are locked in as immutable
 		processWebOriginal();
 		changed = true;
@@ -57,7 +57,10 @@ public class Course extends Line{
 	
 	public void revert()
 	{
-		System.arraycopy(this.line, 0, diff, 0, 37);
+		for(int i = 0; i<line.length; i++)
+		{
+			diff[i] = line[i];//Since string is immutable this is a deep copy
+		}
 		changed = true;
 	}
 	

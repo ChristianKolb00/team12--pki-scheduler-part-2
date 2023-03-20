@@ -11,7 +11,7 @@ public class Aggregator {
 		for(int i = 0; i < paths.length; i++) {
 			documents[i] = new Document(paths[i]);
 		}
-		courses = getCourses();
+		//courses = getCourses();
 	}
 	
 	//Iterate through all documents finding the Lines that are course flagged
