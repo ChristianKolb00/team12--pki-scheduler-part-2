@@ -43,6 +43,31 @@ public class Course extends Line{
 		//Update aggEnroll
 		changed = true;
 	}
+	//TODO: build, base 15 timescale
+	protected int[] parseTime()
+	{
+		int[] ret = {0,0};
+		return ret;
+	}
+	//Same as prior but for Line values
+	protected int[] parseOriginalTime()
+	{
+		int[] ret = {0,0};
+		return ret;
+	}
+	
+	//TODO: 1=M, 2=T, etc
+	protected int[] parseDay()
+	{
+		int[] ret = {0,0};
+		return ret;
+	}
+	//Same as prior but for Line values
+	protected int[] parseOriginalDay()
+	{
+		int[] ret = {0,0};
+		return ret;
+	}
 	
 	//Accessor methods for formatted output to display on web
 	public String[] getOriginalWebDisplay()

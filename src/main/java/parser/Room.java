@@ -1,22 +1,24 @@
 package parser;
 
-public class Room {
+public class Room extends TimeTable{
 	private String building;
 	private int roomNum;
-	private int[] schedule;
+	private TimeTable schedule;
 	
 	public Room(String b, int n)
 	{
+		super();
 		building = b;
 		roomNum = n;
-		schedule = new int[95];
-		initializeSchedule();
 	}
 	
-	//Schedule functions on chopping 24 hours day into 96 50 minute segemtsn
-	private void initializeSchedule()
+	public String getBuilding()
 	{
-		//-1 initialization for invalid class slots like 5am and 11pm etc
-		//Front and end loop for times		
+		return building;
+	}
+	
+	public int getRoomNumber()
+	{
+		return roomNum;
 	}
 }
