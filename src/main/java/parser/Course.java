@@ -89,10 +89,10 @@ public class Course extends Line{
 	
 	protected String getBuilding()
 	{
-		if(line[15].contains("Peter"))
+		if(line[14].contains("Peter"))
 			return "PKI";
 		else
-			return null;
+			return "Other";
 	}
 	
 	public void revert()

@@ -56,10 +56,13 @@ public class Aggregator {
 		ArrayList<Course> course = new ArrayList<Course>();
 		for(int i = 0; i < allCourses.length; i++) {
 			if(allCourses[i].getBuilding().contentEquals("PKI"))
+			{
 				course.add(allCourses[i]);
+			}
 		}
-		//TODO: filter by classroom to PKI only
-		return courses;
+		Course[] ret = new Course[course.size()];
+		course.toArray(ret);
+		return ret;
 	}
 	
 	@Override

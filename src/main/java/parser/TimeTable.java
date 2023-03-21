@@ -5,13 +5,13 @@ public class TimeTable {
 	private Course blocker;
 	public TimeTable()
 	{
-		table = new Course[5][95];
+		table = new Course[4][95];
 		//Preset table loops
 		blocker = new Course(null);//Might need special handling to create a good readable blocker?
 		//Use a blocker course to blackout times
-		for(int h=0; h < table.length; h++)
+		for(int h=0; h <= table.length; h++)
 		{
-			for(int i = 0; i < 17; i++)
+			for(int i = 0; i < 34; i++)
 				table[h][i]=blocker;
 			for(int j=84; j < table[h].length; j++)
 				table[h][j]=blocker;
@@ -20,7 +20,7 @@ public class TimeTable {
 	//Returns true if all slots for course and slot before and after are available
 	public boolean checkAvailable(int d, int t, int du)
 	{
-		for (int k = t-1; k < t + du; k++)
+		for (int k = t-1; k < t + du + 1; k++)
 			if(table[d][k] != null)
 				return false;
 		return true;
