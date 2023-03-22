@@ -14,7 +14,7 @@ public class Course extends Line{
 	public Course(String line) {
 		//Create a standard line
 		super(line);
-		diff = new String[38];
+		diff = new String[Constants.COL_COUNT];
 		//Copy the line contents to the Course for possible editting
 		this.revert();
 		//By processing original line now, the values are locked in as immutable
@@ -24,25 +24,28 @@ public class Course extends Line{
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 	}
 	
+	//Possibly split this
 	public void setMeetingPattern(String p)
 	{
-		diff[13]=p;
+		diff[Constants.MEET_PATT]=p;
 		changed = true;
 	}
 	
 	public void setRoom(String r)
 	{
-		diff[15]=r;
+		diff[Constants.ROOM]=r;
+		//Also set maxroom based on new room
 		//Cascad max enrollment set
 		changed = true;
 	}
 	
-	public void setEnrollment(String e)
+	public void setMaxEnrollment(String e)
 	{
-		diff[28]=e;
+		diff[Constants.MAX_ENROLL]=e;
 		//Update aggEnroll
 		changed = true;
 	}
+	
 	//TODO: build, base 15 timescale
 	protected int[] parseTime()
 	{
@@ -81,6 +84,19 @@ public class Course extends Line{
 		return web;
 	}
 	
+	protected String getCourseSection()
+	{
+		return line[Constants.COURSE] + "-" + line[Constants.SEC_NUM];
+	}
+	
+	protected String getBuilding()
+	{
+		if(line[14].contains("Peter"))
+			return "PKI";
+		else
+			return "Other";
+	}
+	
 	public void revert()
 	{
 		for(int i = 0; i<line.length; i++)
@@ -93,11 +109,13 @@ public class Course extends Line{
 	protected void processWebOriginal()
 	{
 		//Decide what data to put into webOriginal
-		String[] webOriginal = {line[8] + "-" + line[9], line[11], line[13], line[14], line[15], line[28],line[29], String.valueOf(aggEnrollOriginal)};
+		String[] webOriginal = {line[Constants.COURSE] + "-" + line[Constants.SEC_NUM], line[Constants.SEC_TYPE], line[Constants.MEET_PATT], 
+				line[Constants.INSTRUCTOR], line[Constants.ROOM], line[Constants.ENROLLMENT],line[Constants.MAX_ENROLL], String.valueOf(aggEnrollOriginal)};
 	}
 	private void processWeb() {
 		//Decide what to put in display
-		String[] web = {diff[8] + "-" + diff[9], diff[11], diff[13], diff[14], diff[15], diff[28], diff[29], String.valueOf(aggEnroll)};
+		String[] web = {diff[Constants.COURSE] + "-" + diff[Constants.SEC_NUM], diff[Constants.SEC_TYPE], diff[Constants.MEET_PATT], 
+				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
 		changed = false;
 	}
 	
