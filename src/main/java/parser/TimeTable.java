@@ -11,9 +11,9 @@ public class TimeTable {
 		//Use a blocker course to blackout times
 		for(int h=0; h <= table.length; h++)
 		{
-			for(int i = 0; i < 34; i++)
+			for(int i = 0; i < 33; i++)
 				table[h][i]=blocker;
-			for(int j=84; j < table[h].length; j++)
+			for(int j=85; j < table[h].length; j++)
 				table[h][j]=blocker;
 		}
 	}
