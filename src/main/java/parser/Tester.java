@@ -12,7 +12,7 @@ public class Tester {
 		
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		Course[] allCourses = tester.findCourses();
+		Course[] allCourses = tester.getCourses();
 		for(int i=0; i<allCourses.length;i++) {
 			System.out.println(allCourses[i]);
 		}

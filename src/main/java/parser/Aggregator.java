@@ -43,6 +43,7 @@ public class Aggregator {
 					course.add((Course) temp);
 				}
 			}
+		}
 		//Convert arrayList to array to return
 		Course[] ret = new Course[course.size()];
 		course.toArray(ret);
