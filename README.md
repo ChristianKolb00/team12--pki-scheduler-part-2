@@ -16,3 +16,7 @@ Release Notes-
 Local Copies of Schedule files in program
 Parser functioning with single document tester, should work with multidocument but untested
 Web pages exist, awaiting connection to real content
+
+milestone 2:
+1. display some csv data on front-end
+2. JSP allow users to add course change, course change can go up to 5
