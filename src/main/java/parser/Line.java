@@ -3,7 +3,6 @@ package parser;
 import java.util.Scanner;
 
 public class Line {
-	//Each line is size 38
 	protected boolean type;//Is this a class line(true) or filler line(false)?
 	protected String[] line;
 	protected String[] webOriginal;
@@ -13,7 +12,7 @@ public class Line {
 	{
 		//Set this a non-class line
 		type = false;
-		line = new String[38];
+		line = new String[Constants.COL_COUNT];
 		Scanner parser = new Scanner(input);
 		//Fancy regex to ignore , within " " to handle fields containing ,
 		parser.useDelimiter(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -24,7 +23,7 @@ public class Line {
 			line[i]=line[i].replace("\"", "");
 			i++;
 		}
-		for (int j = 0; j<38; j++) {
+		for (int j = 0; j<Constants.COL_COUNT; j++) {
 			if(line[j]==null)
 				line[j]="";
 		}
