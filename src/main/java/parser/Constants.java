@@ -6,8 +6,8 @@ public final class Constants {
 	{
 	}
 	
-	//Lock for Room Swap
-	protected static int lock = 0;
+	protected static final int NUM_DAYS = 5;
+	protected static final int NUM_FIFTEENS = 96;
 	
 	//Indices for CSV format in array
 	protected static final int COL_COUNT = 38;

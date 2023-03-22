@@ -5,7 +5,7 @@ public class TimeTable {
 	private Course blocker;
 	public TimeTable()
 	{
-		table = new Course[4][95];
+		table = new Course[Constants.NUM_DAYS][Constants.NUM_FIFTEENS];
 		//Preset table loops
 		blocker = new Course(null);//Might need special handling to create a good readable blocker?
 		//Use a blocker course to blackout times
@@ -39,41 +39,14 @@ public class TimeTable {
 		{
 			if(!checkAvailable(days[i],td[0],td[1]))
 				throw new ScheduleException("Time/day: " + days[i] + ", " + td[0] + " " + td[1]);
-
 		}
-		//Once confirmed
-		release(c);
 		//Add new time
 		for(int j = 0; j < days.length; j++)
 			for(int k = td[0]; k < td[0] + td[1]; k++)
 				table[j][k]=c;
 	}
 	
-	public void swap(Course c) throws ScheduleException
-	{
-		int shiftLock, timeout = 0;
-		if(Constants.lock== 0)
-			shiftLock = 1;
-		else
-			shiftLock = -1;
-		Constants.lock += shiftLock;
-		release(c);
-		//Lock for 2nd swap to occur
-		while (shiftLock != 0)
-		{
-			timeout++;
-			//Waited too long
-			if(timeout > 1000000)
-			{
-				restore(c);
-				Constants.lock -= shiftLock;
-				throw new ScheduleException("Second swap never occured");
-			}
-		}
-		set(c);
-	}
-	
-	private void release(Course c)
+	public void release(Course c)
 	{
 		int[] td = c.parseOriginalTime();
 		int[] days = c.parseOriginalDay();
@@ -84,7 +57,7 @@ public class TimeTable {
 					table[j][k]=null;
 	}
 	
-	private void restore(Course c)
+	public void restore(Course c)
 	{
 		int[] td = c.parseOriginalTime();
 		int[] days = c.parseOriginalDay();
