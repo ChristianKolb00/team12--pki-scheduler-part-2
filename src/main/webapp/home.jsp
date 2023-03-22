@@ -30,7 +30,7 @@
 				
 				String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 				Aggregator tester = new Aggregator(AllFile);
-				Course[] allCourses = tester.findCourses();
+				String[] allCourses = tester.getCourseNames();
 				for(int i=0; i<allCourses.length;i++) {%>
 				<option value="<%= allCourses[i]%>"><%= allCourses[i]%></option> 
 				<%}%>
