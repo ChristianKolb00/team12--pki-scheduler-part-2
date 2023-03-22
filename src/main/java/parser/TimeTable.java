@@ -52,12 +52,16 @@ public class TimeTable {
 		int[] td = c.parseOriginalTime();
 		int[] days = c.parseOriginalDay();
 		for(int j = 0; j < days.length; j++)
+		{
 			for(int k = td[0]; k < td[0] + td[1]; k++)
+			{
 				//Check to make sure its not already descheduled
 				if(table[days[j]][k] == c)
 					table[days[j]][k]=null;
 				else
 					throw new ScheduleException("Course already descheduled");
+			}
+		}
 	}
 	
 	
@@ -67,12 +71,16 @@ public class TimeTable {
 		int[] td = c.parseTime();
 		int[] days = c.parseDay();
 		for(int j = 0; j < days.length; j++)
+		{
 			for(int k = td[0]; k < td[0] + td[1]; k++)
+			{
 				//Check to make sure its not already descheduled
 				if(table[days[j]][k] == c)
 					table[days[j]][k]=null;
 				else
 					throw new ScheduleException("Course already descheduled");
+			}
+		}
 	}
 	
 	//After analysis is completed, AND restoreRelease, this will set the Course's original time slots
@@ -82,11 +90,14 @@ public class TimeTable {
 		int[] days = c.parseOriginalDay();
 		//No extra check needed because this is only ever called after releaseTime(c)
 		for(int j = 0; j < days.length; j++)
+		{
 			for(int k = td[0]; k < td[0] + td[1]; k++)
 			{
 				if(table[days[j]][k] != null)
 					throw new ScheduleException("Improper restore order");
 				table[days[j]][k]=c;
 			}
+		}
+		c.revert();
 	}
 }
