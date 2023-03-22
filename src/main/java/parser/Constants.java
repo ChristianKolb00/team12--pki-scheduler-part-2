@@ -11,7 +11,7 @@ public final class Constants {
 	
 	//Indices for CSV format in array
 	protected static final int COL_COUNT = 38;
-	//Col 0 unused
+	protected static final int FILLER_TITLE = 0;//Col 0 unused by any Course line
 	protected static final int CLSS = 1;
 	protected static final int SIS = 2;
 	protected static final int TERM = 3;
