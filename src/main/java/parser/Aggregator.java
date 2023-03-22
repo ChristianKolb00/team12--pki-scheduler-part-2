@@ -19,7 +19,6 @@ public class Aggregator {
 	{
 		return courses;
 	}
-	
 	public String[] getCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
@@ -44,7 +43,6 @@ public class Aggregator {
 					course.add((Course) temp);
 				}
 			}
-		}
 		//Convert arrayList to array to return
 		Course[] ret = new Course[course.size()];
 		course.toArray(ret);
@@ -74,4 +72,5 @@ public class Aggregator {
 		}
 		return ret;
 	}
+	
 }

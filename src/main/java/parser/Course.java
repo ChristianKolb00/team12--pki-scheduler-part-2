@@ -4,6 +4,7 @@ package parser;
 public class Course extends Line{
 	private String[] diff;
 	private String[] web;
+	
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
@@ -125,10 +126,11 @@ public class Course extends Line{
 	public String toString()
 	{
 		String ret = "";
-		for(int i = 0; i<diff.length; i++)
+		/*for(int i = 0; i<diff.length; i++)
 		{
 			ret = ret.concat(diff[i]);
-		}
+		}*/
+		ret = diff[7]+"-"+diff[8];
 		return ret;
 	}
 }
