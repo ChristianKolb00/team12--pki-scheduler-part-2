@@ -1,5 +1,4 @@
 <%@ page import="parser.Aggregator" %>
-<%@ page import="parser.Course" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,11 +6,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home page</title>
+
 <link rel="stylesheet" href= "style.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
-
 </head>
-
 <body>
 <div>
 	<h1>Welcome to the Home page where you can change Enrollments</h1>
@@ -39,23 +37,22 @@
 		<div class="container">
 			<h4> Max Enrollment Change: </h4>
 			<select id = "field" >
-				<option value="20">20</option>
-				<option value="25">25</option>
-				<option value="30">30</option>
-				<option value="40"> 40</option>
+				<option value="20"> 20 </option>
+				<option value="25"> 25 </option>
+				<option value="30"> 30 </option>
+				<option value="40"> 40 </option>
 				<option value="50"> 50 </option>
 				<option value="60"> 60 </option>
 				<option value="70"> 70 </option>
 				<option value="80"> 80 </option>
 			</select>
-			
 		</div>
 		<div class="container">
 			<h4 id="h4"></h4>
 			<select id="s2" required hidden="hidden"></select>
 		</div>
 		<div class="container">
-			<button id = "add" class= "buttons">Add</button>
+			<button id = "add" class= "buttons">Add to List</button>
 		</div>
 	</section>
 	

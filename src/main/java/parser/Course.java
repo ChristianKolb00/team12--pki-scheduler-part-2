@@ -105,7 +105,13 @@ public class Course extends Line{
 		}
 		changed = true;
 	}
-	
+	public String getInfo()
+	{
+		//Decide what data to put into webOriginal
+		String webOriginal = line[Constants.COURSE] + "-" + line[Constants.SEC_NUM] + "," + line[Constants.SEC_TYPE] + "," + line[Constants.MEET_PATT] + "," + 
+				line[Constants.INSTRUCTOR] + "," + line[Constants.ROOM] + "," + line[Constants.ENROLLMENT] + "," + line[Constants.MAX_ENROLL];
+		return webOriginal;
+	}
 	protected void processWebOriginal()
 	{
 		//Decide what data to put into webOriginal
