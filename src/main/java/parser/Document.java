@@ -47,7 +47,6 @@ public class Document {
 		}
 		return ret;
 	}
-	
 	protected ArrayList<Line> getLines(){
 		return docLines;
 	}

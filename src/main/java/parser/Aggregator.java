@@ -19,7 +19,6 @@ public class Aggregator {
 	{
 		return courses;
 	}
-	
 	public String[] getCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
@@ -74,4 +73,5 @@ public class Aggregator {
 		}
 		return ret;
 	}
+	
 }
