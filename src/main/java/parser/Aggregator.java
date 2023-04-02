@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Aggregator {
 	private Document[] documents;
 	private Course[] allCourses, courses;
+	private Room[] rooms;
+	private Professor[] professors;
 	public Aggregator(String[] paths)
 	{
 		documents = new Document[paths.length];
@@ -13,12 +15,14 @@ public class Aggregator {
 		}
 		allCourses = findCourses();//Isolate all courses in document
 		courses = refineCourses();//Isolate all courses we can modify/care about
+		rooms = createRooms();
 	}
 	
 	public Course[] getCourses()
 	{
 		return courses;
 	}
+	
 	public String[] getCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
@@ -28,6 +32,11 @@ public class Aggregator {
 		String[] ret = new String[names.size()];
 		names.toArray(ret);
 		return ret;
+	}
+	
+	public Room[] getRooms()
+	{
+		return rooms;
 	}
 	
 	//Iterate through all documents finding the Lines that are course flagged
@@ -61,6 +70,18 @@ public class Aggregator {
 		}
 		Course[] ret = new Course[course.size()];
 		course.toArray(ret);
+		return ret;
+	}
+	
+	private Room[] createRooms()
+	{
+		ArrayList<Room> room = new ArrayList<Room>();
+		for(int i = 0; i < Constants.pki.length; i++)
+		{
+			room.add(new Room(Constants.pki[i]));
+		}
+		Room[] ret = new Room[room.size()];
+		room.toArray(ret);
 		return ret;
 	}
 	
