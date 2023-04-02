@@ -6,8 +6,8 @@ public final class Constants {
 	{
 	}
 	
-	protected static final int NUM_DAYS = 5;
-	protected static final int NUM_FIFTEENS = 96;
+	protected static final int NUM_DAYS = 6;//M,T,W,Th,F,Sa
+	protected static final int NUM_FIFTEENS = 96;//0:00-0:15, 0:15-0:30,...,23:45-0:00
 	
 	//Indices for CSV format in array
 	protected static final int COL_COUNT = 38;
@@ -50,5 +50,8 @@ public final class Constants {
 	protected static final int COMMENTS = 36;
 	protected static final int NOTES = 37;
 	
-
+	//Static creators for Rooms
+	//Number, Seats, Computers
+	protected static int[][] pki = {{108,12,1},{150,16,1},{153,42,1},{155,40,1},{157,24,1},{160,42,1},{161,30,1},{164,56,1},{250,16,1},{252,58,1},{256,40,1},{259,16,1},{260,60,60},
+			{261,24,1},{263,50,1},{269,30,1},{270,16,1},{274,32,1},{276,40,35},{278,40,35},{279,30,1},{350,16,1},{361,40,40},{391,10,1}};//391 is actually 391A?
 }
