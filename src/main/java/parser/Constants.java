@@ -6,8 +6,18 @@ public final class Constants {
 	{
 	}
 	
-	protected static final int NUM_DAYS = 6;//M,T,W,Th,F,Sa
+	protected static final int NUM_DAYS = 5;//M,T,W,Th,F (Sa is ignored)
 	protected static final int NUM_FIFTEENS = 96;//0:00-0:15, 0:15-0:30,...,23:45-0:00
+	
+	//Static meeting pattern values
+	protected static final int Sa = -1;
+	protected static final int M = 0;
+	protected static final int T = 1;
+	protected static final int W = 2;
+	protected static final int Th = 3;
+	protected static final int F = 4;
+	protected static final int M_W = 5;
+	protected static final int T_TH= 6;	
 	
 	//Indices for CSV format in array
 	protected static final int COL_COUNT = 38;
