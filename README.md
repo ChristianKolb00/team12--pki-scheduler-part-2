@@ -16,3 +16,12 @@ Release Notes-
 Local Copies of Schedule files in program
 Parser functioning with single document tester, should work with multidocument but untested
 Web pages exist, awaiting connection to real content
+
+milestone 2:
+1. display some csv data on front-end
+2. JSP allow users to add course change, course change can go up to 5
+3. Parser can now filter to only PKI classes
+4. Array of all PKI Courses can now be returned
+5. Array of Course titles can now be returned
+6. General TimeTable object created that will be used to prevent scheduling conflicts
+7. Room and Professor created that inherit all TimeTable methods

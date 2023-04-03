@@ -32,28 +32,30 @@ public class TimeTable {
 	//Double checks against checkAvailable, throwing ScheduleException if issue
 	public void set(Course c) throws ScheduleException
 	{
-		int[] td = c.parseTime();
-		int[] days = c.parseDay();
+		int t = c.time;
+		int d = c.duration;
+		int[] days = c.getDays();
 		//Double check for availability
 		for(int i = 0; i < days.length; i++)
 		{
-			if(!checkAvailable(days[i],td[0],td[1]))
-				throw new ScheduleException("Time/day: " + days[i] + ", " + td[0] + " " + td[1]);
+			if(!checkAvailable(days[i],t,d))
+				throw new ScheduleException("Time/day: " + days[i] + ", " + t + " " + d);
 		}
 		//Add new time
 		for(int j = 0; j < days.length; j++)
-			for(int k = td[0]; k < td[0] + td[1]; k++)
+			for(int k = t; k < t + d; k++)
 				table[days[j]][k]=c;
 	}
 	
 	//Unsets a courses original time
 	public void release(Course c) throws ScheduleException
 	{
-		int[] td = c.parseOriginalTime();
-		int[] days = c.parseOriginalDay();
+		int t = c.otime;
+		int d = c.oduration;
+		int[] days = c.getOriginalDays();
 		for(int j = 0; j < days.length; j++)
 		{
-			for(int k = td[0]; k < td[0] + td[1]; k++)
+			for(int k = t; k < t + d; k++)
 			{
 				//Check to make sure its not already descheduled
 				if(table[days[j]][k] == c)
@@ -68,11 +70,12 @@ public class TimeTable {
 	//After analysis is completed, this will release the slots the Course was changed too
 	public void restoreRelease(Course c) throws ScheduleException
 	{
-		int[] td = c.parseTime();
-		int[] days = c.parseDay();
+		int t = c.time;
+		int d = c.duration;
+		int[] days = c.getDays();
 		for(int j = 0; j < days.length; j++)
 		{
-			for(int k = td[0]; k < td[0] + td[1]; k++)
+			for(int k = t; k < t + d; k++)
 			{
 				//Check to make sure its not already descheduled
 				if(table[days[j]][k] == c)
@@ -86,18 +89,18 @@ public class TimeTable {
 	//After analysis is completed, AND restoreRelease, this will set the Course's original time slots
 	public void restore(Course c) throws ScheduleException
 	{
-		int[] td = c.parseOriginalTime();
-		int[] days = c.parseOriginalDay();
+		int t = c.otime;
+		int d = c.oduration;
+		int[] days = c.getOriginalDays();
 		//No extra check needed because this is only ever called after releaseTime(c)
 		for(int j = 0; j < days.length; j++)
 		{
-			for(int k = td[0]; k < td[0] + td[1]; k++)
+			for(int k = t; k < t + d; k++)
 			{
 				if(table[days[j]][k] != null)
 					throw new ScheduleException("Improper restore order");
 				table[days[j]][k]=c;
 			}
 		}
-		c.revert();
 	}
 }
