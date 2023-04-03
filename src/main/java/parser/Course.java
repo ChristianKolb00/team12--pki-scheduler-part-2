@@ -244,11 +244,10 @@ public class Course extends Line{
 	public String toString()
 	{
 		String ret = "";
-		/*for(int i = 0; i<diff.length; i++)
+		for(int i = 0; i<diff.length; i++)
 		{
 			ret = ret.concat(diff[i]);
-		}*/
-		ret = diff[7]+"-"+diff[8];
+		}
 		return ret;
 	}
 }
