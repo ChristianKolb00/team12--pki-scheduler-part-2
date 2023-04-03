@@ -1,13 +1,18 @@
 package parser;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Line {
 	protected boolean type;//Is this a class line(true) or filler line(false)?
+	protected int oday, otime, oduration;
 	protected String[] line;
-	protected String[] webOriginal;
 	protected int aggEnrollOriginal;
 
+	public Line()
+	{
+	}
+	
 	public Line(String input)
 	{
 		//Set this a non-class line
@@ -16,7 +21,21 @@ public class Line {
 		Scanner parser = new Scanner(input);
 		//Fancy regex to ignore , within " " to handle fields containing ,
 		parser.useDelimiter(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-		int i = 0;
+		int i = 1;
+		//Check for class line and shift
+		if(parser.hasNext())
+		{
+			line[0]=parser.next();
+			line[0]=line[0].replace("\"", "");
+			//Set this as a class line if it has purely numeric content in CLSS ID, and shift
+			if(line[0].matches("[0-9]+"))
+			{
+				type=true;
+				line[1]=line[0];
+				line[0]="";
+				i++;
+			}
+		}
 		while(parser.hasNext())
 		{
 			line[i]=parser.next();
