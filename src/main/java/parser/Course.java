@@ -222,7 +222,7 @@ public class Course extends Line{
 	
 	protected String getBuilding()
 	{
-		if(line[14].contains("Peter"))
+		if(line[Constants.ROOM].contains("Peter"))
 			return "PKI";
 		else
 			return "Other";
@@ -250,11 +250,10 @@ public class Course extends Line{
 	public String toString()
 	{
 		String ret = "";
-		/*for(int i = 0; i<diff.length; i++)
+		for(int i = 0; i<diff.length; i++)
 		{
 			ret = ret.concat(diff[i]);
-		}*/
-		ret = diff[7]+"-"+diff[8];
+		}
 		return ret;
 	}
 }
