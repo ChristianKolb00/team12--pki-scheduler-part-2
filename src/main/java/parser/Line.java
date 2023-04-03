@@ -9,6 +9,10 @@ public class Line {
 	protected String[] line;
 	protected int aggEnrollOriginal;
 
+	public Line()
+	{
+	}
+	
 	public Line(String input)
 	{
 		//Set this a non-class line
@@ -41,7 +45,6 @@ public class Line {
 		for (int j = 0; j<Constants.COL_COUNT; j++) {
 			if(line[j]==null)
 				line[j]="";
-			System.out.println(j + ": " + line[j] + "\n");
 		}
 		parser.close();
 		//Set this a class line if it has purely numeric content in CLSS ID(this excludes header line)

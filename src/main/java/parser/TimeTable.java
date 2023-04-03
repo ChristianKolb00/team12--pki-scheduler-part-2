@@ -7,13 +7,15 @@ public class TimeTable {
 	public TimeTable()
 	{
 		table = new Course[Constants.NUM_DAYS][Constants.NUM_FIFTEENS];
-		blocker = new Course(null);//Might need special handling to create a good readable blocker?
+		blocker = new Course();//Might need special handling to create a good readable blocker?
 		//Use a blocker course to blackout invalid times
-		for(int h=0; h <= table.length; h++)
+		for(int h=0; h <= table.length - 1; h++)
 		{
 			for(int i = 0; i < 33; i++)
+			{
 				table[h][i]=blocker;
-			for(int j=85; j < table[h].length; j++)
+			}
+			for(int j=85; j < table[h].length - 1; j++)
 				table[h][j]=blocker;
 		}
 	}
