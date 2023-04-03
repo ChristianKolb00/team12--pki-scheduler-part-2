@@ -28,6 +28,7 @@ public class Course extends Line{
 	public void setMeetingPattern(String p)
 	{
 		diff[Constants.MEET_PATT]=p;
+		parseDayTime();
 		changed = true;
 	}
 	
@@ -44,6 +45,11 @@ public class Course extends Line{
 		diff[Constants.MAX_ENROLL]=e;
 		//Update aggEnroll
 		changed = true;
+	}
+	
+	public int getMeetingPattern()
+	{
+		return day;
 	}
 	
 	private void parseDayTime()
@@ -135,6 +141,7 @@ public class Course extends Line{
 				diff[i] = line[i];//Since string is immutable this is a deep copy
 			}
 		}
+		parseDayTime();
 		changed = false;
 	}	
 	

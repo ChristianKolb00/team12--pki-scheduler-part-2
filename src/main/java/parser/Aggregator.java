@@ -47,7 +47,7 @@ public class Aggregator {
 			for(int j = 0; j<documents[i].docLines.size(); j++) {
 				//If line is a valid course, add it to courses
 				Line temp = documents[i].docLines.get(j);
-				if (temp instanceof Course)
+				if (temp instanceof Course && ((Course) temp).getMeetingPattern() >= 0)
 				{
 					course.add((Course) temp);
 				}
