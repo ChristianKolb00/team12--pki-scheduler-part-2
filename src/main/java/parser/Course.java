@@ -176,9 +176,8 @@ public class Course extends Line{
 		//If there are minutes
 		if(minHour.length > 1)
 		{
-			String min = minHour[1].split("am|pm")[0];
 			//Divide minutes by 15 and round to nearest 15 minute so there is 10-20 minutes between all classes
-			t += Math.round(Integer.parseInt(min)/15);
+			t += Math.round(Integer.parseInt(minHour[1].split("am|pm")[0])/15);
 		}
 		return t;
 	}
