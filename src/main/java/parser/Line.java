@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class Line {
 	protected boolean type;//Is this a class line(true) or filler line(false)?
+	protected int oday, otime, oduration;
 	protected String[] line;
 	protected int aggEnrollOriginal;
 

@@ -5,7 +5,8 @@ public class Course extends Line{
 	private String[] diff;
 	
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
-	private int day,time,duration;//
+	protected int day,time,duration, roomNum;//
+	private Room room;
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
@@ -19,7 +20,9 @@ public class Course extends Line{
 		this.revert();
 		//By processing original line now, the values are locked in as immutable
 		changed = false;
+		parseOriginalDayTime();
 		parseDayTime();
+		parseRoomNum();
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 	}
@@ -35,6 +38,7 @@ public class Course extends Line{
 	public void setRoom(String r)
 	{
 		diff[Constants.ROOM]=r;
+		parseRoomNum();
 		//Also set maxroom based on new room
 		//Cascad max enrollment set
 		changed = true;
@@ -52,6 +56,60 @@ public class Course extends Line{
 		return day;
 	}
 	
+	protected int[] getDays()
+	{
+		if(this.day <= 4)
+			return new int[] {day};
+		else if (day == 5)
+			return new int[] {Constants.M, Constants.W};
+		else if (day == 6)
+			return new int[] {Constants.T, Constants.T_TH};
+		else
+			return new int[] {};
+	}
+	
+	protected int[] getOriginalDays()
+	{
+		if(this.oday <= 4)
+			return new int[] {day};
+		else if (oday == 5)
+			return new int[] {Constants.M, Constants.W};
+		else if (oday == 6)
+			return new int[] {Constants.T, Constants.T_TH};
+		else
+			return new int[] {};
+	}
+	
+	
+	public void schedule(Room[] rooms) throws ScheduleException
+	{
+		boolean found = false;
+		//Find room
+		for (int i = 0; i < rooms.length; i++)
+		{
+			if(rooms[i].getRoomNumber() == roomNum)
+			{
+				room = rooms[i];
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+			throw new ScheduleException("Room not found!");
+		//Attempt to set using parsed values on room object
+		else
+		{
+			room.set(this);
+			
+		}
+	}
+	
+	private void parseRoomNum()
+	{
+		String[] roomPieces = diff[Constants.ROOM].split(" ", 5);
+		roomNum = Integer.parseInt(roomPieces[roomPieces.length - 1]);
+	}
+	
 	private void parseDayTime()
 	{
 		//Split off day into [0]
@@ -63,6 +121,20 @@ public class Course extends Line{
 		duration = parseTime(timePieces[1]) - time;
 		//Set day using parsed day
 		day = parseDays(dayPiece[0]);
+		
+	}
+	
+	private void parseOriginalDayTime()
+	{
+		//Split off day into [0]
+		String[] dayPiece = line[Constants.MEET_PATT].split(" ", 1);
+		//Split off time into [0] and [1]
+		String[] timePieces = dayPiece[1].split("-",1);
+		//Set time and duration using parsed time
+		otime = parseTime(timePieces[0]);
+		oduration = parseTime(timePieces[1]) - time;
+		//Set day using parsed day
+		oday = parseDays(dayPiece[0]);
 		
 	}
 	
@@ -142,6 +214,7 @@ public class Course extends Line{
 			}
 		}
 		parseDayTime();
+		parseRoomNum();
 		changed = false;
 	}	
 	
