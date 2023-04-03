@@ -2,12 +2,12 @@ package parser;
 
 public class Room extends TimeTable{
 	private String building;
-	private int roomNum;
+	private String roomNum;
 	private int cap, comp;
 	private TimeTable schedule;
 	
 	//Generalized explicit constructor
-	public Room(String b, int n, int ca, int co)
+	public Room(String b, String n, int ca, int co)
 	{
 		super();
 		building = b;
@@ -17,13 +17,13 @@ public class Room extends TimeTable{
 	}
 	
 	//Special case constructor from constants
-	public Room(int[] a)
+	public Room(Object[] a)
 	{
 		super();
 		building = "PKI";
-		roomNum = a[0];
-		cap = a[1];
-		comp = a[2];
+		roomNum = (String) a[0];
+		cap = (int) a[1];
+		comp = (int) a[2];
 	}
 	
 	public String getBuilding()
@@ -31,7 +31,7 @@ public class Room extends TimeTable{
 		return building;
 	}
 	
-	public int getRoomNumber()
+	public String getRoomNumber()
 	{
 		return roomNum;
 	}

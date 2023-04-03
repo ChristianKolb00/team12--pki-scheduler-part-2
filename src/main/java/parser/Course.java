@@ -5,11 +5,17 @@ public class Course extends Line{
 	private String[] diff;
 	
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
-	protected int day,time,duration, roomNum;//
+	protected int day,time,duration;
+	protected String roomNum;//
 	private Room room;
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
+	
+	public Course()
+	{
+		super();
+	}
 	
 	//Line reference
 	public Course(String line) {
@@ -87,7 +93,7 @@ public class Course extends Line{
 		//Find room
 		for (int i = 0; i < rooms.length; i++)
 		{
-			if(rooms[i].getRoomNumber() == roomNum)
+			if(rooms[i].getRoomNumber().equals(roomNum))
 			{
 				room = rooms[i];
 				found = true;
@@ -106,16 +112,28 @@ public class Course extends Line{
 	
 	private void parseRoomNum()
 	{
+		if (diff[Constants.ROOM].contains("Online|Announced"))
+		{
+			roomNum = "0";
+			return;
+		}
 		String[] roomPieces = diff[Constants.ROOM].split(" ", 5);
-		roomNum = Integer.parseInt(roomPieces[roomPieces.length - 1]);
+		roomNum = roomPieces[roomPieces.length - 1];
 	}
 	
 	private void parseDayTime()
 	{
+		if(diff[Constants.MEET_PATT].contains("Not"))
+		{
+			time = -1;
+			duration = -1;
+			day = -1;
+			return;
+		}
 		//Split off day into [0]
-		String[] dayPiece = diff[Constants.MEET_PATT].split(" ", 1);
+		String[] dayPiece = diff[Constants.MEET_PATT].split(" ", 2);
 		//Split off time into [0] and [1]
-		String[] timePieces = dayPiece[1].split("-",1);
+		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
 		time = parseTime(timePieces[0]);
 		duration = parseTime(timePieces[1]) - time;
@@ -126,10 +144,17 @@ public class Course extends Line{
 	
 	private void parseOriginalDayTime()
 	{
+		if(line[Constants.MEET_PATT].contains("Not"))
+		{
+			otime = -1;
+			oduration = -1;
+			oday = -1;
+			return;
+		}
 		//Split off day into [0]
-		String[] dayPiece = line[Constants.MEET_PATT].split(" ", 1);
+		String[] dayPiece = line[Constants.MEET_PATT].split(" ", 2);
 		//Split off time into [0] and [1]
-		String[] timePieces = dayPiece[1].split("-",1);
+		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
 		otime = parseTime(timePieces[0]);
 		oduration = parseTime(timePieces[1]) - time;
@@ -145,7 +170,7 @@ public class Course extends Line{
 				t += 12 * 4;
 		//Replace 12pm with 0 for easier hour shifting
 		timeRange.replace("12","0");
-		String[] minHour = timeRange.split(":",1);
+		String[] minHour = timeRange.split(":",2);
 		//If only hours, split give just hours, if mixed earlier split reduced and still functions
 		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
 		//If there are minutes
