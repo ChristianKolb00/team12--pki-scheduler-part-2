@@ -102,6 +102,5 @@ public class TimeTable {
 				table[days[j]][k]=c;
 			}
 		}
-		c.revert();
 	}
 }
