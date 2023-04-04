@@ -31,6 +31,9 @@ public class Course extends Line{
 		parseRoomNum();
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
+		//Dummy setters
+		aggEnroll = -1;
+		aggEnrollOriginal = -1;
 	}
 	
 	//Possibly split this
@@ -56,6 +59,8 @@ public class Course extends Line{
 		//Update aggEnroll
 		changed = true;
 	}
+	
+	public String
 	
 	public int getMeetingPattern()
 	{
