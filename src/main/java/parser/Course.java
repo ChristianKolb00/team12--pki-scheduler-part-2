@@ -60,11 +60,24 @@ public class Course extends Line{
 		changed = true;
 	}
 	
-	public String
-	
 	public int getMeetingPattern()
 	{
 		return day;
+	}
+	
+	public Room getRoom()
+	{
+		return room;
+	}
+	
+	public int getEnrollment()
+	{
+		return Integer.parseInt(diff[Constants.ENROLLMENT]);
+	}
+	
+	public int getMaxEnrollment()
+	{
+		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
 	}
 	
 	protected int[] getDays()
