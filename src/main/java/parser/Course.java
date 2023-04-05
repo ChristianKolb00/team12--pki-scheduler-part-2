@@ -62,7 +62,7 @@ public class Course extends Line{
 	
 	public int getMeetingPattern()
 	{
-		return day;
+		return day;//This might need more
 	}
 	
 	public Room getRoom()
@@ -72,12 +72,28 @@ public class Course extends Line{
 	
 	public int getEnrollment()
 	{
+		//Switch for aggenroll here
 		return Integer.parseInt(diff[Constants.ENROLLMENT]);
 	}
 	
 	public int getMaxEnrollment()
 	{
 		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
+	}
+	
+	public void releaseOriginal() throws ScheduleException
+	{
+		room.release(this);
+	}
+	
+	public void schedule() throws ScheduleException
+	{
+		room.set(this);
+	}
+	
+	public void release() throws ScheduleException
+	{
+		room.restoreRelease(this);
 	}
 	
 	protected int[] getDays()

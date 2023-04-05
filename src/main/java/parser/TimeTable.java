@@ -34,6 +34,8 @@ public class TimeTable {
 		return true;
 	}
 	
+	//Find available return possible start times
+	
 	
 	//Sets a Course into the specified time slots
 	//Double checks against checkAvailable, throwing ScheduleException if issue
