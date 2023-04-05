@@ -53,6 +53,13 @@ public class Course extends Line{
 		changed = true;
 	}
 	
+	public void setRoom(Room r)
+	{
+		room = r;
+		diff[Constants.ROOM] = r.getBuilding() + " " + r.getRoomNumber();
+		changed = true;
+	}
+	
 	public void setMaxEnrollment(String e)
 	{
 		diff[Constants.MAX_ENROLL]=e;
