@@ -1,5 +1,5 @@
 package parser;
-
+import util.helper;
 //Extending Line to be able to directly call Line properties
 public class Course extends Line{
 	private String[] diff;
@@ -11,6 +11,7 @@ public class Course extends Line{
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
+	helper u = new helper();
 	
 	public Course()
 	{
@@ -176,15 +177,16 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		time = parseTime(timePieces[0]);
-		duration = parseTime(timePieces[1]) - time;
+		time = u.parseTime(timePieces[0]);
+		duration = u.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		day = parseDays(dayPiece[0]);
+		day = u.parseDays(dayPiece[0]);
 		
 	}
 	
 	private void parseOriginalDayTime()
 	{
+		
 		if(line[Constants.MEET_PATT].contains("Not"))
 		{
 			otime = -1;
@@ -197,10 +199,10 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		otime = parseTime(timePieces[0]);
-		oduration = parseTime(timePieces[1]) - time;
+		otime = u.parseTime(timePieces[0]);
+		oduration = u.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		oday = parseDays(dayPiece[0]);
+		oday = u.parseDays(dayPiece[0]);
 		
 	}
 	
@@ -228,7 +230,6 @@ public class Course extends Line{
 	{
 		switch(days)
 		{
-			case "M": return Constants.M;
 			case "T": return Constants.T;
 			case "W": return Constants.W;
 			case "Th": return Constants.Th;
@@ -240,7 +241,6 @@ public class Course extends Line{
 		}
 	}
 
-	
 	//Accessor methods for formatted output to display on web
 	public String[] getOriginalWebDisplay()
 	{
@@ -278,6 +278,18 @@ public class Course extends Line{
 				diff[i] = line[i];//Since string is immutable this is a deep copy
 			}
 		}
+		changed = true;
+	}
+	protected void processWebOriginal()
+	{
+		//Decide what data to put into webOriginal
+		String[] webOriginal = {line[Constants.COURSE] + "-" + line[Constants.SEC_NUM], line[Constants.SEC_TYPE], line[Constants.MEET_PATT], 
+				line[Constants.INSTRUCTOR], line[Constants.ROOM], line[Constants.ENROLLMENT],line[Constants.MAX_ENROLL], String.valueOf(aggEnrollOriginal)};
+	}
+	private void processWeb() {
+		//Decide what to put in display
+		String[] web = {diff[Constants.COURSE] + "-" + diff[Constants.SEC_NUM], diff[Constants.SEC_TYPE], diff[Constants.MEET_PATT], 
+				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
 		parseDayTime();
 		parseRoomNum();
 		changed = false;

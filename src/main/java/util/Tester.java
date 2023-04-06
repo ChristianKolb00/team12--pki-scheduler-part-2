@@ -1,4 +1,8 @@
-package parser;
+package util;
+
+import parser.Aggregator;
+import parser.Course;
+import parser.Room;
 
 public class Tester {
 	public static void main(String[] args) {
@@ -12,20 +16,14 @@ public class Tester {
 		
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		Course[] allCourses = tester.getCourses();
-		for(int i=0; i<allCourses.length;i++) {
-			System.out.println(allCourses[i]);
-		}
-			
-		//column needed to access & update are Meeting Pattern, Room, Inst. Method, 
-		//Enrollment, and Maximum Enrollment. 
-		
-		//column needed to access to display are course & course section#, room, 
-		//Enrollment, and Max Enrollment.
-	
-		//Potential need of making getCourseXXXX(enrollment, maxEnrollment, Room...) to work 
-		//before working on analysis methods in util.
+		String[] allCourses = tester.getCourseNames();
+		//for(int i=0; i<allCourses.length; i++) {
+			//System.out.println(allCourses[i] +"");
+		//}
+		helper h = new helper();
+		System.out.println(h.parseTime("8:00pm"));
 		
 		
 	}
+	
 }
