@@ -20,6 +20,11 @@ public class TimeTable {
 		}
 	}
 	
+	public Course getCourseAt(int d, int t)
+	{
+		return table[d][t];
+	}
+	
 	//Returns true if all slots for course and slot before and after are available on specified day
 	public boolean checkAvailable(int d, int t, int du)
 	{
@@ -28,6 +33,8 @@ public class TimeTable {
 				return false;
 		return true;
 	}
+	
+	//Find available return possible start times
 	
 	
 	//Sets a Course into the specified time slots

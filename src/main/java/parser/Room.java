@@ -35,4 +35,14 @@ public class Room extends TimeTable{
 	{
 		return roomNum;
 	}
+	
+	public int getCapacity()
+	{
+		return cap;
+	}
+	
+	public int getComputerCapacity()
+	{
+		return comp - 1;
+	}
 }

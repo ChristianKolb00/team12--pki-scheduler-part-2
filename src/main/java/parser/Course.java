@@ -31,6 +31,9 @@ public class Course extends Line{
 		parseRoomNum();
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
+		//Dummy setters
+		aggEnroll = -1;
+		aggEnrollOriginal = -1;
 	}
 	
 	//Possibly split this
@@ -50,6 +53,13 @@ public class Course extends Line{
 		changed = true;
 	}
 	
+	public void setRoom(Room r)
+	{
+		room = r;
+		diff[Constants.ROOM] = r.getBuilding() + " " + r.getRoomNumber();
+		changed = true;
+	}
+	
 	public void setMaxEnrollment(String e)
 	{
 		diff[Constants.MAX_ENROLL]=e;
@@ -59,7 +69,38 @@ public class Course extends Line{
 	
 	public int getMeetingPattern()
 	{
-		return day;
+		return day;//This might need more
+	}
+	
+	public Room getRoom()
+	{
+		return room;
+	}
+	
+	public int getEnrollment()
+	{
+		//Switch for aggenroll here
+		return Integer.parseInt(diff[Constants.ENROLLMENT]);
+	}
+	
+	public int getMaxEnrollment()
+	{
+		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
+	}
+	
+	public void releaseOriginal() throws ScheduleException
+	{
+		room.release(this);
+	}
+	
+	public void schedule() throws ScheduleException
+	{
+		room.set(this);
+	}
+	
+	public void release() throws ScheduleException
+	{
+		room.restoreRelease(this);
 	}
 	
 	protected int[] getDays()
