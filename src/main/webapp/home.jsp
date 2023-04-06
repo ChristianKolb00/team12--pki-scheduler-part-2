@@ -30,21 +30,19 @@
 				Aggregator tester = new Aggregator(AllFile);
 				String[] allCourses = tester.getCourseNames();
 				for(int i=0; i<allCourses.length;i++) {%>
-				<option value="<%= allCourses[i]%>"><%= allCourses[i]%></option> 
+				<option class ="<%= allCourses[i]%>" value="<%= allCourses[i]%>"><%= allCourses[i]%></option> 
 				<%}%>
 			</select> 
 		</div>
 		<div class="container">
 			<h4> Max Enrollment Change: </h4>
-			<select id = "field" >
-				<option value="20"> 20 </option>
-				<option value="25"> 25 </option>
+			<select name = "field" id = "field" >
+				<option value="20"> 16 </option>
+				<option value="25"> 24 </option>
 				<option value="30"> 30 </option>
 				<option value="40"> 40 </option>
 				<option value="50"> 50 </option>
 				<option value="60"> 60 </option>
-				<option value="70"> 70 </option>
-				<option value="80"> 80 </option>
 			</select>
 		</div>
 		<div class="container">
@@ -57,18 +55,17 @@
 	</section>
 	
 	<section class="fieldOne">
-		<div>
+		<%-- <form action="home" method="post"> --%>
 			<h4 id="list">List of Changes</h4>
-			<p id="s3"></p>
-		</div>
-	</section>
-	
-	<section class="fieldTwo">
+			<div id="s3"></div>
+			
 		<div class="container2">
 			<button id = "clear" class= "buttons">Discard Last</button>
 			<button id = "clearAll" class= "buttons">Discard All</button>
 			<a href="/pkiClassroom/attemptChanges.jsp"><button class= "buttons">Attempt Changes</button></a>
 		</div>
+	   <%-- </form>--%>
+		
 	</section>
 </div>
 <script src="script.js"></script>

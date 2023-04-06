@@ -22,13 +22,6 @@ public class Aggregator {
 	{
 		return courses;
 	}
-	public String[] getCourseInfo(){
-		String[] info = new String[courses.length];
-		for(int i=0; i<courses.length; i++) {
-			info[i] = courses[i].getInfo();	
-		}
-		return  info;
-	}
 	public String[] getCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();

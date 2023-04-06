@@ -1,5 +1,5 @@
 package parser;
-
+import util.helper;
 //Extending Line to be able to directly call Line properties
 public class Course extends Line{
 	private String[] diff;
@@ -11,6 +11,7 @@ public class Course extends Line{
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
+	helper u = new helper();
 	
 	public Course()
 	{
@@ -135,15 +136,16 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		time = parseTime(timePieces[0]);
-		duration = parseTime(timePieces[1]) - time;
+		time = u.parseTime(timePieces[0]);
+		duration = u.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		day = parseDays(dayPiece[0]);
+		day = u.parseDays(dayPiece[0]);
 		
 	}
 	
 	private void parseOriginalDayTime()
 	{
+		
 		if(line[Constants.MEET_PATT].contains("Not"))
 		{
 			otime = -1;
@@ -156,50 +158,13 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		otime = parseTime(timePieces[0]);
-		oduration = parseTime(timePieces[1]) - time;
+		otime = u.parseTime(timePieces[0]);
+		oduration = u.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		oday = parseDays(dayPiece[0]);
+		oday = u.parseDays(dayPiece[0]);
 		
 	}
 	
-	public int parseTime(String timeRange)
-	{
-		int t = 0;
-		if(timeRange.contains("pm"))
-				t += 12 * 4;
-		//Replace 12pm with 0 for easier hour shifting
-		timeRange.replace("12","0");
-		String[] minHour = timeRange.split(":",2);
-		//If only hours, split give just hours, if mixed earlier split reduced and still functions
-		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
-		//If there are minutes
-		if(minHour.length > 1)
-		{
-			String min = minHour[1].split("am|pm")[0];
-			//Divide minutes by 15 and round to nearest 15 minute so there is 10-20 minutes between all classes
-			t += Math.round(Integer.parseInt(min)/15);
-		}
-		return t;
-	}
-
-	
-	public int parseDays(String days)
-	{
-		switch(days)
-		{
-			case "M": return Constants.M;
-			case "T": return Constants.T;
-			case "W": return Constants.W;
-			case "Th": return Constants.Th;
-			case "F": return Constants.F;
-			case "MW": return Constants.M_W;
-			case "TTh": return Constants.T_TH;
-			case "Sa": return Constants.Sa;
-			default: return -2;
-		}
-	}
-
 	
 	//Accessor methods for formatted output to display on web
 	public String[] getOriginalWebDisplay()
@@ -222,7 +187,7 @@ public class Course extends Line{
 	
 	protected String getBuilding()
 	{
-		if(line[14].contains("Peter"))
+		if(line[15].contains("Peter"))
 			return "PKI";
 		else
 			return "Other";
@@ -239,13 +204,6 @@ public class Course extends Line{
 			}
 		}
 		changed = true;
-	}
-	public String getInfo()
-	{
-		//Decide what data to put into webOriginal
-		String webOriginal = line[Constants.COURSE] + "-" + line[Constants.SEC_NUM] + "," + line[Constants.SEC_TYPE] + "," + line[Constants.MEET_PATT] + "," + 
-				line[Constants.INSTRUCTOR] + "," + line[Constants.ROOM] + "," + line[Constants.ENROLLMENT] + "," + line[Constants.MAX_ENROLL];
-		return webOriginal;
 	}
 	protected void processWebOriginal()
 	{

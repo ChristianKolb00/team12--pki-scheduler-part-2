@@ -59,7 +59,7 @@ public final class Constants {
 	protected static final int LINK = 35;
 	protected static final int COMMENTS = 36;
 	protected static final int NOTES = 37;
-	
+	//(
 	//Static creators for Rooms
 	//Number, Seats, Computers
 	protected static Object[][] pki = new Object[][] {{"108",12,1},{"150",16,1},{"153",42,1},{"155",40,1},{"157",24,1},{"160",42,1},{"161",30,1},{"164",56,1},{"250",16,1},{"252",58,1},
