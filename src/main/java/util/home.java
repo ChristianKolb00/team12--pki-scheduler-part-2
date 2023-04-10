@@ -3,6 +3,7 @@ package util;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,8 @@ public class home extends HttpServlet {
 		// TODO Auto-generated method stub
 		String value = request.getParameter("course");
 		String field = request.getParameter("field");
-		PrintWriter out = response.getWriter();
+		response.getWriter().println("<h1>"+value+"</h1>"+
+		"<h2>"+field+"</h2>");
 		
 	}
 
@@ -41,6 +43,7 @@ public class home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }

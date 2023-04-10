@@ -14,7 +14,9 @@
 <div>
 	<h1>Welcome to the Home page where you can change Enrollments</h1>
 	<section class= "fieldOne">
+		<form action="home" method="post">
 		<div class="container">
+		
 			<h4> Course: </h4>
 			<select name = "course" id = "course" >
 				<%
@@ -50,25 +52,31 @@
 			<select id="s2" required hidden="hidden"></select>
 		</div>
 		<div class="container">
-			<button id = "add" class= "buttons">Add to List</button>
+			<button id = "add" value="Submit" type = "submit" class= "buttons">Add to List</button>
 		</div>
+		</form>
 	</section>
 	
 	<section class="fieldOne">
-		<%-- <form action="home" method="post"> --%>
+		
+		
 			<h4 id="list">List of Changes</h4>
 			<div id="s3"></div>
 			
 		<div class="container2">
+		
 			<button id = "clear" class= "buttons">Discard Last</button>
 			<button id = "clearAll" class= "buttons">Discard All</button>
-			<a href="/pkiClassroom/attemptChanges.jsp"><button class= "buttons">Attempt Changes</button></a>
+			
+			<a href="/pkiClassroom/attemptChanges.jsp">
+			<button  class= "buttons">Attempt Changes</button>
+			</a>
 		</div>
-	   <%-- </form>--%>
+	   
 		
 	</section>
 </div>
-<script src="script.js"></script>
+<%-- <script src="script.js"></script> --%>
 </body>
 <style>
 	
