@@ -59,9 +59,12 @@
 	justify-content:center;
 	margin-top:3%;
 	margin-bottom:3%; }
+	table{
+	border-collapse:collapse;}
 	th{
 	padding:15px 30px;}
 	td{
+	border-style:hidden;
 	display:start;
 	padding:10px 30px;
 	border-top:1px solid #fff;}

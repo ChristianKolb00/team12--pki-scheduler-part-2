@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class home
@@ -30,11 +31,13 @@ public class home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String value = request.getParameter("course");
 		String field = request.getParameter("field");
-		response.getWriter().println("<h1>"+value+"</h1>"+
-		"<h2>"+field+"</h2>");
-		
+		String course =  request.getParameter("course");
+	
+		response.getWriter().println(""
+				+ "<br>Field "+field
+				+ "<br>Course "+ course);
+		//response.sendRedirect("attemptChanges.jsp");
 	}
 
 	/**
@@ -43,7 +46,6 @@ public class home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
 	}
 
 }
