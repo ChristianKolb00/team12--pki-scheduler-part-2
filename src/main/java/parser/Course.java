@@ -234,7 +234,7 @@ public class Course extends Line{
 	
 	protected String getBuilding()
 	{
-		if(line[Constants.ROOM].contains("Peter"))
+		if(line[Constants.ROOM].contains("Peter") && !line[Constants.ROOM].contains("Online"))
 			return "Peter Kiewit Institute";
 		else
 			return "Other";
