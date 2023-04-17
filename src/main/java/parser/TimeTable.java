@@ -1,4 +1,5 @@
 package parser;
+import java.util.ArrayList;
 
 public class TimeTable {
 	//2d array representing [day][time in 15s]
@@ -26,12 +27,15 @@ public class TimeTable {
 	}
 	
 	//Returns true if all slots for course and slot before and after are available on specified day
-	public boolean checkAvailable(int d, int t, int du)
+	public Course[] checkAvailable(int d, int t, int du)
 	{
+		ArrayList<Course> courses = new ArrayList<Course>();
 		for (int k = t-1; k < t + du + 1; k++)
-			if(table[d][k] != null)
-				return false;
-		return true;
+			if(table[d][k] != null && !courses.contains(table[d][k]))
+				courses.add(table[d][k]);
+		Course[] ret = new Course[courses.size()];
+		courses.toArray(ret);
+		return ret;
 	}
 	
 	//Find available return possible start times
@@ -47,7 +51,7 @@ public class TimeTable {
 		//Double check for availability
 		for(int i = 0; i < days.length; i++)
 		{
-			if(!checkAvailable(days[i],t,d))
+			if(checkAvailable(days[i],t,d).length != 0)
 				throw new ScheduleException("Time/day: " + days[i] + ", " + t + " " + d);
 		}
 		//Add new time

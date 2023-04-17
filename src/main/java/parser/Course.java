@@ -48,8 +48,8 @@ public class Course extends Line{
 	{
 		diff[Constants.ROOM]=r;
 		parseRoomNum();
-		//Also set maxroom based on new room
-		//Cascad max enrollment set
+		//TODO: Also set maxroom based on new room
+		//TODO: Cascad max enrollment set
 		changed = true;
 	}
 	
@@ -262,7 +262,7 @@ public class Course extends Line{
 	protected String getBuilding()
 	{
 		if(line[Constants.ROOM].contains("Peter"))
-			return "PKI";
+			return "Peter Kiewit Institute";
 		else
 			return "Other";
 	}
