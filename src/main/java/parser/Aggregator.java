@@ -22,12 +22,11 @@ public class Aggregator {
 	{
 		return courses;
 	}
-	
 	public String[] getCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
 		for (int i = 0; i < courses.length; i++) {
-			names.add(courses[i].getCourseSection());
+			names.add(( courses[i]).getCourseSection());
 		}
 		String[] ret = new String[names.size()];
 		names.toArray(ret);
@@ -38,7 +37,6 @@ public class Aggregator {
 	{
 		return rooms;
 	}
-	
 	//Iterate through all documents finding the Lines that are course flagged
 	private Course[] findCourses() {
 		ArrayList<Course> course = new ArrayList<Course>();
