@@ -6,7 +6,7 @@ public class helper {
 	 * Ex. 8:00pm 
 	 * the output would be 48 (for 12hr in am) + 32 (for 8hr in pm) = 80
 	 */
-	public int parseTime(String timeRange)
+	public static int parseTime(String timeRange)
 	{
 		int t = 0;
 		if(timeRange.contains("pm"))
@@ -30,7 +30,7 @@ public class helper {
 	 * parse day of week to a number
 	 * 
 	 */
-	public int parseDays(String days)
+	public static int parseDays(String days)
 	{
 		switch(days)
 		{
