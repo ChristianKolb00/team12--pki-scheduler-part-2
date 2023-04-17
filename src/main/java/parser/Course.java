@@ -11,7 +11,6 @@ public class Course extends Line{
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
-	helper u = new helper();
 	
 	public Course()
 	{
@@ -177,10 +176,10 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		time = u.parseTime(timePieces[0]);
-		duration = u.parseTime(timePieces[1]) - time;
+		time = helper.parseTime(timePieces[0]);
+		duration = helper.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		day = u.parseDays(dayPiece[0]);
+		day = helper.parseDays(dayPiece[0]);
 		
 	}
 	
@@ -199,10 +198,10 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		otime = u.parseTime(timePieces[0]);
-		oduration = u.parseTime(timePieces[1]) - time;
+		otime = helper.parseTime(timePieces[0]);
+		oduration = helper.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		oday = u.parseDays(dayPiece[0]);
+		oday = helper.parseDays(dayPiece[0]);
 		
 	}
 	
@@ -280,6 +279,8 @@ public class Course extends Line{
 		}
 		changed = true;
 	}
+	
+	/*Temporarily deprecated
 	protected void processWebOriginal()
 	{
 		//Decide what data to put into webOriginal
@@ -293,7 +294,7 @@ public class Course extends Line{
 		parseDayTime();
 		parseRoomNum();
 		changed = false;
-	}	
+	}*/	
 	
 	//Getter via line
 	//Setter via diff
