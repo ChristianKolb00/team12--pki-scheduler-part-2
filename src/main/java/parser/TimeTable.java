@@ -31,8 +31,11 @@ public class TimeTable {
 	{
 		ArrayList<Course> courses = new ArrayList<Course>();
 		for (int k = t-1; k < t + du + 1; k++)
+		{
+			System.out.println(d + "+" + k);
 			if(table[d][k] != null && !courses.contains(table[d][k]))
 				courses.add(table[d][k]);
+		}
 		Course[] ret = new Course[courses.size()];
 		courses.toArray(ret);
 		return ret;
@@ -48,6 +51,7 @@ public class TimeTable {
 		int t = c.time;
 		int d = c.duration;
 		int[] days = c.getDays();
+		System.out.println(d);
 		//Double check for availability
 		for(int i = 0; i < days.length; i++)
 		{

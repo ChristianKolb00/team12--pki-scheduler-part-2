@@ -95,6 +95,8 @@ public class Course extends Line{
 	
 	public void schedule() throws ScheduleException
 	{
+		System.out.println(diff[Constants.ROOM]);
+		System.out.println(room);
 		room.set(this);
 	}
 	
@@ -110,7 +112,7 @@ public class Course extends Line{
 		else if (day == 5)
 			return new int[] {Constants.M, Constants.W};
 		else if (day == 6)
-			return new int[] {Constants.T, Constants.T_TH};
+			return new int[] {Constants.T, Constants.Th};
 		else
 			return new int[] {};
 	}
@@ -203,41 +205,6 @@ public class Course extends Line{
 		//Set day using parsed day
 		oday = helper.parseDays(dayPiece[0]);
 		
-	}
-	
-	public int parseTime(String timeRange)
-	{
-		int t = 0;
-		if(timeRange.contains("pm"))
-				t += 12 * 4;
-		//Replace 12pm with 0 for easier hour shifting
-		timeRange.replace("12","0");
-		String[] minHour = timeRange.split(":",2);
-		//If only hours, split give just hours, if mixed earlier split reduced and still functions
-		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
-		//If there are minutes
-		if(minHour.length > 1)
-		{
-			//Divide minutes by 15 and round to nearest 15 minute so there is 10-20 minutes between all classes
-			t += Math.round(Integer.parseInt(minHour[1].split("am|pm")[0])/15);
-		}
-		return t;
-	}
-
-	
-	public int parseDays(String days)
-	{
-		switch(days)
-		{
-			case "T": return Constants.T;
-			case "W": return Constants.W;
-			case "Th": return Constants.Th;
-			case "F": return Constants.F;
-			case "MW": return Constants.M_W;
-			case "TTh": return Constants.T_TH;
-			case "Sa": return Constants.Sa;
-			default: return -2;
-		}
 	}
 
 	//Accessor methods for formatted output to display on web

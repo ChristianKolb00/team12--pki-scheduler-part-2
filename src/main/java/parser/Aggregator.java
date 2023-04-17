@@ -16,6 +16,7 @@ public class Aggregator {
 		allCourses = findCourses();//Isolate all courses in document
 		courses = refineCourses();//Isolate all courses we can modify/care about
 		rooms = createRooms();
+		scheduleCourses();
 	}
 	
 	public Course[] getCourses()
@@ -37,6 +38,7 @@ public class Aggregator {
 	{
 		return rooms;
 	}
+	
 	//Iterate through all documents finding the Lines that are course flagged
 	private Course[] findCourses() {
 		ArrayList<Course> course = new ArrayList<Course>();
@@ -61,7 +63,7 @@ public class Aggregator {
 	{
 		ArrayList<Course> course = new ArrayList<Course>();
 		for(int i = 0; i < allCourses.length; i++) {
-			if(allCourses[i].getBuilding().contentEquals("PKI") && allCourses[i].getMeetingPattern() >= 0)
+			if(allCourses[i].getBuilding().contentEquals("Peter Kiewit Institute") && allCourses[i].getMeetingPattern() >= 0)
 			{
 				course.add(allCourses[i]);
 			}
@@ -81,6 +83,21 @@ public class Aggregator {
 		Room[] ret = new Room[room.size()];
 		room.toArray(ret);
 		return ret;
+	}
+	
+	private void scheduleCourses()
+	{
+		for(int i = 0; i < courses.length; i++)
+		{
+			try
+			{
+				courses[i].schedule(rooms);
+			}
+			catch(ScheduleException e)
+			{
+				System.out.println(courses[i].toString() + "\n" + e.toString());
+			}
+		}
 	}
 	
 	@Override
