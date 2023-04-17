@@ -155,14 +155,13 @@ public class Course extends Line{
 		//Attempt to set using parsed values on room object
 		else
 		{
-			room.set(this);
-			
+			room.set(this);	
 		}
 	}
 	
 	private void parseRoomNum()
 	{
-		if (diff[Constants.ROOM].contains("Online") || diff[Constants.ROOM].contains("Announcted"))
+		if (diff[Constants.ROOM].contains("Online") || diff[Constants.ROOM].contains("Not"))
 		{
 			roomNum = "0";
 			return;
@@ -173,7 +172,7 @@ public class Course extends Line{
 	
 	private void parseDayTime()
 	{
-		if(diff[Constants.MEET_PATT].contains("Not"))
+		if(diff[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
 		{
 			time = -1;
 			duration = -1;
@@ -195,7 +194,7 @@ public class Course extends Line{
 	private void parseOriginalDayTime()
 	{
 		
-		if(line[Constants.MEET_PATT].contains("Not"))
+		if(line[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
 		{
 			otime = -1;
 			oduration = -1;
