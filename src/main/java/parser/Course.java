@@ -29,6 +29,12 @@ public class Course extends Line{
 		parseOriginalDayTime();
 		parseDayTime();
 		parseRoomNum();
+		if(diff[Constants.CROSSLISTINGS].contains("See"))
+			parentC = 1;
+		else if (diff[Constants.CROSSLISTINGS].contains("Also"))
+			parentC = 0;
+		else
+			parentC = -1;
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 		//Dummy setters
@@ -92,13 +98,12 @@ public class Course extends Line{
 	{
 		room.release(this);
 	}
-	
+	/*
 	public void schedule() throws ScheduleException
 	{
-		System.out.println(diff[Constants.ROOM]);
-		System.out.println(room);
-		room.set(this);
-	}
+		if(parentC != 1)
+			room.set(this);
+	}*/
 	
 	public void release() throws ScheduleException
 	{
@@ -132,6 +137,8 @@ public class Course extends Line{
 	
 	public void schedule(Room[] rooms) throws ScheduleException
 	{
+		if (parentC == 1 || roomNum.contentEquals("0"))
+			return;//Child courses are never scheduled and use inherited scheduling
 		boolean found = false;
 		//Find room
 		for (int i = 0; i < rooms.length; i++)
@@ -155,7 +162,7 @@ public class Course extends Line{
 	
 	private void parseRoomNum()
 	{
-		if (diff[Constants.ROOM].contains("Online|Announced"))
+		if (diff[Constants.ROOM].contains("Online") || diff[Constants.ROOM].contains("Announcted"))
 		{
 			roomNum = "0";
 			return;

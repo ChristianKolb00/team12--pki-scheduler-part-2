@@ -17,12 +17,14 @@ public class Tester {
 		
 		String[] AllFile = new String[]{Path,Path2,Path3,Path4,Path5,Path6,Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		String[] allCourses = tester.getCourseNames();
 		//for(int i=0; i<allCourses.length; i++) {
 			//System.out.println(allCourses[i] +"");
 		//}
-		helper h = new helper();
-		System.out.println(h.parseTime("8:00pm"));
+		System.out.println(helper.parseTime("8:00pm"));
+		System.out.println(helper.parseTime("12:00am"));
+		System.out.println(helper.parseTime("12:15am"));
+		System.out.println(helper.parseTime("12:00pm"));
+		System.out.println(helper.parseTime("12:15pm"));
 		
 		
 	}
