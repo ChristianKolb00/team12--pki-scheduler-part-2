@@ -4,7 +4,6 @@ public class Room extends TimeTable{
 	private String building;
 	private String roomNum;
 	private int cap, comp;
-	private TimeTable schedule;
 	
 	//Generalized explicit constructor
 	public Room(String b, String n, int ca, int co)
@@ -20,7 +19,7 @@ public class Room extends TimeTable{
 	public Room(Object[] a)
 	{
 		super();
-		building = "PKI";
+		building = "Peter Kiewit Institute";
 		roomNum = (String) a[0];
 		cap = (int) a[1];
 		comp = (int) a[2];
