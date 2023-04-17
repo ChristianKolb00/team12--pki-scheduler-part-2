@@ -12,7 +12,8 @@ public class helper {
 		if(timeRange.contains("pm"))
 				t += 12 * 4;
 		//Replace 12pm with 0 for easier hour shifting
-		timeRange.replace("12","0");
+		timeRange = timeRange.replace("12","0");
+		System.out.println(timeRange);
 		String[] minHour = timeRange.split(":",2);
 		//If only hours, split give just hours, if mixed earlier split reduced and still functions
 		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
