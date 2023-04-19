@@ -11,7 +11,6 @@ public class Course extends Line{
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
-	helper u = new helper();
 	
 	public Course()
 	{
@@ -30,6 +29,12 @@ public class Course extends Line{
 		parseOriginalDayTime();
 		parseDayTime();
 		parseRoomNum();
+		if(diff[Constants.CROSSLISTINGS].contains("See"))
+			parentC = 1;
+		else if (diff[Constants.CROSSLISTINGS].contains("Also"))
+			parentC = 0;
+		else
+			parentC = -1;
 		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 		//Dummy setters
@@ -49,8 +54,8 @@ public class Course extends Line{
 	{
 		diff[Constants.ROOM]=r;
 		parseRoomNum();
-		//Also set maxroom based on new room
-		//Cascad max enrollment set
+		//TODO: Also set maxroom based on new room
+		//TODO: Cascad max enrollment set
 		changed = true;
 	}
 	
@@ -93,11 +98,12 @@ public class Course extends Line{
 	{
 		room.release(this);
 	}
-	
+	/*
 	public void schedule() throws ScheduleException
 	{
-		room.set(this);
-	}
+		if(parentC != 1)
+			room.set(this);
+	}*/
 	
 	public void release() throws ScheduleException
 	{
@@ -111,7 +117,7 @@ public class Course extends Line{
 		else if (day == 5)
 			return new int[] {Constants.M, Constants.W};
 		else if (day == 6)
-			return new int[] {Constants.T, Constants.T_TH};
+			return new int[] {Constants.T, Constants.Th};
 		else
 			return new int[] {};
 	}
@@ -131,6 +137,8 @@ public class Course extends Line{
 	
 	public void schedule(Room[] rooms) throws ScheduleException
 	{
+		if (parentC == 1 || roomNum.contentEquals("0"))
+			return;//Child courses are never scheduled and use inherited scheduling
 		boolean found = false;
 		//Find room
 		for (int i = 0; i < rooms.length; i++)
@@ -147,14 +155,13 @@ public class Course extends Line{
 		//Attempt to set using parsed values on room object
 		else
 		{
-			room.set(this);
-			
+			room.set(this);	
 		}
 	}
 	
 	private void parseRoomNum()
 	{
-		if (diff[Constants.ROOM].contains("Online|Announced"))
+		if (diff[Constants.ROOM].contains("Online") || diff[Constants.ROOM].contains("Not"))
 		{
 			roomNum = "0";
 			return;
@@ -165,7 +172,7 @@ public class Course extends Line{
 	
 	private void parseDayTime()
 	{
-		if(diff[Constants.MEET_PATT].contains("Not"))
+		if(diff[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
 		{
 			time = -1;
 			duration = -1;
@@ -177,17 +184,17 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		time = u.parseTime(timePieces[0]);
-		duration = u.parseTime(timePieces[1]) - time;
+		time = helper.parseTime(timePieces[0]);
+		duration = helper.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		day = u.parseDays(dayPiece[0]);
+		day = helper.parseDays(dayPiece[0]);
 		
 	}
 	
 	private void parseOriginalDayTime()
 	{
 		
-		if(line[Constants.MEET_PATT].contains("Not"))
+		if(line[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
 		{
 			otime = -1;
 			oduration = -1;
@@ -199,46 +206,11 @@ public class Course extends Line{
 		//Split off time into [0] and [1]
 		String[] timePieces = dayPiece[1].split("-",2);
 		//Set time and duration using parsed time
-		otime = u.parseTime(timePieces[0]);
-		oduration = u.parseTime(timePieces[1]) - time;
+		otime = helper.parseTime(timePieces[0]);
+		oduration = helper.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
-		oday = u.parseDays(dayPiece[0]);
+		oday = helper.parseDays(dayPiece[0]);
 		
-	}
-	
-	public int parseTime(String timeRange)
-	{
-		int t = 0;
-		if(timeRange.contains("pm"))
-				t += 12 * 4;
-		//Replace 12pm with 0 for easier hour shifting
-		timeRange.replace("12","0");
-		String[] minHour = timeRange.split(":",2);
-		//If only hours, split give just hours, if mixed earlier split reduced and still functions
-		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
-		//If there are minutes
-		if(minHour.length > 1)
-		{
-			//Divide minutes by 15 and round to nearest 15 minute so there is 10-20 minutes between all classes
-			t += Math.round(Integer.parseInt(minHour[1].split("am|pm")[0])/15);
-		}
-		return t;
-	}
-
-	
-	public int parseDays(String days)
-	{
-		switch(days)
-		{
-			case "T": return Constants.T;
-			case "W": return Constants.W;
-			case "Th": return Constants.Th;
-			case "F": return Constants.F;
-			case "MW": return Constants.M_W;
-			case "TTh": return Constants.T_TH;
-			case "Sa": return Constants.Sa;
-			default: return -2;
-		}
 	}
 
 	//Accessor methods for formatted output to display on web
@@ -262,8 +234,8 @@ public class Course extends Line{
 	
 	protected String getBuilding()
 	{
-		if(line[Constants.ROOM].contains("Peter"))
-			return "PKI";
+		if(line[Constants.ROOM].contains("Peter") && !line[Constants.ROOM].contains("Online"))
+			return "Peter Kiewit Institute";
 		else
 			return "Other";
 	}
@@ -280,6 +252,8 @@ public class Course extends Line{
 		}
 		changed = true;
 	}
+	
+	/*Temporarily deprecated
 	protected void processWebOriginal()
 	{
 		//Decide what data to put into webOriginal
@@ -293,7 +267,7 @@ public class Course extends Line{
 		parseDayTime();
 		parseRoomNum();
 		changed = false;
-	}	
+	}*/	
 	
 	//Getter via line
 	//Setter via diff

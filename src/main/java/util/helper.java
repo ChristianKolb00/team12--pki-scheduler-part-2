@@ -6,13 +6,13 @@ public class helper {
 	 * Ex. 8:00pm 
 	 * the output would be 48 (for 12hr in am) + 32 (for 8hr in pm) = 80
 	 */
-	public int parseTime(String timeRange)
+	public static int parseTime(String timeRange)
 	{
 		int t = 0;
 		if(timeRange.contains("pm"))
 				t += 12 * 4;
 		//Replace 12pm with 0 for easier hour shifting
-		timeRange.replace("12","0");
+		timeRange = timeRange.replace("12","0");
 		String[] minHour = timeRange.split(":",2);
 		//If only hours, split give just hours, if mixed earlier split reduced and still functions
 		t += Integer.parseInt(minHour[0].split("am|pm")[0]) * 4;
@@ -30,7 +30,7 @@ public class helper {
 	 * parse day of week to a number
 	 * 
 	 */
-	public int parseDays(String days)
+	public static int parseDays(String days)
 	{
 		switch(days)
 		{
