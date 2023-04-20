@@ -252,7 +252,26 @@ public class Course extends Line{
 		}
 		changed = true;
 	}
-	
+	public String getRoomNum() 
+	{
+		
+		return diff[Constants.ROOM];
+	}
+	public String getCourseTime() 
+	{
+		
+		return diff[Constants.MEET_PATT];
+	}
+	public String getCourseName() 
+	{
+		
+		return diff[Constants.COURSE];
+	}
+	public String getSection() 
+	{
+		
+		return diff[Constants.SEC_NUM];
+	}
 	/*Temporarily deprecated
 	protected void processWebOriginal()
 	{
@@ -273,7 +292,7 @@ public class Course extends Line{
 	//Setter via diff
 	//Apply will apply diff to line
 	//Discard will reclone line over diff
-	public String toString()
+	/*public String toString()
 	{
 		String ret = "";
 		for(int i = 0; i<diff.length; i++)
@@ -281,5 +300,5 @@ public class Course extends Line{
 			ret = ret.concat(diff[i]);
 		}
 		return ret;
-	}
+	}*/
 }
