@@ -32,18 +32,19 @@
 		</tr>
 		<tr>
 		<td style="display:flex; flex-direction:column;">
-		<% ArrayList<String> object = (ArrayList<String>) session.getAttribute("object"); 
+		<% String[] object = (String[]) session.getAttribute("object"); 
+			request.getSession().setAttribute("object",object);
 		%>
-		<% for(int i=0; i<object.size(); i++) {
+		<% for(int i=0; i<object.length; i++) {
 			 %>
-			 <div class="choice"><%= object.get(i) %></div>
+			 <div class="choice"><%= (i+1)+". "+object[i] %></div>
 		<% }%>
 		</td>
 		</tr>
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
 			<option value="0"> select </option>
-			<% for(int i=1; i<=object.size(); i++) {
+			<% for(int i=1; i<=object.length; i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
 			

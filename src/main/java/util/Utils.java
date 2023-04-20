@@ -10,13 +10,13 @@ import parser.Room;
 public class Utils {
 	
 	
-	String Path = "/Users/ghafar/Documents/PKI-Proj/2019files/BIOI1191.csv";
-	String Path2 = "/Users/ghafar/Documents/PKI-Proj/2019files/BMI1191.csv";
-	String Path3 = "/Users/ghafar/Documents/PKI-Proj/2019files/CIST_EMIT1191.csv";
-	String Path4 = "/Users/ghafar/Documents/PKI-Proj/2019files/CSCI1191.csv";
-	String Path5 = "/Users/ghafar/Documents/PKI-Proj/2019files/CYBR1191.csv";
-	String Path6 = "/Users/ghafar/Documents/PKI-Proj/2019files/ISQA1191.csv";
-	String Path7 = "/Users/ghafar/Documents/PKI-Proj/2019files/ITIN1191.csv";
+	String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
+	String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
+	String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
+	String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
+	String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
+	//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+	String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
 	
 	String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
 	//String[] AllFile = new String[]{Path};
@@ -27,14 +27,14 @@ public class Utils {
 	
 	
 	// Finds a list of rooms that are open at the same time as the course passed.
-	public  String[] findRoomSameTime(Course[] c,int maxEnrollement){
+	public  String[] findRoomSameTime(Course c,int maxEnrollement){
 		Room[] filtered=findRoomsLargerThanMaxEnrollment(maxEnrollement);
 		ArrayList<String> findRoomSameTime=new ArrayList<String>();
 		
 		for (int i=0;i<filtered.length;i++) {
-			if (!course[i].getCourseTime().equals(c[0].getCourseTime())) {
+			if (!course[i].getCourseTime().equals(c.getCourseTime())) {
 				String ret="Room: "+filtered[i].getRoomNumber()+" ,Capacity: "+
-			filtered[i].getCapacity()+" ,Open at "+c[0].getCourseTime()+" : Yes";
+			filtered[i].getCapacity()+" ,Open at "+c.getCourseTime()+" : Yes";
 				findRoomSameTime.add(ret);
 			}	
 		}
@@ -62,13 +62,13 @@ public class Utils {
 	
 	
 	//Reassign Courses with Same Time to a different Room 
-	public String reassignRoomSameTime(Course[] c,String roomNum){
-		for (int i=0;i<7;i++) {
-			if (!course[i].getCourseTime().equals(c[0].getCourseTime()) ) {
+	public String reassignRoomSameTime(Course c,String roomNum){
+		for (int i=0;i<course.length;i++) {
+			if (!course[i].getCourseTime().equals(c.getCourseTime()) ) {
 				course[i].setRoom(roomNum);
 			}
 			}
-		String result=c[0].getCourseName()+" Room: "+c[0].getRoomNum()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
+		String result=c.getCourseName()+" Room: "+c.getRoomNum()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
 		return result;
 	  }
 	

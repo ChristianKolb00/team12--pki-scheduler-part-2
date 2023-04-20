@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import parser.Aggregator;
+import parser.Course;
+import util.Utils;
+
 /**
  * Servlet implementation class change
  */
@@ -37,14 +41,47 @@ public class homePage extends HttpServlet {
 		String course =  request.getParameter("course");
 		ArrayList<String> object = new ArrayList<>();
 		
-		object.add("Course 1111___Time change: 3pm-4:15pm to 6pm-7:15pm___PKI 250 to PKI 260");
-		object.add("Course 2222___Time change: 3pm-4:15pm to 10pm-11:15pm___PKI 250 to PKI 263");
-		object.add("Open room___Time change: 3pm-4:15pm to 6pm-7:15pm___PKI 250 to PKI 265");
+		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
+		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
+		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
+		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
+		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
+		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
+
+		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
+	
+		Aggregator tester = new Aggregator(AllFile);
+		Course[] courses = tester.getCourses();
+		Utils u=new Utils();
 		
+		String courseTitle= course;
+		String[] courseName = courseTitle.split("-");
+		System.out.println(courseName[0]);
+		
+		int enrollment = Integer.parseInt(field);
+		int position=0;
+		for(int i=0; i<courses.length;i++) {
+			if(courses[i].getCourseName().equals(courseName[0])) {
+				if(courses[i].getSection().equals(courseName[1])) {
+					System.out.println(i);
+					position=i;
+					break;
+					
+				}
+			}
+		}
+		String[] roomSameTime=u.findRoomSameTime(courses[position], enrollment);
+		
+		
+		/*System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
+		System.out.println(u.reassignRoomSameTime(courses[position],"252"));
+		System.out.println("---------  --------- --------  -------- ---------  -------- ---------  --------");
+		*/
 		HttpSession session = request.getSession();
 		session.setAttribute("course", course);
 		session.setAttribute("field", field);
-		session.setAttribute("object", object);
+		session.setAttribute("object", roomSameTime);
 		response.sendRedirect("change.jsp?course="+course+"&field="+field);
 		
 		

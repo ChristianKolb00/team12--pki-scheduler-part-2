@@ -1,69 +1,59 @@
 package util;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import parser.Aggregator;
 import parser.Course;
 import parser.Room;
 
-/**
- * Servlet implementation class TestServlet
- */
-@WebServlet("/UtilTest")
-public class UtilTest extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class UtilTest {
+	public static void main(String[] args) {
+	
+	
+		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
+		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
+		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
+		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
+		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
+		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
 
-    /**
-     * Default constructor. 
-     */
-    public UtilTest() {
-    	super();
-        // TODO Auto-generated constructor stub
-    }
-
-   
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
-		out.println("<html><head><title>PKI Classroom Assignment</title></head> <body>");
-		String Path = "/Users/ghafar/Documents/PKI-Proj/2019files/BIOI1191.csv";
-		String Path2 = "/Users/ghafar/Documents/PKI-Proj/2019files/BMI1191.csv";
-		String Path3 = "/Users/ghafar/Documents/PKI-Proj/2019files/CIST_EMIT1191.csv";
-		String Path4 = "/Users/ghafar/Documents/PKI-Proj/2019files/CSCI1191.csv";
-		String Path5 = "/Users/ghafar/Documents/PKI-Proj/2019files/CYBR1191.csv";
-		String Path6 = "/Users/ghafar/Documents/PKI-Proj/2019files/ISQA1191.csv";
-		String Path7 = "/Users/ghafar/Documents/PKI-Proj/2019files/ITIN1191.csv";
-		
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
 	
 		Aggregator tester = new Aggregator(AllFile);
 		Course[] course = tester.getCourses();
-
+		
+		
+		
+		
 		
 		Utils u=new Utils();
 		
-		String [] roomSameTime=u.findRoomSameTime(course, 12);
+		String courseTitle= "CIST 2100-001";
+		String[] courseName = courseTitle.split("-");
+		System.out.println(courseName[0]);
+		int enrollment = 50;
+		int position=0;
+		for(int i=0; i<course.length;i++) {
+			if(course[i].getCourseName().equals(courseName[0])) {
+				if(course[i].getSection().equals(courseName[1])) {
+					System.out.println(i);
+					position=i;
+					break;
+					
+				}
+			}
+		}
+		String [] roomSameTime=u.findRoomSameTime(course[position], 30);
 		for(int i=0;i<roomSameTime.length;i++) {
 			System.out.println(roomSameTime[i]);
 		}
 		
 		System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
-		System.out.println(u.reassignRoomSameTime(course,"252"));
+		System.out.println(u.reassignRoomSameTime(course[position],"252"));
 		System.out.println("---------  --------- --------  -------- ---------  -------- ---------  --------");
-
+		
+		
 //		helper h=new helper();
 //		Room [] filtered=u.findRoomsLargerThanMaxEnrollment(12);
 //		String names;
@@ -103,13 +93,4 @@ public class UtilTest extends HttpServlet {
 //			
 //		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
