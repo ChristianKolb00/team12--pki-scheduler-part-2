@@ -35,7 +35,6 @@ public class Course extends Line{
 			parentC = 0;
 		else
 			parentC = -1;
-		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 		//Dummy setters
 		aggEnroll = -1;
@@ -45,6 +44,10 @@ public class Course extends Line{
 	//Possibly split this
 	public void setMeetingPattern(String p)
 	{
+		if(parentC == 1)
+		{
+			parent.setMeetingPattern(p);
+		}
 		diff[Constants.MEET_PATT]=p;
 		parseDayTime();
 		changed = true;
@@ -52,6 +55,10 @@ public class Course extends Line{
 	
 	public void setRoom(String r)
 	{
+		if(parentC == 1)
+		{
+			parent.setRoom(room);
+		}
 		diff[Constants.ROOM]=r;
 		parseRoomNum();
 		//TODO: Also set maxroom based on new room
@@ -61,6 +68,10 @@ public class Course extends Line{
 	
 	public void setRoom(Room r)
 	{
+		if(parentC == 1)
+		{
+			parent.setRoom(r);
+		}
 		room = r;
 		diff[Constants.ROOM] = r.getBuilding() + " " + r.getRoomNumber();
 		changed = true;
@@ -68,6 +79,10 @@ public class Course extends Line{
 	
 	public void setMaxEnrollment(String e)
 	{
+		if(parentC == 1)
+		{
+			parent.setMaxEnrollment(e);
+		}
 		diff[Constants.MAX_ENROLL]=e;
 		//Update aggEnroll
 		changed = true;
@@ -80,23 +95,29 @@ public class Course extends Line{
 	
 	public Room getRoom()
 	{
+		if(parentC == 1)
+			return parent.getRoom();
 		return room;
 	}
 	
 	public int getEnrollment()
 	{
-		//Switch for aggenroll here
+		//TODO: Switch for aggenroll here
 		return Integer.parseInt(diff[Constants.ENROLLMENT]);
 	}
 	
 	public int getMaxEnrollment()
 	{
+		//TODO: Switch for aggenrollmax
 		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
 	}
 	
 	public void releaseOriginal() throws ScheduleException
 	{
-		room.release(this);
+		if(parentC == 1)
+			parent.releaseOriginal();
+		else
+			room.release(this);
 	}
 	/*
 	public void schedule() throws ScheduleException
@@ -107,7 +128,10 @@ public class Course extends Line{
 	
 	public void release() throws ScheduleException
 	{
-		room.restoreRelease(this);
+		if(parentC == 1)
+			parent.release();
+		else
+			room.restoreRelease(this);
 	}
 	
 	protected int[] getDays()
