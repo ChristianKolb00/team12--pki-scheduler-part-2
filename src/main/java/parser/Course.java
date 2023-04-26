@@ -29,7 +29,7 @@ public class Course extends Line{
 		parseOriginalDayTime();
 		parseDayTime();
 		parseRoomNum();
-		if(diff[Constants.CROSSLISTINGS].contains("See"))
+		if(diff[Constants.CROSSLISTINGS].contains("See"))//Child flag
 			parentC = 1;
 		else if (diff[Constants.CROSSLISTINGS].contains("Also"))
 			parentC = 0;
@@ -119,6 +119,7 @@ public class Course extends Line{
 		else
 			room.release(this);
 	}
+	
 	/*
 	public void schedule() throws ScheduleException
 	{
@@ -264,6 +265,36 @@ public class Course extends Line{
 			return "Other";
 	}
 	
+	protected int getPC()
+	{
+		return parentC;
+	}
+	
+	protected String[] getPCField()
+	{
+		String ret = diff[Constants.CROSSLISTINGS];
+		ret = ret.replace("See ", "");
+		ret = ret.replace("Also ", "");
+		return ret.split(",");
+		
+	}
+	
+	protected void setPC(int a, Course b)
+	{
+		switch(a)
+		{
+			case 0: parent = b;
+			break;
+			case 1: childOne=b;
+			break;
+			case 2: childTwo=b;
+			break;
+			case 3: childThree=b;
+			break;
+			default: System.out.println("Something is wrong");
+		}
+	}
+	
 	public void revert()
 	{
 		//Only revert if something has changed
@@ -274,29 +305,9 @@ public class Course extends Line{
 				diff[i] = line[i];//Since string is immutable this is a deep copy
 			}
 		}
-		changed = true;
-	}
-	
-	/*Temporarily deprecated
-	protected void processWebOriginal()
-	{
-		//Decide what data to put into webOriginal
-		String[] webOriginal = {line[Constants.COURSE] + "-" + line[Constants.SEC_NUM], line[Constants.SEC_TYPE], line[Constants.MEET_PATT], 
-				line[Constants.INSTRUCTOR], line[Constants.ROOM], line[Constants.ENROLLMENT],line[Constants.MAX_ENROLL], String.valueOf(aggEnrollOriginal)};
-	}
-	private void processWeb() {
-		//Decide what to put in display
-		String[] web = {diff[Constants.COURSE] + "-" + diff[Constants.SEC_NUM], diff[Constants.SEC_TYPE], diff[Constants.MEET_PATT], 
-				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
-		parseDayTime();
-		parseRoomNum();
 		changed = false;
-	}*/	
+	}
 	
-	//Getter via line
-	//Setter via diff
-	//Apply will apply diff to line
-	//Discard will reclone line over diff
 	public String toString()
 	{
 		String ret = "";

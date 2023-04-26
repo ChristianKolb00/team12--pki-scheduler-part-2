@@ -14,6 +14,7 @@ public class Aggregator {
 			documents[i] = new Document(paths[i]);
 		}
 		allCourses = findCourses();//Isolate all courses in document
+		parentChildLinkage();//Link parent and child courses for allCourses
 		courses = refineCourses();//Isolate all courses we can modify/care about
 		rooms = createRooms();
 		scheduleCourses();
@@ -57,6 +58,28 @@ public class Aggregator {
 		Course[] ret = new Course[course.size()];
 		course.toArray(ret);
 		return ret;
+	}
+	
+	private void parentChildLinkage()
+	{
+		for(int i = 0; i < allCourses.length; i++)
+		{
+			if(allCourses[i].getPC() == 0)
+			{
+				String[] children = allCourses[i].getPCField();
+				for(int k = 0; k < children.length; k++)
+				{
+					for(int j = 0; j < allCourses.length; j++)
+					{
+						if(allCourses[j].getCourseSection().equalsIgnoreCase(children[k]))
+						{
+							allCourses[i].setPC(k,allCourses[j]);
+							allCourses[j].setPC(0,allCourses[i]);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	private Course[] refineCourses()
