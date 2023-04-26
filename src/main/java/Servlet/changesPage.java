@@ -33,19 +33,25 @@ public class changesPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int selection =Integer.parseInt( request.getParameter("selection")) ;
-		String[] results =(String[]) request.getSession().getAttribute("object");
-		String result = results[selection];
-		System.out.println(selection);
-		if(selection == 0) {
+		try {
+			int selection =Integer.parseInt( request.getParameter("selection")) ;
+			String[] results =(String[]) request.getSession().getAttribute("object");
+			String result = results[selection-1];
+			System.out.println(selection);
+			if(selection == -1) {
+				
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("selection", selection);
+				session.setAttribute("result", result);
+				response.sendRedirect("summary.jsp?selection="+selection+"&result="+result);
+			}
+		}catch(NumberFormatException e) {
 			request.setAttribute("errorMessage", "Please select a different choice");
 			request.getRequestDispatcher("/change.jsp").forward(request, response);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("selection", selection);
-			session.setAttribute("result", result);
-			response.sendRedirect("summary.jsp?selection="+selection+"&result="+result);
 		}
+		
+		
 		
 	}
 

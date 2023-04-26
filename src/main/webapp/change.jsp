@@ -43,12 +43,10 @@
 		</tr>
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
-			<option value="0"> select </option>
+			<option value=""> select </option>
 			<% for(int i=1; i<=object.length; i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
-			
-			 
 			<% }%>
 		</select>
 		</td></tr>

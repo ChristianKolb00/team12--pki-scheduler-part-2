@@ -42,6 +42,7 @@
 	</tr>
 	<tr><td>Max Enrollment Change: </td>
 	<td><select class="selection" name ="selection" id = "selection" >
+				<option value="16"> 16 </option>
 				<option value="24"> 24 </option>
 				<option value="30"> 30 </option>
 				<option value="40"> 40 </option>
