@@ -41,13 +41,13 @@ public class homePage extends HttpServlet {
 		String course =  request.getParameter("course");
 		ArrayList<String> object = new ArrayList<>();
 		
-		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
-		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
-		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
-		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
-		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
-		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
+		String Path = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
+		String Path2 = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
+		String Path3 = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
+		String Path4 = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
+		String Path5 = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
+		//String Path6 = "C:\Users\phoom\git\pullt12\team12--pki-scheduler-part-2\src\main\java\csvFiles";
+		String Path7 = "C:\\Users\\phoom\\git\\pullt12\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles";
 
 		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
 	
@@ -71,7 +71,7 @@ public class homePage extends HttpServlet {
 				}
 			}
 		}
-		String[] roomSameTime=u.findRoomSameTime(courses[position], enrollment);
+		//String[] roomSameTime=u.findRoomSameTime(courses[position], enrollment);
 		
 		
 		/*System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
@@ -81,7 +81,7 @@ public class homePage extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("course", course);
 		session.setAttribute("field", field);
-		session.setAttribute("object", roomSameTime);
+		//session.setAttribute("object", roomSameTime);
 		response.sendRedirect("change.jsp?course="+course+"&field="+field);
 		
 		
