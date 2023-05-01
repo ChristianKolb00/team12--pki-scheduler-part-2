@@ -5,7 +5,7 @@ import java.io.IOException;
 import parser.Aggregator;
 import parser.Course;
 import parser.Room;
-
+import parser.TimeTable;
 public class UtilTest {
 	public static void main(String[] args) {
 	
@@ -52,7 +52,6 @@ public class UtilTest {
 		System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
 		System.out.println(u.reassignRoomSameTime(course[position],"252"));
 		System.out.println("---------  --------- --------  -------- ---------  -------- ---------  --------");
-		
 		
 //		helper h=new helper();
 //		Room [] filtered=u.findRoomsLargerThanMaxEnrollment(12);

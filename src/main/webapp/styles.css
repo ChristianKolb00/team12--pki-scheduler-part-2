@@ -1,5 +1,7 @@
-	*{
-	background:#c8c2c2;
+@charset "ISO-8859-1";	
+	
+	body{
+	background:#94bcdd; 
 	}
 	.buttons{
 	font-size:20px;
