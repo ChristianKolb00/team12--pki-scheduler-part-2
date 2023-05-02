@@ -287,9 +287,12 @@ public class Course extends Line{
 	protected String[] getPCField()
 	{
 		String ret = diff[Constants.CROSSLISTINGS];
-		ret = ret.replace("See ", "");
-		ret = ret.replace("Also ", "");
-		return ret.split(",");
+		ret = ret.replace("See", "");
+		ret = ret.replace("Also", "");
+		String temp[] = ret.split(",");
+		for (int i = 0; i < temp.length; i++)
+			temp[i] = temp[i].substring(1);//Remove space at start
+		return temp;
 		
 	}
 	
@@ -330,5 +333,5 @@ public class Course extends Line{
 			ret = ret.concat(diff[i]);
 		}
 		return ret;
-	}*/
+	}
 }
