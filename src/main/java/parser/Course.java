@@ -314,6 +314,8 @@ public class Course extends Line{
 	
 	public void revert()
 	{
+		if(parentC == 1)
+			parent.revert();
 		//Only revert if something has changed
 		if (changed = true)
 		{
