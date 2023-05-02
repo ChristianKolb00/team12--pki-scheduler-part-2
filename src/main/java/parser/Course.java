@@ -92,6 +92,20 @@ public class Course extends Line{
 	{
 		return day;//This might need more
 	}
+	public int getMeetingTime()
+	{
+		return time;
+	}
+	
+	public int getMeetingDuration()
+	{
+		return duration;
+	}
+	
+	public String getCourseMeeting() 
+	{
+		return diff[Constants.MEET_PATT];
+	}
 	
 	public Room getRoom()
 	{
@@ -306,26 +320,6 @@ public class Course extends Line{
 			}
 		}
 		changed = true;
-	}
-	public String getRoomNum() 
-	{
-		
-		return diff[Constants.ROOM];
-	}
-	public String getCourseTime() 
-	{
-		
-		return diff[Constants.MEET_PATT];
-	}
-	public String getCourseName() 
-	{
-		
-		return diff[Constants.COURSE];
-	}
-	public String getSection() 
-	{
-		
-		return diff[Constants.SEC_NUM];
 	}
 	
 	public String toString()
