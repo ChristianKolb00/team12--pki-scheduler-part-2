@@ -3,11 +3,11 @@ import util.helper;
 //Extending Line to be able to directly call Line properties
 public class Course extends Line{
 	private String[] diff;
-	
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	protected int day,time,duration;
 	protected String roomNum;//
 	private Room room;
+
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
