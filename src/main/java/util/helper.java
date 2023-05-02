@@ -1,4 +1,8 @@
 package util;
+
+import parser.Aggregator;
+import parser.Course;
+
 public class helper {
 	//(10,12,16,16,16,16,16),(24,24,30,30,30,32),(40,40,40,40,40,42,42,50,56,58,60) 3 sections for room size
 	/*
@@ -45,6 +49,31 @@ public class helper {
 			default: return -2;
 		}
 	}
+	public static Course parseCourseTitle(String courseTitle) {
+		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
+		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
+		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
+		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
+		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
+		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
 
+		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
+	
+		Aggregator tester = new Aggregator(AllFile);
+		Course[] course = tester.getCourses();
+		String[] courseName = courseTitle.split("-");
+		System.out.println(courseName[0]);
+		
+		int position=0;
+		for(int i=0; i<course.length;i++) {
+			if(course[i].getCourseSection().equalsIgnoreCase(courseTitle)) {
+					System.out.println(i);
+					position=i;
+					break;
+				}
+		}
+		return course[position];
+	}
 	
 }

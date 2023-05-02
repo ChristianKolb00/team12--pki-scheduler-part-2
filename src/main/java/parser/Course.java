@@ -3,11 +3,11 @@ import util.helper;
 //Extending Line to be able to directly call Line properties
 public class Course extends Line{
 	private String[] diff;
-	
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	protected int day,time,duration;
 	protected String roomNum;//
 	private Room room;
+
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
@@ -91,6 +91,20 @@ public class Course extends Line{
 	public int getMeetingPattern()
 	{
 		return day;//This might need more
+	}
+	public int getMeetingTime()
+	{
+		return time;
+	}
+	
+	public int getMeetingDuration()
+	{
+		return duration;
+	}
+	
+	public String getCourseMeeting() 
+	{
+		return diff[Constants.MEET_PATT];
 	}
 	
 	public Room getRoom()
@@ -252,7 +266,7 @@ public class Course extends Line{
 		return ret;
 	}
 	
-	protected String getCourseSection()
+	public String getCourseSection()
 	{
 		return line[Constants.COURSE] + "-" + line[Constants.SEC_NUM];
 	}
@@ -273,9 +287,12 @@ public class Course extends Line{
 	protected String[] getPCField()
 	{
 		String ret = diff[Constants.CROSSLISTINGS];
-		ret = ret.replace("See ", "");
-		ret = ret.replace("Also ", "");
-		return ret.split(",");
+		ret = ret.replace("See", "");
+		ret = ret.replace("Also", "");
+		String temp[] = ret.split(",");
+		for (int i = 0; i < temp.length; i++)
+			temp[i] = temp[i].substring(1);//Remove space at start
+		return temp;
 		
 	}
 	
@@ -297,6 +314,8 @@ public class Course extends Line{
 	
 	public void revert()
 	{
+		if(parentC == 1)
+			parent.revert();
 		//Only revert if something has changed
 		if (changed = true)
 		{
@@ -307,43 +326,7 @@ public class Course extends Line{
 		}
 		changed = true;
 	}
-	public String getRoomNum() 
-	{
-		
-		return diff[Constants.ROOM];
-	}
-	public String getCourseTime() 
-	{
-		
-		return diff[Constants.MEET_PATT];
-	}
-	public String getCourseName() 
-	{
-		
-		return diff[Constants.COURSE];
-	}
-	public String getSection() 
-	{
-		
-		return diff[Constants.SEC_NUM];
-	}
-	/*Temporarily deprecated
-	protected void processWebOriginal()
-	{
-		//Decide what data to put into webOriginal
-		String[] webOriginal = {line[Constants.COURSE] + "-" + line[Constants.SEC_NUM], line[Constants.SEC_TYPE], line[Constants.MEET_PATT], 
-				line[Constants.INSTRUCTOR], line[Constants.ROOM], line[Constants.ENROLLMENT],line[Constants.MAX_ENROLL], String.valueOf(aggEnrollOriginal)};
-	}
-	private void processWeb() {
-		//Decide what to put in display
-		String[] web = {diff[Constants.COURSE] + "-" + diff[Constants.SEC_NUM], diff[Constants.SEC_TYPE], diff[Constants.MEET_PATT], 
-				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
-		parseDayTime();
-		parseRoomNum();
-		changed = false;
-	}
 	
-
 	public String toString()
 	{
 		String ret = "";
@@ -352,5 +335,5 @@ public class Course extends Line{
 			ret = ret.concat(diff[i]);
 		}
 		return ret;
-	}*/
+	}
 }

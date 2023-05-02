@@ -12,11 +12,16 @@ public class UtilTest {
 	 */
 	public static void main(String[] args) {
 		
+		
+		
 		Utils u=new Utils();
-	
 	 	System.out.println("\n------------ Find Rooms that are open based on current course time and capacity");
 		String courseTitle= "CIST 2100-001";
-		String [] roomSameTime=u.findRoomSameTime(courseTitle, 50);
+		Course course = helper.parseCourseTitle(courseTitle);
+		
+		int enrollment = 50;
+		
+		String [] roomSameTime=u.findRoomSameTime(course, enrollment);
 		for(int i=0;i<roomSameTime.length;i++) {
 			System.out.println(roomSameTime[i]);
 		}

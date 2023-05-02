@@ -1,22 +1,19 @@
 package Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import parser.Aggregator;
 import parser.Course;
 import util.Utils;
+import util.helper;
 
 /**
  * Servlet implementation class change
@@ -40,42 +37,19 @@ public class homePage extends HttpServlet {
 		// TODO Auto-generated method stub
 		String field = request.getParameter("selection");
 		String course =  request.getParameter("course");
-		ArrayList<String> object = new ArrayList<>();
 		
-		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
-		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
-		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
-		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
-		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
-		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
-
-		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
-	
-		Aggregator tester = new Aggregator(AllFile);
-		Course[] courses = tester.getCourses();
 		Utils u=new Utils();
 		
-		String courseTitle= course;
-		String[] courseName = courseTitle.split("-");
-		System.out.println(courseName[0]+"-"+courseName[1]);
+		Course courseTitle = helper.parseCourseTitle(course);
 		int enrollment = Integer.parseInt(field);
-		String[] roomSameTimeArray=u.findRoomSameTime(course, enrollment);
+		
+		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
+		
 		ArrayList<String> roomSameTime = new ArrayList<String>(
 				Arrays.asList(roomSameTimeArray));
 		
-		int position=0;
-		for(int i=0; i<courses.length;i++) {
-			if(courses[i].getCourseName().equals(courseName[0])) {
-				if(courses[i].getSection().equals(courseName[1])) {
-					position=i;
-					break;
-					
-				}
-			}
-		}
-		String courseTime = courses[position].getCourseTime();
-		String roomNum = courses[position].getRoomNum();
+		String courseTime = courseTitle.getCourseMeeting();
+		String roomNum = courseTitle.getRoom().getRoomNumber();
 
 		/*
 		if(roomSameTime.size() <5) {

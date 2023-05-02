@@ -1,7 +1,6 @@
 package util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import parser.Aggregator;
@@ -32,7 +31,7 @@ public class Utils {
 
 		int position=getCourseIndex (courseTitle);
 		
-		String oldRoomNum=course[position].getRoomNum();
+		String oldRoomNum=course[position].getRoom().getRoomNumber();
 		int length = oldRoomNum.length();
 	    oldRoomNum = oldRoomNum.substring(length - 3);
 	    
@@ -45,17 +44,16 @@ public class Utils {
 	
 	
 	// Finds a list of rooms that are open at the same time as the course passed.
-	public  String[] findRoomSameTime(String courseTitle,int maxEnrollement){
+	public  String[] findRoomSameTime(Course c,int maxEnrollement){
 		
-		int position=getCourseIndex (courseTitle);
 		
 		Room[] filtered=findRoomsLargerThanMaxEnrollment(maxEnrollement);
 		ArrayList<String> findRoomSameTime=new ArrayList<String>();
 		
 		for (int i=0;i<filtered.length;i++) {
-			if (!course[i].getCourseTime().equals(course[position].getCourseTime())) {
+			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting())) {
 				String ret="Room: "+filtered[i].getRoomNumber()+" ,Capacity: "+
-			filtered[i].getCapacity()+" ,Open at "+course[position].getCourseTime()+" : Yes";
+			filtered[i].getCapacity()+" ,Open at "+c.getCourseMeeting()+" : Yes";
 				findRoomSameTime.add(ret);
 			}	
 		}
@@ -72,7 +70,7 @@ public class Utils {
 		ArrayList<Integer> timeArr = new ArrayList<Integer>();
 		 for(int i=0;i<course.length ;i++) {
 			 if(course[i].getRoom()!=null && course[i].getRoom().getCapacity()>=maxEnrollement ) {
-		        	 System.out.println("\nRoom: "+course[i].getRoomNum());
+		        	 System.out.println("\nRoom: "+course[i].getRoom().getRoomNumber());
 		            for (int timeSlot = 32; timeSlot < 88; timeSlot++) {
 		                if (course[i].getRoom().getCourseAt(Day, timeSlot) == null) {
 		                	if(timeSlot==33) {timeArr.add(timeSlot-1);};		         
@@ -113,18 +111,18 @@ public class Utils {
 	public String reassignDiffTimeDiffRoom(String courseTitle, String newRoomNum, String newTime) {
 	    int position = getCourseIndex(courseTitle);
 	    
-	    String oldRoomNum1=course[position].getRoomNum();
+	    String oldRoomNum1=course[position].getRoom().getRoomNumber();
 		int length = oldRoomNum1.length();
 	    oldRoomNum1 = oldRoomNum1.substring(length - 3);
 	    //String oldRoomNum1 = course[position].getRoomNum();
-	    String oldTime = course[position].getCourseTime();
+	    int oldTime = course[position].getMeetingTime();
 	    // Update course information
 	    course[position].setRoom("Peter Kiewit Institute " + newRoomNum);
 	    //course[position].setCourseTime(newTime);
 	    //course[position].setMeetingPattern(meetingPattern);
 	    // Construct result message
-	    String result = courseTitle + " in Room<PKI " + oldRoomNum1 + ">" + " at " + oldTime +
-	                    " has been reassigned to Room<PKI " + newRoomNum + ">" +
+	    String result = courseTitle + " in Room PKI " + oldRoomNum1 +  " at " + oldTime +
+	                    " has been reassigned to Room PKI " + newRoomNum + 
 	                    " at " + newTime + ".";
 	    return result;
 	}		
@@ -149,8 +147,8 @@ public class Utils {
 		
 		if (courseTitle1MaxEnrollment<=courseTitle2Capacity && courseTitle2MaxEnrollment<=courseTitle1Capacity) {
 			
-			String classRoom1=course[position1].getRoomNum();
-			String classRoom2=course[position2].getRoomNum();
+			String classRoom1=course[position1].getRoom().getRoomNumber();
+			String classRoom2=course[position2].getRoom().getRoomNumber();
 			String tempRoom=classRoom1;
 			
 			//Swap rooms
@@ -160,9 +158,9 @@ public class Utils {
 			int length = classRoom1.length();
 			
 			String ret="Course <"+courseTitle1+"> was moved from Room<PKI "+classRoom1.substring(length - 3)+
-					"> to Room<PKI "+course[position1].getRoomNum().substring(length - 3)+
+					"> to Room<PKI "+course[position1].getRoom().getRoomNumber().substring(length - 3)+
 					">\nCourse <"+courseTitle2+"> was moved from Room<PKI "+classRoom2.substring(length - 3)+
-					"> to Room<PKI "+course[position2].getRoomNum().substring(length - 3)+">";
+					"> to Room<PKI "+course[position2].getRoom().getRoomNumber().substring(length - 3)+">";
 			
 			return ret;
 			
@@ -172,35 +170,140 @@ public class Utils {
 	}
 	
 	
-	// Find a list of rooms with larger capacity than the maxEnrollment
+	/*
+	 * param: maxEnrollment is the maxEnrollment given to find larger rooms
+	 * return a Room array based on maxEnrollment,
+	 * maxEnrollment return based on three division, maxEnrollment+5 < 30, 40, and greater than 40
+	 * for example: if maxEnrollment is 10-23, then it return room arrays of room size between 10-29
+	 * if maxEnrollment is 24-38, then it return room arrays of room size between 24-44
+	 * if maxEnrollment is 39-60, then it return room arrays of room size between 39-60
+	 */
 	public  Room[] findRoomsLargerThanMaxEnrollment( int maxEnrollment) {
     	ArrayList<Room> largerRooms = new ArrayList<>();
     	
     	for (int i=0;i<rooms.length;i++) {
-       		if (rooms[i].getCapacity() >=maxEnrollment) {
-        		largerRooms.add(rooms[i]);
-	    		}
-	    	}
+    		if(maxEnrollment + 7 <= 30) {
+    			if (rooms[i].getCapacity() >=maxEnrollment && rooms[i].getCapacity()< 30) {
+            		largerRooms.add(rooms[i]);
+    	    	}
+    		}
+    		else if(maxEnrollment + 7 <= 45) {
+    			if (rooms[i].getCapacity() >=maxEnrollment && rooms[i].getCapacity()< 45) {
+            		largerRooms.add(rooms[i]);
+    	    	}
+    		}else {
+    			if (rooms[i].getCapacity() >=maxEnrollment) {
+            		largerRooms.add(rooms[i]);
+    	    	}
+    		}
+    	}
     	Room[] lroom=new Room[largerRooms.size()];
     	largerRooms.toArray(lroom);
-		return lroom;
-
+		
+    	return lroom;
 	}
 	
 	// Find course index/position in Course[] using courseTitle
 	private int getCourseIndex (String courseTitle) {
-		String[] courseName = courseTitle.split("-");
 		int position=-1;
 		for(int i=0; i<course.length;i++) {
-			if(course[i].getCourseName().equals(courseName[0])) {
-				if(course[i].getSection().equals(courseName[1])) {
-					position=i;
-					break;	
-				}
+			if(course[i].getCourseSection().equals(courseTitle)) {
+				position=i;
+				break;	
 			}
 		}
 		return position;
 	}
+	
+	//Reassign Courses with Same Time to a different Room 
+	public String reassignRoomSameTime(Course c,String roomNum){
+		for (int i=0;i<course.length;i++) {
+			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting()) ) {
+				course[i].setRoom(roomNum);
+			}
+			}
+		String result=c.getCourseMeeting()+" Room: "+c.getRoom().getRoomNumber()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
+		return result;
+	  }
+	
+	
+	
+//	//Use the max enrollment to find array of list like array list of rooms that is larger than max enrollment.
+//	public  ArrayList<Room> findRoomsLargerThanMaxEnrollment( int maxEnrollment) {
+//    	ArrayList<Room> largerRooms = new ArrayList<>();
+//    	
+//    	for (int i=0;i<rooms.length;i++) {
+//       		if (rooms[i].getCapacity() >=maxEnrollment) {
+//        		largerRooms.add(rooms[i]);
+//	    		}
+//	    	}
+//	    
+//		return largerRooms;
+//	}
+	
+	
+	
+	//Create a method to find open time slot.
+//	public static int findOpenTS(boolean[] timeSlots) {
+//		for(int i = 0; i < timeSlots.length; i++) {
+//			if(!timeSlots[i]){
+//				return i;
+//			}
+//		}
+//		return -1; //not open timeslots
+//	}
+//	// Create a method to 
+//	
+//
+//	private void swapRoom(Course class1,Course class2){
+//		class1_index=findClass(class1);
+//		class2_index=findClass(class2);
+//		for (int i = 0; i < courses.length; i++) {
+//			String class1Room=courses[class1_index].getRoom()
+//			String class2Room=courses[class2_index].getRoom()
+//			String tempRoom = class1Room;
+//			class1Room = class2Room;
+//			class2Room = tempRoom;
+//			courses[class1_index].SetRoom(class1Room);
+//			courses[class2_index].SetRoom(class2Room);
+//			course.add(allCourses[i]);
+//					}
+//		}
+//create a method to check how many time slot the class has taken
+//	public int takenTS() {
+//		int numTaken = 0;
+//		for(boolean taken : timeSlots){
+//			if(taken){
+//				numTaken++;
+//			}
+//		}
+//		return numTaken;
+//	}
+	
+////The class your are swaping with should have its current enrollment less than the next class max enrollment
+////Method--> if_swappable()
+//	
+//	
+//	
+//	public boolean checkTimeConf(Course cls){
+//		for (Course c : course) {
+//			if (c.getTime().equals(cls.getTime()) {
+//				return true; // time conflict found
+//			}
+//		}
+//			return false; // no time conflict
+//	}
+//	public boolean checkRoomConf(Course class){
+//		for (Course c : courses) {
+//			if (c.getRoom().equals(class.getRoom()) {
+//				return true; // time conflict found
+//			}
+//		}
+//		return false; // no time conflict
+//	}
+//	public boolean checkOverCap(Course class, Room room) {
+//		return course.getEnrolledStudents() <= room.getCapacity();
+//	}
 	
 
 	private String getTimeFromSlot(int timeSlot) {
