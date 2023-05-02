@@ -266,7 +266,7 @@ public class Course extends Line{
 		return ret;
 	}
 	
-	protected String getCourseSection()
+	public String getCourseSection()
 	{
 		return line[Constants.COURSE] + "-" + line[Constants.SEC_NUM];
 	}
