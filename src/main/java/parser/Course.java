@@ -29,13 +29,12 @@ public class Course extends Line{
 		parseOriginalDayTime();
 		parseDayTime();
 		parseRoomNum();
-		if(diff[Constants.CROSSLISTINGS].contains("See"))
+		if(diff[Constants.CROSSLISTINGS].contains("See"))//Child flag
 			parentC = 1;
 		else if (diff[Constants.CROSSLISTINGS].contains("Also"))
 			parentC = 0;
 		else
 			parentC = -1;
-		//TODO: Logic to detect parent/child class relationships
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 		//Dummy setters
 		aggEnroll = -1;
@@ -45,6 +44,10 @@ public class Course extends Line{
 	//Possibly split this
 	public void setMeetingPattern(String p)
 	{
+		if(parentC == 1)
+		{
+			parent.setMeetingPattern(p);
+		}
 		diff[Constants.MEET_PATT]=p;
 		parseDayTime();
 		changed = true;
@@ -52,6 +55,10 @@ public class Course extends Line{
 	
 	public void setRoom(String r)
 	{
+		if(parentC == 1)
+		{
+			parent.setRoom(room);
+		}
 		diff[Constants.ROOM]=r;
 		parseRoomNum();
 		//TODO: Also set maxroom based on new room
@@ -61,6 +68,10 @@ public class Course extends Line{
 	
 	public void setRoom(Room r)
 	{
+		if(parentC == 1)
+		{
+			parent.setRoom(r);
+		}
 		room = r;
 		diff[Constants.ROOM] = r.getBuilding() + " " + r.getRoomNumber();
 		changed = true;
@@ -68,6 +79,10 @@ public class Course extends Line{
 	
 	public void setMaxEnrollment(String e)
 	{
+		if(parentC == 1)
+		{
+			parent.setMaxEnrollment(e);
+		}
 		diff[Constants.MAX_ENROLL]=e;
 		//Update aggEnroll
 		changed = true;
@@ -80,24 +95,31 @@ public class Course extends Line{
 	
 	public Room getRoom()
 	{
+		if(parentC == 1)
+			return parent.getRoom();
 		return room;
 	}
 	
 	public int getEnrollment()
 	{
-		//Switch for aggenroll here
+		//TODO: Switch for aggenroll here
 		return Integer.parseInt(diff[Constants.ENROLLMENT]);
 	}
 	
 	public int getMaxEnrollment()
 	{
+		//TODO: Switch for aggenrollmax
 		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
 	}
 	
 	public void releaseOriginal() throws ScheduleException
 	{
-		room.release(this);
+		if(parentC == 1)
+			parent.releaseOriginal();
+		else
+			room.release(this);
 	}
+	
 	/*
 	public void schedule() throws ScheduleException
 	{
@@ -107,7 +129,10 @@ public class Course extends Line{
 	
 	public void release() throws ScheduleException
 	{
-		room.restoreRelease(this);
+		if(parentC == 1)
+			parent.release();
+		else
+			room.restoreRelease(this);
 	}
 	
 	protected int[] getDays()
@@ -240,6 +265,36 @@ public class Course extends Line{
 			return "Other";
 	}
 	
+	protected int getPC()
+	{
+		return parentC;
+	}
+	
+	protected String[] getPCField()
+	{
+		String ret = diff[Constants.CROSSLISTINGS];
+		ret = ret.replace("See ", "");
+		ret = ret.replace("Also ", "");
+		return ret.split(",");
+		
+	}
+	
+	protected void setPC(int a, Course b)
+	{
+		switch(a)
+		{
+			case 0: parent = b;
+			break;
+			case 1: childOne=b;
+			break;
+			case 2: childTwo=b;
+			break;
+			case 3: childThree=b;
+			break;
+			default: System.out.println("Something is wrong");
+		}
+	}
+	
 	public void revert()
 	{
 		//Only revert if something has changed
@@ -272,27 +327,8 @@ public class Course extends Line{
 		
 		return diff[Constants.SEC_NUM];
 	}
-	/*Temporarily deprecated
-	protected void processWebOriginal()
-	{
-		//Decide what data to put into webOriginal
-		String[] webOriginal = {line[Constants.COURSE] + "-" + line[Constants.SEC_NUM], line[Constants.SEC_TYPE], line[Constants.MEET_PATT], 
-				line[Constants.INSTRUCTOR], line[Constants.ROOM], line[Constants.ENROLLMENT],line[Constants.MAX_ENROLL], String.valueOf(aggEnrollOriginal)};
-	}
-	private void processWeb() {
-		//Decide what to put in display
-		String[] web = {diff[Constants.COURSE] + "-" + diff[Constants.SEC_NUM], diff[Constants.SEC_TYPE], diff[Constants.MEET_PATT], 
-				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
-		parseDayTime();
-		parseRoomNum();
-		changed = false;
-	}*/	
 	
-	//Getter via line
-	//Setter via diff
-	//Apply will apply diff to line
-	//Discard will reclone line over diff
-	/*public String toString()
+	public String toString()
 	{
 		String ret = "";
 		for(int i = 0; i<diff.length; i++)
