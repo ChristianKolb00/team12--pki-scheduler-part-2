@@ -71,10 +71,11 @@ public class Aggregator {
 				{
 					for(int j = 0; j < allCourses.length; j++)
 					{
-						if(allCourses[j].getCourseSection().equalsIgnoreCase(children[k]))
+						if(children[k].equalsIgnoreCase(allCourses[j].getCourseSection()))
 						{
-							allCourses[i].setPC(k,allCourses[j]);
+							allCourses[i].setPC(k+1,allCourses[j]);
 							allCourses[j].setPC(0,allCourses[i]);
+							break;
 						}
 					}
 				}

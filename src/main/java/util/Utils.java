@@ -32,9 +32,9 @@ public class Utils {
 		ArrayList<String> findRoomSameTime=new ArrayList<String>();
 		
 		for (int i=0;i<filtered.length;i++) {
-			if (!course[i].getCourseTime().equals(c.getCourseTime())) {
+			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting())) {
 				String ret="Room: "+filtered[i].getRoomNumber()+" ,Capacity: "+
-			filtered[i].getCapacity()+" ,Open at "+c.getCourseTime()+" : Yes";
+			filtered[i].getCapacity()+" ,Open at "+c.getCourseMeeting()+" : Yes";
 				findRoomSameTime.add(ret);
 			}	
 		}
@@ -64,11 +64,11 @@ public class Utils {
 	//Reassign Courses with Same Time to a different Room 
 	public String reassignRoomSameTime(Course c,String roomNum){
 		for (int i=0;i<course.length;i++) {
-			if (!course[i].getCourseTime().equals(c.getCourseTime()) ) {
+			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting()) ) {
 				course[i].setRoom(roomNum);
 			}
 			}
-		String result=c.getCourseName()+" Room: "+c.getRoomNum()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
+		String result=c.getCourseMeeting()+" Room: "+c.getRoom().getRoomNumber()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
 		return result;
 	  }
 	

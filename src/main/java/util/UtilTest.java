@@ -35,14 +35,12 @@ public class UtilTest {
 		int enrollment = 50;
 		int position=0;
 		for(int i=0; i<course.length;i++) {
-			if(course[i].getCourseName().equals(courseName[0])) {
-				if(course[i].getSection().equals(courseName[1])) {
+			if(course[i].getCourseSection().equalsIgnoreCase(courseTitle)) {
 					System.out.println(i);
 					position=i;
 					break;
 					
 				}
-			}
 		}
 		String [] roomSameTime=u.findRoomSameTime(course[position], 30);
 		for(int i=0;i<roomSameTime.length;i++) {
