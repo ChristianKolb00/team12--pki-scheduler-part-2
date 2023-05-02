@@ -14,7 +14,9 @@
 	<% if(session.getAttribute("field")==null)response.sendRedirect("home.jsp"); %>
 	<section style="margin:5% auto; ">
 		<h1>Here are some potential changes</h1>
-		<h2 >Course: <%= session.getAttribute("course")  %> </h2>
+		<h2>Course: <%= session.getAttribute("course")  %> </h2>
+		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>
+		<h4 >Course Room Number: <%= session.getAttribute("roomNum")  %> </h4>
 		<h4 >Max Enrollment Change: <%= session.getAttribute("field")  %> </h4>
 		<% String errorMessage = (String)request.getAttribute("errorMessage");
 		if(errorMessage != null){%>
@@ -31,19 +33,27 @@
 		</tr>
 		<tr>
 		<td style="display:flex; flex-direction:column;">
-		<% String[] object = (String[]) session.getAttribute("object"); 
+		<% 
+			ArrayList<String> object = (ArrayList<String>) session.getAttribute("object"); 
+		
 			request.getSession().setAttribute("object",object);
+			/*ArrayList<String> allday = (ArrayList<String>) session.getAttribute("allday"); 
+			request.getSession().setAttribute("allday",allday);*/
 		%>
-		<% for(int i=0; i<object.length; i++) {
+		<% for(int i=0; i<object.size(); i++) {
 			 %>
-			 <div class="choice"><%= (i+1)+". "+object[i] %></div>
+			 <div class="choice"><%= (i+1)+". "+object.get(i) %></div>
 		<% }%>
+		<%-- <% for(int i=0; i<allday.size(); i++){
+			
+			<div class="choice"><%= (i+1)+". "+allday.get(i) %></div>
+		<% }%> --%>
 		</td>
 		</tr>
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
 			<option value=""> select </option>
-			<% for(int i=1; i<=object.length; i++) {
+			<% for(int i=1; i<=object.size(); i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
 			<% }%>

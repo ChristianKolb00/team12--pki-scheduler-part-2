@@ -38,7 +38,7 @@ public class Utils {
 	    
 		course[position].setRoom("Peter Kiewit Institute "+newRoomNum);
 		
-		String result=courseTitle+" Room<PKI "+oldRoomNum+"> was reassigned to Room<PKI "+ newRoomNum+">";
+		String result=courseTitle+" Room PKI "+oldRoomNum+" was reassigned to Room PKI "+ newRoomNum+"";
 		return result;
 	  }
 	
@@ -67,7 +67,8 @@ public class Utils {
 	// Finds a list of rooms that are open at a different time at a different room.
 	// It should work as MW and TTH instead of each of single day
 	//
-	public  void findDiffRoomDiffTime(int Day,int maxEnrollement){
+	public ArrayList<String> findDiffRoomDiffTime(int Day,int maxEnrollement){
+		ArrayList<String> timeArray= new ArrayList<>();
 		ArrayList<Integer> timeArr = new ArrayList<Integer>();
 		 for(int i=0;i<course.length ;i++) {
 			 if(course[i].getRoom()!=null && course[i].getRoom().getCapacity()>=maxEnrollement ) {
@@ -80,7 +81,7 @@ public class Utils {
 		            }
 		   		 String[] ranges = getRanges(timeArr);
 				 
-				 ArrayList<String> timeArray=new ArrayList<String>();
+				 timeArray=new ArrayList<String>();
 				 
 				 for (String range : ranges) {
 					    String[] times = range.split("-");
@@ -96,6 +97,7 @@ public class Utils {
 		            timeArr.clear();		            
 		        }
 		    }
+		 return timeArray;
 		}	
 
 	

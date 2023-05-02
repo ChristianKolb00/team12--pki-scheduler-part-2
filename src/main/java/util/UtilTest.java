@@ -16,7 +16,7 @@ public class UtilTest {
 	
 	 	System.out.println("\n------------ Find Rooms that are open based on current course time and capacity");
 		String courseTitle= "CIST 2100-001";
-		String [] roomSameTime=u.findRoomSameTime(courseTitle, 56);
+		String [] roomSameTime=u.findRoomSameTime(courseTitle, 50);
 		for(int i=0;i<roomSameTime.length;i++) {
 			System.out.println(roomSameTime[i]);
 		}

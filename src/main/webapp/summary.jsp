@@ -10,7 +10,11 @@
 </head>
 <body>
 	<h1>This is the Summary Page!</h1>
-	<section class="fieldOne fieldThree" style="margin-top:10%;">
+		<h2>Course: <%= session.getAttribute("course")  %> </h2>
+		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>
+		<h4 >Course Room Number: <%= session.getAttribute("roomNum")  %> </h4>
+		<h4 >Max Enrollment Change: <%= session.getAttribute("field")  %> </h4>
+	<section class="fieldOne" style="margin-top:5%;">
 	
 		<table class="table">
 		
@@ -28,6 +32,7 @@
 		
 		
 		<tr><td><%= session.getAttribute("result")  %></td></tr>
+		<tr><td><%= session.getAttribute("feedback")  %></td></tr>
 		</table>
 	</section>
 	
@@ -88,8 +93,8 @@
 	display:start;
 	padding:10px 30px;
 	border-top:1px solid #fff;}
-h1{
-	margin-top:3%;
+h1, h2, h4{
+	margin-top:1%;
 	text-align:center;}
 .fieldTwo{
 	margin-top:3%;
