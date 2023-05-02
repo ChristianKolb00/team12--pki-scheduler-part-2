@@ -10,13 +10,19 @@
 <link rel="stylesheet" href= "style.css" >
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
 </head>
+
 <body>
 <div>
+
 	<h1>Welcome to the Home page where you can change Enrollments</h1>
-	<section class= "fieldOne">
-		<div class="container">
-			<h4> Course: </h4>
-			<select name = "course" id = "course" >
+
+	<section class= "fieldOne" style="margin-top:10%;">
+		<form action="homePage" method="post">
+	<table >
+	<tr>
+		<td>Course: </td>
+		<td><select style="font-size:16px;width:150px; height:60px; border-radius:20px; text-align:center;"
+		class="selection" name = "course" id = "course" >
 				<%
 				String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
 				String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
@@ -32,45 +38,28 @@
 				for(int i=0; i<allCourses.length;i++) {%>
 				<option class ="<%= allCourses[i]%>" value="<%= allCourses[i]%>"><%= allCourses[i]%></option> 
 				<%}%>
-			</select> 
-		</div>
-		<div class="container">
-			<h4> Max Enrollment Change: </h4>
-			<select name = "field" id = "field" >
-				<option value="20"> 16 </option>
-				<option value="25"> 24 </option>
+			</select> </td>
+	</tr>
+	<tr><td>Max Enrollment Change: </td>
+	<td><select class="selection" name ="selection" id = "selection" >
+				<option value="24"> 24 </option>
 				<option value="30"> 30 </option>
 				<option value="40"> 40 </option>
 				<option value="50"> 50 </option>
 				<option value="60"> 60 </option>
-			</select>
-		</div>
-		<div class="container">
-			<h4 id="h4"></h4>
-			<select id="s2" required hidden="hidden"></select>
-		</div>
-		<div class="container">
-			<button id = "add" class= "buttons">Add to List</button>
-		</div>
-	</section>
-	
-	<section class="fieldOne">
-		<%-- <form action="home" method="post"> --%>
-			<h4 id="list">List of Changes</h4>
-			<div id="s3"></div>
-			
-		<div class="container2">
-			<button id = "clear" class= "buttons">Discard Last</button>
-			<button id = "clearAll" class= "buttons">Discard All</button>
-			<a href="/pkiClassroom/attemptChanges.jsp"><button class= "buttons">Attempt Changes</button></a>
-		</div>
-	   <%-- </form>--%>
-		
+			</select></td>
+	</tr>
+	<tr>
+	<td><input style="font-size:20px; "type="submit" class="buttons" name= "submit" value="Change"></td></tr>
+	</table>
+	</form>
 	</section>
 </div>
-<script src="script.js"></script>
 </body>
 <style>
-	
+h1{ text-align:center;}
+.selection{font-size:16px; width:70px; height:40px; border-radius:20px; text-align:center;}
+.buttons{ margin-left:50%;}
+.buttons:hover, .selection:hover{ transform:scale(1.02);background:#525f93; color:white;}
 </style>
 </html>

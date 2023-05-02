@@ -1,9 +1,8 @@
-/* Home.jsp*/
 	*{
 	background:#c8c2c2;
 	}
 	.buttons{
-	font-size:16px;
+	font-size:20px;
 	margin:10px 30px;
 	height:60px;
 	width:120px;
@@ -11,20 +10,19 @@
 	background:#a55a51;
 	outline:none;
 	border:none;
-	border-radius:6px;
+	border-radius:15px;
 	cursor:pointer;
 	}
-	.buttons:hover{
-	background:#525f93;
-	}
 	.fieldOne{
-	width:60%;
+	padding:2rem;
+	width:70%;
+	height:auto;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
 	justify-content:center;
 	text-align:center;
-	margin:50px 50%;
+	margin:auto 50%;
 	border-radius:10px;
 	transform:translate(-50%);
 	border:2px solid #7d7a7a;
@@ -32,36 +30,19 @@
 	.fieldTwo{
 	display:flex;
 	flex-direction:row;
-	width:60%;
 	align-items:center;
 	justify-content:center;
 	text-align:center;
-	margin:70px 50%;
-	outline:none;
-	border:none;
-	transform:translate(-50%);
-	bottom:0;
-	position:absolute;
 	}
-	.fieldThree{
-	width:70%;}
-	.container{
-	padding:10px;
-	display:flex;
-	flex-direction:row;
-	}
-	h4{
-	margin: 10px 40px;
-	}
-/*attemptChanges.jsp*/
-	h1{
-	display:flex;
-	justify-content:center;
-	margin-top:3%;
-	margin-bottom:3%; }
+	table{
+	border-collapse:collapse;}
+	tr{
+	margin:1% auto;}
 	th{
 	padding:15px 30px;}
 	td{
+	font-size:20px;
+	border-style:hidden;
 	display:start;
 	padding:10px 30px;
 	border-top:1px solid #fff;}

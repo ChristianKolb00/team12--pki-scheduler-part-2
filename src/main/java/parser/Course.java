@@ -305,7 +305,27 @@ public class Course extends Line{
 				diff[i] = line[i];//Since string is immutable this is a deep copy
 			}
 		}
-		changed = false;
+		changed = true;
+	}
+	public String getRoomNum() 
+	{
+		
+		return diff[Constants.ROOM];
+	}
+	public String getCourseTime() 
+	{
+		
+		return diff[Constants.MEET_PATT];
+	}
+	public String getCourseName() 
+	{
+		
+		return diff[Constants.COURSE];
+	}
+	public String getSection() 
+	{
+		
+		return diff[Constants.SEC_NUM];
 	}
 	
 	public String toString()
@@ -316,5 +336,5 @@ public class Course extends Line{
 			ret = ret.concat(diff[i]);
 		}
 		return ret;
-	}
+	}*/
 }
