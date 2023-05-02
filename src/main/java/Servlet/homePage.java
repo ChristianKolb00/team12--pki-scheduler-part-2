@@ -62,14 +62,12 @@ public class homePage extends HttpServlet {
 		int enrollment = Integer.parseInt(field);
 		int position=0;
 		for(int i=0; i<courses.length;i++) {
-			if(courses[i].getCourseName().equals(courseName[0])) {
-				if(courses[i].getSection().equals(courseName[1])) {
+			if(courses[i].getCourseSection().equalsIgnoreCase(courseTitle)) {
 					System.out.println(i);
 					position=i;
 					break;
 					
 				}
-			}
 		}
 		String[] roomSameTime=u.findRoomSameTime(courses[position], enrollment);
 		
