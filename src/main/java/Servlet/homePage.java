@@ -50,8 +50,7 @@ public class homePage extends HttpServlet {
 		
 		String courseTime = courseTitle.getCourseMeeting();
 		String roomNum = courseTitle.getRoom().getRoomNumber();
-
-		/*
+		int courseDay = courseTitle.getMeetingPattern();
 		if(roomSameTime.size() <5) {
 			for(int i=0; i<5; i++) {
 				if(courseDay != i) {
@@ -61,7 +60,7 @@ public class homePage extends HttpServlet {
 				
 			}
 			
-		}*/
+		}
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("course", course);

@@ -70,7 +70,7 @@ public class Utils {
 		ArrayList<Integer> timeArr = new ArrayList<Integer>();
 		 for(int i=0;i<course.length ;i++) {
 			 if(course[i].getRoom()!=null && course[i].getRoom().getCapacity()>=maxEnrollement ) {
-		        	 System.out.println("\nRoom: "+course[i].getRoom().getRoomNumber());
+		        	 
 		            for (int timeSlot = 32; timeSlot < 88; timeSlot++) {
 		                if (course[i].getRoom().getCourseAt(Day, timeSlot) == null) {
 		                	if(timeSlot==33) {timeArr.add(timeSlot-1);};		         
@@ -86,13 +86,20 @@ public class Utils {
 					    if(times.length>1) {
 					    String startTime = getTimeFromSlot(Integer.parseInt(times[0]));
 					    String endTime = getTimeFromSlot(Integer.parseInt(times[1]));
-					    String timeRange = startTime + " - " + endTime;					    
+					    String timeRange = startTime + " - " + endTime;	
+					    
 					    timeArray.add(timeRange);	
 					    }
 					    //System.out.println(timeRange);
 					}
 				 	System.out.println(timeArray);
-		            timeArr.clear();		            
+		            timeArr.clear();		
+		            /*I need the format to be like this:
+		             * 
+		             * "Room: "+course[i].getRoom().getRoomNumber()+
+		             * ",Capacity: "+ course[i].getMaxEnrollment()+
+		             * ",Open at "+course[i].getMeetingPattern()+" "+ timeRange + " : Yes"
+					 */
 		        }
 		    }
 		 return timeArray;
@@ -173,7 +180,7 @@ public class Utils {
 	/*
 	 * param: maxEnrollment is the maxEnrollment given to find larger rooms
 	 * return a Room array based on maxEnrollment,
-	 * maxEnrollment return based on three division, maxEnrollment+5 < 30, 40, and greater than 40
+	 * maxEnrollment return based on three divisions, maxEnrollment+7 < 30 or 40 or greater than 40
 	 * for example: if maxEnrollment is 10-23, then it return room arrays of room size between 10-29
 	 * if maxEnrollment is 24-38, then it return room arrays of room size between 24-44
 	 * if maxEnrollment is 39-60, then it return room arrays of room size between 39-60
