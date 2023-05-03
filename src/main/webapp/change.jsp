@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<% if(session.getAttribute("field")==null)response.sendRedirect("home.jsp"); %>
+	<% if(session.getAttribute("course")==null)response.sendRedirect("home.jsp"); %>
 	<section style="margin:5% auto; ">
 		<h1>Here are some potential changes</h1>
 		<h2>Course: <%= session.getAttribute("course")  %> </h2>
@@ -59,7 +59,7 @@
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
 			<option value=""> select </option>
-			<% for(int i=1; i<=object.size()/*+object2.size()*/; i++) {
+			<% for(int i=1; i<=object.size() +object2.size(); i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
 			<% }%>

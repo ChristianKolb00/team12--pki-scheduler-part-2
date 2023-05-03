@@ -9,6 +9,7 @@
 
 </head>
 <body>
+	<% if(session.getAttribute("course")==null)response.sendRedirect("home.jsp"); %>
 	<h1>This is the Summary Page!</h1>
 		<h2>Course: <%= session.getAttribute("course")  %> </h2>
 		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>

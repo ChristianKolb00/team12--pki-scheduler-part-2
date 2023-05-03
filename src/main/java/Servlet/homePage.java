@@ -35,11 +35,12 @@ public class homePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
 		String field = request.getParameter("selection");
 		String course =  request.getParameter("course");
-		
-		HttpSession session = request.getSession();
 		Utils u = (Utils)session.getAttribute("u");
+		
 		Aggregator tester = u.getAggregator();
 		Course courseTitle = tester.findCourse(course);
 		int enrollment = Integer.parseInt(field);
