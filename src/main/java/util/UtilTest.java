@@ -1,6 +1,7 @@
 package util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import parser.Aggregator;
 import parser.Course;
@@ -24,7 +25,7 @@ public class UtilTest {
 		Aggregator tester = new Aggregator(AllFile);
 		
 		Utils u=new Utils(tester);
-	 	System.out.println("\n------------ Find Rooms that are open based on current course time and capacity");
+	 	/*System.out.println("\n------------ Find Rooms that are open based on current course time and capacity");
 		String courseTitle= "CIST 2100-001";
 		Course course = tester.findCourse(courseTitle);
 		
@@ -50,6 +51,22 @@ public class UtilTest {
 		System.out.println("\n------------ Reassign Different Time And Day And Room--------------");
 		String reassignFeedback1=u.reassignDiffTimeDiffRoom("CIST 2100-001","276", "MW 8:15am-10:15am");
 		System.out.println(reassignFeedback1);
+		*/
+		ArrayList<Course> OpenCourse = u.findCoursesSwap(tester.getCourses()[8], 10);
+		System.out.println(tester.getCourses()[8].getEnrollment()
+				+ ", "+tester.getCourses()[8].getMaxEnrollment());
+		ArrayList<String> formatCourse = new ArrayList<String>();
+		for( int i=0; i<OpenCourse.size();i++) {
+			String formatString = "Room: "+ OpenCourse.get(i).getRoom().getRoomNumber() + 
+					", Course: "+ OpenCourse.get(i).getCourseSection() +
+					", MaxCapacity: "+OpenCourse.get(i).getMaxEnrollment() + 
+					", Capacity: "+OpenCourse.get(i).getEnrollment() + 
+					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
+			formatCourse.add(formatString);
+		}
+		for(int j=0; j<formatCourse.size(); j++) {
+			System.out.println(formatCourse.get(j));
+		}
 		
 
 		

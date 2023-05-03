@@ -17,7 +17,8 @@
 		<h2>Course: <%= session.getAttribute("course")  %> </h2>
 		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>
 		<h4 >Course Room Number: <%= session.getAttribute("roomNum")  %> </h4>
-		<h4 >Max Enrollment Change: <%= session.getAttribute("field")  %> </h4>
+		<h4 >Current Enrollment Change: <%= session.getAttribute("enroll")  %> </h4>
+		<h4 >Max Enrollment Change: <%= session.getAttribute("MaxEnroll")  %> </h4>
 		<% String errorMessage = (String)request.getAttribute("errorMessage");
 		if(errorMessage != null){%>
 			<p style="text-align:center; color:red;"> <%=errorMessage %></p>
@@ -34,26 +35,31 @@
 		<tr>
 		<td style="display:flex; flex-direction:column;">
 		<% 
-			ArrayList<String> object = (ArrayList<String>) session.getAttribute("object"); 
+		ArrayList<String> object = (ArrayList<String>) session.getAttribute("object"); 
 		
-			request.getSession().setAttribute("object",object);
-			/*ArrayList<String> allday = (ArrayList<String>) session.getAttribute("allday"); 
-			request.getSession().setAttribute("allday",allday);*/
-		%>
-		<% for(int i=0; i<object.size(); i++) {
-			 %>
-			 <div class="choice"><%= (i+1)+". "+object.get(i) %></div>
-		<% }%>
-		<%-- <% for(int i=0; i<allday.size(); i++){
-			
-			<div class="choice"><%= (i+1)+". "+allday.get(i) %></div>
-		<% }%> --%>
+		for(int i=0; i<object.size(); i++) {
+				
+			%>
+			<div class="choice"><%= (i+1)+". "+object.get(i) %></div>
+			<%
+		}  
+		
+		ArrayList<String> object2 = (ArrayList<String>) session.getAttribute("object2");
+		
+		for(int j=0; j<object2.size(); j++) {
+				
+			%>
+			<div class="choice2"><%= (j+1+object.size())+". "+object2.get(j) %></div>
+			<%  
+		}
+		%> 
+		
 		</td>
 		</tr>
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
 			<option value=""> select </option>
-			<% for(int i=1; i<=object.size(); i++) {
+			<% for(int i=1; i<=object.size()+object2.size(); i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
 			<% }%>
@@ -111,12 +117,12 @@ form {	width:70%;}
 font-size:16px; width:90px; height:40px; 
 border-radius:20px; text-align:center;}
 
-.choice{	
+.choice, .choice2{	
 	height:50px; width:auto; margin:10px auto;font-size:16px; 
 	border-color:#a55a51; border-radius:10px; padding:5px 10px; 
 	background:none; color:black;
 }
-.choice:hover{ 
+.choice:hover,.choice2:hover{ 
 	transform:scale(1.02); border:none; background:#00b560; color:white;
 }
 h1,h2,h4{

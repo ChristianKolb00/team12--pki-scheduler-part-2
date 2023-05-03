@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import parser.Aggregator;
+import parser.Constants;
 import parser.Course;
 import parser.Room;
 
@@ -55,7 +56,34 @@ public class Utils {
 		findRoomSameTime.toArray(ret);
 		return ret;
 	}		
-	
+	/*
+	 * param: c is the course to find other course to swap
+	 * param: enrollment is the max enrollment wanted to expand
+	 * return: a list of Courses that satisfy these three cases:
+	 * 1. duration is same 2. day of week swap available, 3.the enrollment swap available,
+	 */
+	public ArrayList<Course> findCoursesSwap (Course c, int enrollment){
+		ArrayList<Course> diffTimeArray=new ArrayList<Course>();
+		int rand;
+		int current;
+	    	for(int i=0; i<course.length; i++) {
+	    		//check if enrollment swap available
+	    		if(course[i].getMaxEnrollment()>= enrollment 
+	    				&& c.getMaxEnrollment()>=course[i].getEnrollment()) {
+	    			//check if day of week swap available
+	    			if(course[i].getMeetingPattern()<4) { rand= 0;}
+	    			else { rand =1;}
+	    			if(c.getMeetingPattern()<4) { current = 0;}
+	    			else { current = 1;}
+	    			if(rand == current) {
+	    				if(course[i].getMeetingDuration() == c.getMeetingDuration()) {
+		    				diffTimeArray.add(course[i]);
+		    			}
+	    			}
+	    		}
+		}
+		return diffTimeArray;
+	}
 	// Finds a list of rooms that are open at a different time at a different room.
 	// It should work as MW and TTH instead of each of single day
 	//
@@ -64,7 +92,8 @@ public class Utils {
 		ArrayList<Integer> timeArr = new ArrayList<Integer>();
 		 for(int i=0;i<course.length ;i++) {
 			 if(course[i].getRoom()!=null && course[i].getRoom().getCapacity()>=maxEnrollement ) {
-		        	 
+				 System.out.println("\nRoom: "+course[i].getRoom().getRoomNumber()+ " and on "+Day);
+		        	
 		            for (int timeSlot = 32; timeSlot < 88; timeSlot++) {
 		                if (course[i].getRoom().getCourseAt(Day, timeSlot) == null) {
 		                	if(timeSlot==33) {timeArr.add(timeSlot-1);};		         
@@ -74,39 +103,29 @@ public class Utils {
 		   		 String[] ranges = getRanges(timeArr);
 				 
 				 timeArray=new ArrayList<String>();
-				 
+				
 				 for (String range : ranges) {
 					    String[] times = range.split("-");
 					    if(times.length>1) {
 					    String startTime = getTimeFromSlot(Integer.parseInt(times[0]));
 					    String endTime = getTimeFromSlot(Integer.parseInt(times[1]));
 					    String timeRange = startTime + " - " + endTime;	
+					    timeArray.add(timeRange);
 					    
-					    timeArray.add(timeRange);	
+					    
 					    }
 					    //System.out.println(timeRange);
 					}
+				 
+				 	
 				 	System.out.println(timeArray);
 		            timeArr.clear();		
-		            /*I need the format to be like this:
-		             * 
-		             * "Room: "+course[i].getRoom().getRoomNumber()+
-		             * ",Capacity: "+ course[i].getMaxEnrollment()+
-		             * ",Open at "+course[i].getMeetingPattern()+" "+ timeRange + " : Yes"
-					 */
+		           
 		        }
 		    }
 		 return timeArray;
 		}	
 
-	
-//	PKI274 Open on MW at [8am-1:15pm,3pm-5:15pm,8:30pm-10pm]
-//	PKI276 Open on MW at [8am-1:15,3pm-5:15pm,8:30pm-10pm]
-//	PKI278 Open on MW at [8am-1:15,3pm-5:15pm,8:30pm-10pm]
-	
-//	reassignDiffRoomSameTime(courseTitle,newRoomNum);
-//	reassignDiffRoomDiffTime(courseTitle, MW 8am, Room 274);
-	
 	//Reassign Different Room Different Time
 	//reassign that work on everything
 	public String reassignDiffTimeDiffRoom(String courseTitle, String newRoomNum, String newTime) {
@@ -227,84 +246,6 @@ public class Utils {
 		return result;
 	  }
 	
-	
-	
-//	//Use the max enrollment to find array of list like array list of rooms that is larger than max enrollment.
-//	public  ArrayList<Room> findRoomsLargerThanMaxEnrollment( int maxEnrollment) {
-//    	ArrayList<Room> largerRooms = new ArrayList<>();
-//    	
-//    	for (int i=0;i<rooms.length;i++) {
-//       		if (rooms[i].getCapacity() >=maxEnrollment) {
-//        		largerRooms.add(rooms[i]);
-//	    		}
-//	    	}
-//	    
-//		return largerRooms;
-//	}
-	
-	
-	
-	//Create a method to find open time slot.
-//	public static int findOpenTS(boolean[] timeSlots) {
-//		for(int i = 0; i < timeSlots.length; i++) {
-//			if(!timeSlots[i]){
-//				return i;
-//			}
-//		}
-//		return -1; //not open timeslots
-//	}
-//	// Create a method to 
-//	
-//
-//	private void swapRoom(Course class1,Course class2){
-//		class1_index=findClass(class1);
-//		class2_index=findClass(class2);
-//		for (int i = 0; i < courses.length; i++) {
-//			String class1Room=courses[class1_index].getRoom()
-//			String class2Room=courses[class2_index].getRoom()
-//			String tempRoom = class1Room;
-//			class1Room = class2Room;
-//			class2Room = tempRoom;
-//			courses[class1_index].SetRoom(class1Room);
-//			courses[class2_index].SetRoom(class2Room);
-//			course.add(allCourses[i]);
-//					}
-//		}
-//create a method to check how many time slot the class has taken
-//	public int takenTS() {
-//		int numTaken = 0;
-//		for(boolean taken : timeSlots){
-//			if(taken){
-//				numTaken++;
-//			}
-//		}
-//		return numTaken;
-//	}
-	
-////The class your are swaping with should have its current enrollment less than the next class max enrollment
-////Method--> if_swappable()
-//	
-//	
-//	
-//	public boolean checkTimeConf(Course cls){
-//		for (Course c : course) {
-//			if (c.getTime().equals(cls.getTime()) {
-//				return true; // time conflict found
-//			}
-//		}
-//			return false; // no time conflict
-//	}
-//	public boolean checkRoomConf(Course class){
-//		for (Course c : courses) {
-//			if (c.getRoom().equals(class.getRoom()) {
-//				return true; // time conflict found
-//			}
-//		}
-//		return false; // no time conflict
-//	}
-//	public boolean checkOverCap(Course class, Room room) {
-//		return course.getEnrolledStudents() <= room.getCapacity();
-//	}
 	
 
 	private String getTimeFromSlot(int timeSlot) {

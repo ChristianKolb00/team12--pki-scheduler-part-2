@@ -44,8 +44,15 @@ public class changesPage extends HttpServlet {
 			int selection =Integer.parseInt( request.getParameter("selection")) ;
 			@SuppressWarnings("unchecked")
 			ArrayList<String> results =(ArrayList<String>) request.getSession().getAttribute("object");
+			@SuppressWarnings("unchecked")
+			ArrayList<String> results2 =(ArrayList<String>) request.getSession().getAttribute("object2");
+			String result;
+			if(selection > results.size()) {
+				 result = results2.get(selection-results.size()-1);
+			}else {
+				 result = results.get(selection-1);
+			}
 			
-			String result = results.get(selection-1);
 			String[] parseRoom = result.split(",");
 			String[] parseRoomNumber = parseRoom[0].split(":");
 			

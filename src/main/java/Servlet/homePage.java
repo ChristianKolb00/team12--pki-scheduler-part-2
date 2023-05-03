@@ -44,27 +44,31 @@ public class homePage extends HttpServlet {
 		Course courseTitle = tester.findCourse(course);
 		int enrollment = Integer.parseInt(field);
 		
+		//Find Open Rooms
 		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
 		
+		//Find Swappable Classes
+		ArrayList<Course> OpenCourse = u.findCoursesSwap(courseTitle, enrollment);
+		ArrayList<String> formatCourse = new ArrayList<String>();
+		for( int i=0; i<OpenCourse.size();i++) {
+			String formatString = "Room: "+ OpenCourse.get(i).getRoom().getRoomNumber() + 
+					", Course: "+ OpenCourse.get(i).getCourseSection() +
+					", MaxCapacity: "+OpenCourse.get(i).getMaxEnrollment() + 
+					", Capacity: "+OpenCourse.get(i).getEnrollment() + 
+					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
+			formatCourse.add(formatString);
+		}
 		ArrayList<String> roomSameTime = new ArrayList<String>(
 				Arrays.asList(roomSameTimeArray));
 		
 		String courseTime = courseTitle.getCourseMeeting();
 		String roomNum = courseTitle.getRoom().getRoomNumber();
-		int courseDay = courseTitle.getMeetingPattern();
-		if(roomSameTime.size() <5) {
-			for(int i=0; i<5; i++) {
-				if(courseDay != i) {
-					ArrayList<String> differentDay= u.findDiffRoomDiffTime(i,enrollment);
-					roomSameTime.addAll(differentDay);
-				}
-				
-			}
-			
-		}
+		int enroll = courseTitle.getEnrollment();
 		session.setAttribute("course", course);
-		session.setAttribute("field", field);
-		session.setAttribute("object", roomSameTime);
+		session.setAttribute("MaxEnroll", field);
+		session.setAttribute("enroll", enroll);
+		session.setAttribute("object2", formatCourse); //array of swappable classes
+		session.setAttribute("object", roomSameTime); //array of open classes
 		session.setAttribute("courseTime", courseTime);
 		session.setAttribute("roomNum", roomNum);
 		response.sendRedirect("change.jsp?course="+course+"&field="+field);

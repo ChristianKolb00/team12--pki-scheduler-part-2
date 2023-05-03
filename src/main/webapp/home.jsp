@@ -53,7 +53,7 @@
 			</select></td>
 	</tr>
 	<tr>
-	<td><input style="font-size:20px; "type="submit" class="buttons" name= "submit" value="Change"></td></tr>
+	<td><input style="font-size:20px;" type="submit" class="buttons" name= "submit" value="Change"></td></tr>
 	</table>
 	</form>
 	</section>
