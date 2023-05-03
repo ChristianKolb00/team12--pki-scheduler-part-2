@@ -35,12 +35,11 @@ public class Aggregator {
 	{
 		for(int i = 0; i < coursesNames.length; i++)
 		{
-			if(name.equalsIgnoreCase(coursesNames[i]))
+			if(name.contentEquals(coursesNames[i]))
 				return courses[i];
 		}
 		return null;
 	}
-	
 	
 	private void processCourseNames()
 	{
@@ -57,15 +56,7 @@ public class Aggregator {
 	{
 		return rooms;
 	}
-	public Course findCourse(String name) {
-		
-		for(int i=0; i< coursesNames.length; i++) {
-			if(name.equalsIgnoreCase(coursesNames[i])) {
-				return courses[i];
-			}
-		}
-		return null;
-	}
+	
 	//Iterate through all documents finding the Lines that are course flagged
 	private Course[] findCourses() {
 		ArrayList<Course> course = new ArrayList<Course>();

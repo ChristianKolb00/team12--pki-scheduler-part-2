@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import parser.Aggregator;
 import parser.Course;
 import util.Utils;
-import util.helper;
 
 /**
  * Servlet implementation class change
@@ -38,9 +38,10 @@ public class homePage extends HttpServlet {
 		String field = request.getParameter("selection");
 		String course =  request.getParameter("course");
 		
-		Utils u=new Utils();
-		
-		Course courseTitle = helper.parseCourseTitle(course);
+		HttpSession session = request.getSession();
+		Utils u = (Utils)session.getAttribute("u");
+		Aggregator tester = u.getAggregator();
+		Course courseTitle = tester.findCourse(course);
 		int enrollment = Integer.parseInt(field);
 		
 		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
@@ -61,8 +62,6 @@ public class homePage extends HttpServlet {
 			}
 			
 		}
-		
-		HttpSession session = request.getSession();
 		session.setAttribute("course", course);
 		session.setAttribute("field", field);
 		session.setAttribute("object", roomSameTime);

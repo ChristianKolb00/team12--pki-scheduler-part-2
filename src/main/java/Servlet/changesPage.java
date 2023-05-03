@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import parser.Aggregator;
 import util.Utils;
 
 /**
@@ -35,8 +36,10 @@ public class changesPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Utils u=new Utils();
+		
 		HttpSession session = request.getSession();
+		Utils u = (Utils)session.getAttribute("u");
+		Aggregator tester = (Aggregator)session.getAttribute("tester");
 		try {
 			int selection =Integer.parseInt( request.getParameter("selection")) ;
 			@SuppressWarnings("unchecked")

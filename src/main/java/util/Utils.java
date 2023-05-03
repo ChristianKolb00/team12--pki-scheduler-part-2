@@ -9,23 +9,17 @@ import parser.Room;
 
 
 public class Utils {
-	
-	String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
-	String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
-	String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
-	String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
-	String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-	//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
-	String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
-	String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
-	//String[] AllFile = new String[]{Path};
-	
-	Aggregator tester = new Aggregator(AllFile);
-	Course[] course = tester.getCourses();
-	Room[] rooms = tester.getRooms();
-	
-	
-	
+	private Aggregator A;
+	private Course[] course;
+	private Room[] rooms;
+	public Utils(Aggregator A) {
+		this.A = A;
+		course = A.getCourses();
+		rooms = A.getRooms();
+	}
+	public Aggregator getAggregator() {
+		return A;
+	}
 	//Reassign Courses with Same Time to a different Room 
 	public String reassignRoomSameTime(String courseTitle,String newRoomNum){
 

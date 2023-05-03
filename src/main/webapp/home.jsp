@@ -1,4 +1,5 @@
 <%@ page import="parser.Aggregator" %>
+<%@ page import="util.Utils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -33,6 +34,8 @@
 				
 				String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, /*Path6,*/ Path7};
 				Aggregator tester = new Aggregator(AllFile);
+				Utils u = new Utils(tester);
+				request.getSession().setAttribute("u",u);
 				String[] allCourses = tester.getCourseNames();
 				for(int i=0; i<allCourses.length;i++) {%>
 				<option class ="<%= allCourses[i]%>" value="<%= allCourses[i]%>"><%= allCourses[i]%></option> 
