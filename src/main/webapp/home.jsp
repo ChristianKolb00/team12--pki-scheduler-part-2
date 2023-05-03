@@ -14,7 +14,7 @@
 <body>
 <div>
 
-	<h1>Welcome to the Home page where you can change Enrollments</h1>
+	<h1>Welcome, Here is the Home page where you can change Enrollments</h1>
 
 	<section class= "fieldOne" style="margin-top:10%;">
 		<form action="homePage" method="post">

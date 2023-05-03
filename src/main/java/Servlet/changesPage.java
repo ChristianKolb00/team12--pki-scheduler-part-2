@@ -39,7 +39,6 @@ public class changesPage extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Utils u = (Utils)session.getAttribute("u");
-		Aggregator tester = (Aggregator)session.getAttribute("tester");
 		try {
 			int selection =Integer.parseInt( request.getParameter("selection")) ;
 			@SuppressWarnings("unchecked")

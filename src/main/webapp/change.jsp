@@ -47,19 +47,19 @@
 		ArrayList<String> object2 = (ArrayList<String>) session.getAttribute("object2");
 		
 		for(int j=0; j<object2.size(); j++) {
-				
 			%>
 			<div class="choice2"><%= (j+1+object.size())+". "+object2.get(j) %></div>
 			<%  
 		}
 		%> 
 		
+		
 		</td>
 		</tr>
 		<tr><td>
 		<select class="selection" name="selection" id = "selection" >
 			<option value=""> select </option>
-			<% for(int i=1; i<=object.size()+object2.size(); i++) {
+			<% for(int i=1; i<=object.size()/*+object2.size()*/; i++) {
 			 %>
 				<option value="<%=i%>"> <%=i%> </option>
 			<% }%>

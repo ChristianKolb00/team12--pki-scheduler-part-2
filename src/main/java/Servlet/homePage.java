@@ -46,6 +46,8 @@ public class homePage extends HttpServlet {
 		
 		//Find Open Rooms
 		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
+		ArrayList<String> roomSameTime = new ArrayList<String>(
+				Arrays.asList(roomSameTimeArray));
 		
 		//Find Swappable Classes
 		ArrayList<Course> OpenCourse = u.findCoursesSwap(courseTitle, enrollment);
@@ -58,14 +60,14 @@ public class homePage extends HttpServlet {
 					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
 			formatCourse.add(formatString);
 		}
-		ArrayList<String> roomSameTime = new ArrayList<String>(
-				Arrays.asList(roomSameTimeArray));
+		
+		
 		
 		String courseTime = courseTitle.getCourseMeeting();
 		String roomNum = courseTitle.getRoom().getRoomNumber();
 		int enroll = courseTitle.getEnrollment();
 		session.setAttribute("course", course);
-		session.setAttribute("MaxEnroll", field);
+		session.setAttribute("MaxEnroll", enrollment);
 		session.setAttribute("enroll", enroll);
 		session.setAttribute("object2", formatCourse); //array of swappable classes
 		session.setAttribute("object", roomSameTime); //array of open classes
