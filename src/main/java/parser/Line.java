@@ -11,15 +11,26 @@ import util.helper;
  *
  */
 public class Line {
+	/**
+	 * The original day pattern, time, and duration
+	 */
 	protected int oday, otime, oduration;
+	/**
+	 * An array that is the split row of the csv
+	 */
 	protected String[] line;
-	protected int aggEnrollOriginal;
 
-	
+	/**
+	 * Empty Constructor, only use is for Blocker object for time tables
+	 */
 	public Line()
 	{
 	}
 	
+	/**
+	 * Constructor that takes the given row of a csv as a String, then splits it to each column piece. Fixes shift issue in class lines with empty first columns
+	 * @param input - a row from the Document as a String
+	 */
 	public Line(String input)
 	{
 		line = new String[Constants.COL_COUNT];
@@ -53,6 +64,9 @@ public class Line {
 		parser.close();
 	}
 	
+	/**
+	 * Converts the Meeting Pattern field from a String to a multipiece int representation of the meeting pattern.
+	 */
 	protected void parseOriginalDayTime()
 	{
 		
@@ -75,6 +89,23 @@ public class Line {
 		
 	}
 	
+	
+	/**
+	 * Converts the String array of a row back into CSV format as a single String
+	 * @return
+	 */
+	protected String finalOutput() {
+		String ret = "";
+		for (int i =0; i<line.length; i++)
+		{
+			ret = ret.concat(line[i] + ",");
+		}
+		return ret;
+	}
+	
+	/**
+	 * Standard output format for debugging
+	 */
 	@Override
 	public String toString() {
 		String ret = "";

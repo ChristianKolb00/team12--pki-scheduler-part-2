@@ -9,7 +9,7 @@ public class Course extends Line{
 	private Room room;
 
 	private Course parent, childOne, childTwo, childThree;
-	private int aggEnroll;
+	private int aggEnroll, aggEnrollOriginal;
 	private boolean changed;//Flag for when fields in course are changed to make display reprocess
 	
 	public Course()
