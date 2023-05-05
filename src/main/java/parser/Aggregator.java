@@ -35,12 +35,11 @@ public class Aggregator {
 	{
 		for(int i = 0; i < coursesNames.length; i++)
 		{
-			if(name.equalsIgnoreCase(coursesNames[i]))
+			if(name.contentEquals(coursesNames[i]))
 				return courses[i];
 		}
 		return null;
 	}
-	
 	
 	private void processCourseNames()
 	{

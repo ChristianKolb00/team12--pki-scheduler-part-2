@@ -1,94 +1,82 @@
 package util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import parser.Aggregator;
 import parser.Course;
 import parser.Room;
-
+import parser.TimeTable;
 public class UtilTest {
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-	
-	
+		
 		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
 		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
 		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
 		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
 		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+		String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
 		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
-
-		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
-	
+		
+		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
-		Course[] course = tester.getCourses();
 		
-		
-		
-		
-		
-		Utils u=new Utils();
-		
+		Utils u=new Utils(tester);
+	 	/*System.out.println("\n------------ Find Rooms that are open based on current course time and capacity");
 		String courseTitle= "CIST 2100-001";
-		String[] courseName = courseTitle.split("-");
-		System.out.println(courseName[0]);
+		Course course = tester.findCourse(courseTitle);
+		
 		int enrollment = 50;
-		int position=0;
-		for(int i=0; i<course.length;i++) {
-			if(course[i].getCourseSection().equalsIgnoreCase(courseTitle)) {
-					System.out.println(i);
-					position=i;
-					break;
-					
-				}
-		}
-		String [] roomSameTime=u.findRoomSameTime(course[position], 30);
+		
+		String [] roomSameTime=u.findRoomSameTime(course, enrollment);
 		for(int i=0;i<roomSameTime.length;i++) {
 			System.out.println(roomSameTime[i]);
 		}
 		
-		System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
-		System.out.println(u.reassignRoomSameTime(course[position],"252"));
-		System.out.println("---------  --------- --------  -------- ---------  -------- ---------  --------");
+		System.out.println("\n------------ Reassign Courses with Same Time to a different Room -----------");
+		String reassignFeedback=u.reassignRoomSameTime("CIST 2100-001","252");
+		System.out.println(reassignFeedback);
+		
+		System.out.println("\n------------ Swap two classes --------- --------  --------  ----------------");
+		String swapFeedback=u.roomSwap("BIOI 1000-001", "BIOI 4970-001");
+		//String swapFeedback=u.roomSwap("CIST 3000-001", "CIST 1400-004");
+		System.out.println(swapFeedback);
+		
+		System.out.println("\n\n------------ Find Empty Rooms --------- --------  --------  ---------------");
+		u.findDiffRoomDiffTime(0,40);
+		
+		System.out.println("\n------------ Reassign Different Time And Day And Room--------------");
+		String reassignFeedback1=u.reassignDiffTimeDiffRoom("CIST 2100-001","276", "MW 8:15am-10:15am");
+		System.out.println(reassignFeedback1);
+		*/
+		
+		ArrayList<Course> OpenCourse = u.findCoursesSwap(tester.getCourses()[22], 20);
+		System.out.println(tester.getCourses()[8].getEnrollment()
+				+ ", "+tester.getCourses()[8].getMaxEnrollment());
+		ArrayList<String> formatCourse = new ArrayList<String>();
+		for( int i=0; i<OpenCourse.size();i++) {
+			String formatString = "Room: "+ OpenCourse.get(i).getRoom().getRoomNumber() + 
+					", Course: "+ OpenCourse.get(i).getCourseSection() +
+					", MaxCapacity: "+OpenCourse.get(i).getMaxEnrollment() + 
+					", Capacity: "+OpenCourse.get(i).getEnrollment() + 
+					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
+			formatCourse.add(formatString);
+		}
+		for(int j=0; j<formatCourse.size(); j++) {
+			System.out.println(formatCourse.get(j));
+		}
 		
 		
-//		helper h=new helper();
-//		Room [] filtered=u.findRoomsLargerThanMaxEnrollment(12);
-//		String names;
-//		for(int i=0; i<filtered.length; i++) {
-//			names=course[i].getRoomNum();
-//			names=names.substring(names.length() - 3);
-//			System.out.println(filtered[i].getRoomNumber()+"--"+filtered[i].getCapacity()+"--"+course[i].getCourseTime());
-//		}
-		
-
-//		TimeTable timeTable=new TimeTable();
-//
-//		String courseTime=course[0].getCourseTime();
-//		int parseTime=course[0].parseTime(courseTime);
-//		int day=course[0].getMeetingPattern();
-//		int du=4;
-//			
-//		Course[] ttable=timeTable.checkAvailable(day,parseTime,du);
-//		System.out.println("++++"+ttable[0]);
-//		System.out.println("++++"+ttable[0]);
+		String timeSwapping = u.timeSwap(tester.getCourses()[1], tester.getCourses()[2]);
+		System.out.println(timeSwapping);
+		String timeSwapping2 = u.timeSwap(tester.getCourses()[2], tester.getCourses()[1]);
+		System.out.println(timeSwapping2);
 		
 		
-//		
-		//ArrayList<Room>roomSameTime=u.findRoomSameTime(course[1], 12);
-		//System.out.println(roomSameTime.get(1));
-//		for(int i=0; i<roomSameTime.size(); i++) {
-//			System.out.println(roomSameTime.get(i));
-//		}
 		
 		
-
-//		for(int i=0; i<course.length; i++) {
-//			System.out.println(course[i].getCourseName()+" Room: "+
-//					room[i].getRoomNumber()+"  Capacity: "+room[i].getCapacity()+
-//					"  Time: "+course[i].getCourseTime());
-//			System.out.println(course[i].getMeetingPattern());
-//			
-//		}
 	}
 }

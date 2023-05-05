@@ -173,29 +173,34 @@ public class Course extends Line{
 			return new int[] {};
 	}
 	
-	
 	public void schedule(Room[] rooms) throws ScheduleException
 	{
 		if (parentC == 1 || roomNum.contentEquals("0"))
 			return;//Child courses are never scheduled and use inherited scheduling
 		boolean found = false;
-		//Find room
-		for (int i = 0; i < rooms.length; i++)
-		{
-			if(rooms[i].getRoomNumber().equals(roomNum))
+		if(room != null) {
+			room.set(this);
+		}
+		else {
+			//Find room
+			for (int i = 0; i < rooms.length; i++)
 			{
-				room = rooms[i];
-				found = true;
-				break;
+				if(rooms[i].getRoomNumber().equals(roomNum))
+				{
+					room = rooms[i];
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+				throw new ScheduleException("Room not found!");
+			//Attempt to set using parsed values on room object
+			else
+			{
+				room.set(this);	
 			}
 		}
-		if (!found)
-			throw new ScheduleException("Room not found!");
-		//Attempt to set using parsed values on room object
-		else
-		{
-			room.set(this);	
-		}
+		
 	}
 	
 	private void parseRoomNum()

@@ -1,4 +1,8 @@
 package util;
+
+import parser.Aggregator;
+import parser.Course;
+
 public class helper {
 	//(10,12,16,16,16,16,16),(24,24,30,30,30,32),(40,40,40,40,40,42,42,50,56,58,60) 3 sections for room size
 	/*
@@ -45,6 +49,5 @@ public class helper {
 			default: return -2;
 		}
 	}
-
 	
 }
