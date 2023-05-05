@@ -36,11 +36,11 @@ public class homePage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		
+		//get request from front-end home.jsp 
 		String selection = request.getParameter("selection");
 		String course =  request.getParameter("course");
 		Utils u = (Utils)session.getAttribute("u");
-		
+		//initialize access classes to use
 		Aggregator tester = u.getAggregator();
 		Course courseTitle = tester.findCourse(course);
 		int enrollment = Integer.parseInt(selection);
@@ -63,7 +63,7 @@ public class homePage extends HttpServlet {
 		}
 		
 		
-		
+		//get course info and setAttribute for change.jsp to use
 		String courseTime = courseTitle.getCourseMeeting();
 		String roomNum = courseTitle.getRoom().getRoomNumber();
 		int maxEnrollment=courseTitle.getMaxEnrollment();
@@ -78,7 +78,6 @@ public class homePage extends HttpServlet {
 		session.setAttribute("MaxEnroll", maxEnrollment);
 		session.setAttribute("roomNum", roomNum);
 		response.sendRedirect("change.jsp?course="+course+"&enrollment="+enrollment);
-		
 		
 	}
 

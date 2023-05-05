@@ -32,7 +32,7 @@ public class Utils {
 		
 		for (int i=0;i<filtered.length;i++) {
 			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting())) {
-				String ret="Room: "+filtered[i].getRoomNumber()+", Capacity: "+
+				String ret="Room: "+filtered[i].getRoomNumber()+", Max Capacity: "+
 			filtered[i].getCapacity()+", Open at "+c.getCourseMeeting()+" : Yes";
 				findRoomSameTime.add(ret);
 			}	
