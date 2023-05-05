@@ -41,6 +41,16 @@ public class Aggregator {
 		return null;
 	}
 	
+	public Room findRoomByNum(String name)
+	{
+		for(int i = 0; i < rooms.length; i++)
+		{
+			if(name.contentEquals(rooms[i].getRoomNumber()))
+				return rooms[i];
+		}
+		return null;
+	}
+	
 	private void processCourseNames()
 	{
 		ArrayList<String> names = new ArrayList<String>();
