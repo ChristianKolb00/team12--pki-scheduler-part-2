@@ -134,13 +134,6 @@ public class Course extends Line{
 			room.release(this);
 	}
 	
-	/*
-	public void schedule() throws ScheduleException
-	{
-		if(parentC != 1)
-			room.set(this);
-	}*/
-	
 	public void release() throws ScheduleException
 	{
 		if(parentC == 1)
@@ -232,28 +225,6 @@ public class Course extends Line{
 		duration = helper.parseTime(timePieces[1]) - time;
 		//Set day using parsed day
 		day = helper.parseDays(dayPiece[0]);
-		
-	}
-	
-	private void parseOriginalDayTime()
-	{
-		
-		if(line[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
-		{
-			otime = -1;
-			oduration = -1;
-			oday = -1;
-			return;
-		}
-		//Split off day into [0]
-		String[] dayPiece = line[Constants.MEET_PATT].split(" ", 2);
-		//Split off time into [0] and [1]
-		String[] timePieces = dayPiece[1].split("-",2);
-		//Set time and duration using parsed time
-		otime = helper.parseTime(timePieces[0]);
-		oduration = helper.parseTime(timePieces[1]) - time;
-		//Set day using parsed day
-		oday = helper.parseDays(dayPiece[0]);
 		
 	}
 
