@@ -65,7 +65,7 @@ public class Line {
 	}
 	
 	/**
-	 * Converts the Meeting Pattern field from a String to a multipiece int representation of the meeting pattern.
+	 * Converts the Meeting Pattern field from a String to a multipiece int representation of the meeting pattern
 	 */
 	protected void parseOriginalDayTime()
 	{
@@ -86,15 +86,30 @@ public class Line {
 		oduration = helper.parseTime(timePieces[1]) - otime;
 		//Set day using parsed day
 		oday = helper.parseDays(dayPiece[0]);
-		
+	}
+	
+	/**
+	 * Converts the original day pattern into an array of days
+	 * @return an array containing the numeric value of days this course is on
+	 */
+	protected int[] getOriginalDays()
+	{
+		if(this.oday <= 4)
+			return new int[] {oday};
+		else if (oday == 5)
+			return new int[] {Constants.M, Constants.W};
+		else if (oday == 6)
+			return new int[] {Constants.T, Constants.T_TH};
+		else
+			return new int[] {};
 	}
 	
 	
 	/**
 	 * Converts the String array of a row back into CSV format as a single String
-	 * @return
+	 * @return a csv formated row
 	 */
-	protected String finalOutput() {
+	protected String backupOutput() {
 		String ret = "";
 		for (int i =0; i<line.length; i++)
 		{

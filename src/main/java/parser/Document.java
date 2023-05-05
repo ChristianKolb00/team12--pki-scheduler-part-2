@@ -17,7 +17,7 @@ public class Document {
 	protected ArrayList<Line> docLines;//First index correlates to index of files
 	
 	
-	public Document(String path) {
+	public Document(String path, Room[] rooms) {
 		docLines = new ArrayList<Line>();
 		String line = "";
 		//Make a line object for every line in the document into a 2d array
@@ -30,7 +30,7 @@ public class Document {
 				}
 				//Is a course, this breaks due to Sheets
 				if(line.startsWith(",\"") && Character.isDigit(line.charAt(2)))
-					docLines.add(new Course(line));
+					docLines.add(new Course(line,rooms));
 				//Else is filler
 				else
 					docLines.add(new Line(line));

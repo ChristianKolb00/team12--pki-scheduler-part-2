@@ -1,24 +1,48 @@
 package parser;
 import util.helper;
-//Extending Line to be able to directly call Line properties
+/**
+ * Course is a subclass of Line. It utilizes Line's immutable nature to always keep a clean revert state, but allows editting and more complex usage and parsing for
+ * Line's that are actually Courses and not just headers/fillers in the CSV.
+ * @author jwillson
+ *
+ */
 public class Course extends Line{
+	/**
+	 * An array that is the split row of a csv
+	 */
 	private String[] diff;
-	private int parentC;//-1 when neither, 0 when parent, 1 when child
+	/**
+	 * The courses current day pattern, time, and duration
+	 */
 	protected int day,time,duration;
-	protected String roomNum;//
+	/**
+	 * The room object this course is scheduled in.
+	 */
 	private Room room;
-
+	/**
+	 * Flag boolean for when Course diverges from Line. Can be used to find the pieces for a changelog.
+	 */
+	private boolean changed;
+	
+	//Likely being moved to new subtypes if time
+	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll, aggEnrollOriginal;
-	private boolean changed;//Flag for when fields in course are changed to make display reprocess
 	
+	/**
+	 * Default constructor, only used for fully null Blocker in TimeTable
+	 */
 	public Course()
 	{
 		super();
 	}
 	
-	//Line reference
-	public Course(String line) {
+	/**
+	 * Initializes the immutable Line, creates a local copy of the pieces, and then parses it apart into the relevant information for modifying.
+	 * @param line - a row from Document as a String
+	 * @param rooms - an array of all valid Rooms
+	 */
+	public Course(String line, Room[] rooms) {
 		//Create a standard line
 		super(line);
 		diff = new String[Constants.COL_COUNT];
@@ -28,12 +52,12 @@ public class Course extends Line{
 		changed = false;
 		parseOriginalDayTime();
 		parseDayTime();
-		parseRoomNum();
+		parseRoom(rooms);
 		if(diff[Constants.CROSSLISTINGS].contains("See"))//Child flag
 			parentC = 1;
-		else if (diff[Constants.CROSSLISTINGS].contains("Also"))
+		else if (diff[Constants.CROSSLISTINGS].contains("Also"))//Parent flag
 			parentC = 0;
-		else
+		else//Normal flag
 			parentC = -1;
 		//TODO: aggEnroll = enrollment or sum of enrollments if parent
 		//Dummy setters
@@ -41,31 +65,27 @@ public class Course extends Line{
 		aggEnrollOriginal = -1;
 	}
 	
-	//Possibly split this
-	public void setMeetingPattern(String p)
+	
+	//SETTERS
+	/**
+	 * Sets the meeting pattern for this course
+	 * @param patt - a new meeting pattern in String form
+	 */
+	public void setMeetingPattern(String patt)
 	{
 		if(parentC == 1)
 		{
-			parent.setMeetingPattern(p);
+			parent.setMeetingPattern(patt);
 		}
-		diff[Constants.MEET_PATT]=p;
+		diff[Constants.MEET_PATT]=patt;
 		parseDayTime();
 		changed = true;
 	}
-	
-	public void setRoom(String r)
-	{
-		if(parentC == 1)
-		{
-			parent.setRoom(r);
-		}
-		diff[Constants.ROOM]=r;
-		parseRoomNum();
-		//TODO: Also set maxroom based on new room
-		//TODO: Cascad max enrollment set
-		changed = true;
-	}
-	
+
+	/**
+	 * Sets the room for this course
+	 * @param r - a room object that this course is in
+	 */
 	public void setRoom(Room r)
 	{
 		if(parentC == 1)
@@ -77,36 +97,84 @@ public class Course extends Line{
 		changed = true;
 	}
 	
-	public void setMaxEnrollment(String e)
+	/**
+	 * Sets the max enrollment for this course
+	 * @param m - a String that is a number that is the max enrollment
+	 */
+	public void setMaxEnrollment(String m)
 	{
 		if(parentC == 1)
 		{
-			parent.setMaxEnrollment(e);
+			parent.setMaxEnrollment(m);
 		}
-		diff[Constants.MAX_ENROLL]=e;
+		diff[Constants.MAX_ENROLL]=m;
 		//Update aggEnroll
 		changed = true;
 	}
 	
+	
+	//GETTERS
+	/**
+	 * Accessor for the Course Section listing to be displayed on front end and compared for equality
+	 * @return the Course and Section number of this Course
+	 */
+	public String getCourseSection()
+	{
+		return line[Constants.COURSE] + "-" + line[Constants.SEC_NUM];
+	}
+	
+	/**
+	 * Accessor for the Building that this Course is scheduled in
+	 * @return what building this Courses room is in
+	 */
+	protected String getBuilding()
+	{
+		if(line[Constants.ROOM].contains("Peter") && !line[Constants.ROOM].contains("Online"))
+			return "Peter Kiewit Institute";
+		else
+			return "Other";
+	}
+	
+	/**
+	 * Accessor for the day pattern that this Course is scheduled on
+	 * @return a pattern, can be split into an array of days by a helper
+	 */
 	public int getMeetingPattern()
 	{
-		return day;//This might need more
+		return day;
 	}
+	
+	/**
+	 * Accessor for the time that this Course is scheduled at
+	 * @return the start time of this course in 96 segment day time
+	 */
 	public int getMeetingTime()
 	{
 		return time;
 	}
 	
+	/**
+	 * Accessor for the duration of this Course
+	 * @return the duration of this course in 96 segment day time
+	 */
 	public int getMeetingDuration()
 	{
 		return duration;
 	}
 	
+	/**
+	 * Accessor for the Meeting Pattern full String
+	 * @return the contents of the column in the CSV representing the meeting pattern
+	 */
 	public String getCourseMeeting() 
 	{
 		return diff[Constants.MEET_PATT];
 	}
 	
+	/**
+	 * Accessor for the Room this Course is currently in
+	 * @return the Room the course is in
+	 */
 	public Room getRoom()
 	{
 		if(parentC == 1)
@@ -114,34 +182,80 @@ public class Course extends Line{
 		return room;
 	}
 	
+	/**
+	 * Accessor for the current enrollment of this Course
+	 * @return the current enrollment
+	 */
 	public int getEnrollment()
 	{
-		//TODO: Switch for aggenroll here
+		//TODO: Switch for aggenroll here,offload to child class
 		return Integer.parseInt(diff[Constants.ENROLLMENT]);
 	}
 	
+	/**
+	 * Accessor for the max enrollment of this Course
+	 * @return the current max enrollment
+	 */
 	public int getMaxEnrollment()
 	{
-		//TODO: Switch for aggenrollmax
+		//TODO: Switch for aggenrollmax, offload to child class
 		return Integer.parseInt(diff[Constants.MAX_ENROLL]);
 	}
 	
-	public void releaseOriginal() throws ScheduleException
+	//Functional Methods
+	/**
+	 * Schedules this Course in its assigned Room based on its meeting pattern
+	 * @throws ScheduleException - when this course does not have a room, it cannot be scheduled
+	 */
+	public void schedule() throws ScheduleException
 	{
-		if(parentC == 1)
-			parent.releaseOriginal();
-		else
-			room.release(this);
+		if (parentC == 1)
+			return;//Child courses are never scheduled and use inherited scheduling
+		if(room != null) {
+			room.set(this);
+		}
+		else {
+			throw new ScheduleException("Room not found!/Online Course");
+		}
+		
 	}
 	
+	/**
+	 * Releases the currently assigned schedule slot for this course
+	 * @throws ScheduleException - when this course is not currently scheduled, it cannot be descheduled
+	 */
 	public void release() throws ScheduleException
 	{
 		if(parentC == 1)
 			parent.release();
 		else
-			room.restoreRelease(this);
+			room.release(this);
 	}
 	
+	/**
+	 * Reverts all values of this Course to their default values form the CSV using the Line parent
+	 */
+	public void revert()
+	{
+		if(parentC == 1)
+			parent.revert();
+		//Only revert if something has changed
+		if (changed = true)
+		{
+			for(int i = 0; i<line.length; i++)
+			{
+				diff[i] = line[i];//Since string is immutable this is a deep copy
+			}
+		}
+		changed = false;
+	}
+	
+	
+	//Helper Methods
+	/**
+	 * Converts the day pattern into an array of days
+	 * @return an array containing the numeric value of days this course is on
+	 */
 	protected int[] getDays()
 	{
 		if(this.day <= 4)
@@ -154,59 +268,31 @@ public class Course extends Line{
 			return new int[] {};
 	}
 	
-	protected int[] getOriginalDays()
-	{
-		if(this.oday <= 4)
-			return new int[] {day};
-		else if (oday == 5)
-			return new int[] {Constants.M, Constants.W};
-		else if (oday == 6)
-			return new int[] {Constants.T, Constants.T_TH};
-		else
-			return new int[] {};
-	}
-	
-	public void schedule(Room[] rooms) throws ScheduleException
-	{
-		if (parentC == 1 || roomNum.contentEquals("0"))
-			return;//Child courses are never scheduled and use inherited scheduling
-		boolean found = false;
-		if(room != null) {
-			room.set(this);
-		}
-		else {
-			//Find room
-			for (int i = 0; i < rooms.length; i++)
-			{
-				if(rooms[i].getRoomNumber().equals(roomNum))
-				{
-					room = rooms[i];
-					found = true;
-					break;
-				}
-			}
-			if (!found)
-				throw new ScheduleException("Room not found!");
-			//Attempt to set using parsed values on room object
-			else
-			{
-				room.set(this);	
-			}
-		}
-		
-	}
-	
-	private void parseRoomNum()
+	/**
+	 * Finds the Room object associated with the String that is the room column in the CSV	
+	 * @param rooms - an array of all valid Rooms
+	 */
+	private void parseRoom(Room[] rooms)
 	{
 		if (diff[Constants.ROOM].contains("Online") || diff[Constants.ROOM].contains("Not"))
 		{
-			roomNum = "0";
+			room = null;
 			return;
 		}
 		String[] roomPieces = diff[Constants.ROOM].split(" ", 5);
-		roomNum = roomPieces[roomPieces.length - 1];
+		for(int i = 0; i<rooms.length; i++)
+		{
+			if(rooms[i].getRoomNumber().equalsIgnoreCase(roomPieces[roomPieces.length - 1]))
+			{
+				room = rooms[i];
+				break;
+			}
+		}
 	}
 	
+	/**
+	 * Converts the Meeting Pattern field from a String to a multipiece int representation of the meeting pattern
+	 */
 	private void parseDayTime()
 	{
 		if(diff[Constants.MEET_PATT].contains("Not") || diff[Constants.MEET_PATT].contains("Online"))
@@ -227,7 +313,8 @@ public class Course extends Line{
 		day = helper.parseDays(dayPiece[0]);
 		
 	}
-
+	
+/* POSSIBLY DEFUNCT
 	//Accessor methods for formatted output to display on web
 	public String[] getOriginalWebDisplay()
 	{
@@ -241,20 +328,9 @@ public class Course extends Line{
 				diff[Constants.INSTRUCTOR], diff[Constants.ROOM], diff[Constants.ENROLLMENT], diff[Constants.MAX_ENROLL], String.valueOf(aggEnroll)};
 		return ret;
 	}
+	*/
 	
-	public String getCourseSection()
-	{
-		return line[Constants.COURSE] + "-" + line[Constants.SEC_NUM];
-	}
-	
-	protected String getBuilding()
-	{
-		if(line[Constants.ROOM].contains("Peter") && !line[Constants.ROOM].contains("Online"))
-			return "Peter Kiewit Institute";
-		else
-			return "Other";
-	}
-	
+	//SPECIAL PIECES FOR PARENT/CHILD move to child class
 	protected int getPC()
 	{
 		return parentC;
@@ -288,21 +364,22 @@ public class Course extends Line{
 		}
 	}
 	
-	public void revert()
-	{
-		if(parentC == 1)
-			parent.revert();
-		//Only revert if something has changed
-		if (changed = true)
+	/**
+	 * Converts the String array of a row back into CSV format as a single String
+	 * @return a csv formatted row
+	 */
+	protected String finalOutput() {
+		String ret = "";
+		for (int i =0; i<diff.length; i++)
 		{
-			for(int i = 0; i<line.length; i++)
-			{
-				diff[i] = line[i];//Since string is immutable this is a deep copy
-			}
+			ret = ret.concat(diff[i] + ",");
 		}
-		changed = true;
+		return ret;
 	}
 	
+	/**
+	 * Standard output format for debugging
+	 */
 	public String toString()
 	{
 		String ret = "";

@@ -10,14 +10,14 @@ public class Aggregator {
 	private String[] coursesNames;
 	public Aggregator(String[] paths)
 	{
+		rooms = createRooms();
 		documents = new Document[paths.length];
 		for(int i = 0; i < paths.length; i++) {
-			documents[i] = new Document(paths[i]);
+			documents[i] = new Document(paths[i],rooms);
 		}
 		allCourses = findCourses();//Isolate all courses in document
 		parentChildLinkage();//Link parent and child courses for allCourses
 		courses = refineCourses();//Isolate all courses we can modify/care about
-		rooms = createRooms();
 		scheduleCourses();
 		processCourseNames();
 	}
@@ -132,7 +132,7 @@ public class Aggregator {
 		{
 			try
 			{
-				courses[i].schedule(rooms);
+				courses[i].schedule();
 			}
 			catch(ScheduleException e)
 			{

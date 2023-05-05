@@ -61,7 +61,7 @@ public class TimeTable {
 			for(int k = t; k < t + d; k++)
 				table[days[j]][k]=c;
 	}
-	
+	/*
 	//Unsets a courses original time
 	public void release(Course c) throws ScheduleException
 	{
@@ -79,11 +79,11 @@ public class TimeTable {
 					throw new ScheduleException("Course already descheduled");
 			}
 		}
-	}
+	}*/
 	
 	
 	//After analysis is completed, this will release the slots the Course was changed too
-	public void restoreRelease(Course c) throws ScheduleException
+	public void release(Course c) throws ScheduleException
 	{
 		int t = c.time;
 		int d = c.duration;
