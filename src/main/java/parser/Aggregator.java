@@ -7,6 +7,7 @@ public class Aggregator {
 	private Course[] allCourses, courses;
 	private Room[] rooms;
 	private Professor[] professors;
+	private String[] coursesNames;
 	public Aggregator(String[] paths)
 	{
 		documents = new Document[paths.length];
@@ -18,6 +19,7 @@ public class Aggregator {
 		courses = refineCourses();//Isolate all courses we can modify/care about
 		rooms = createRooms();
 		scheduleCourses();
+		processCourseNames();
 	}
 	
 	public Course[] getCourses()
@@ -26,13 +28,29 @@ public class Aggregator {
 	}
 	public String[] getCourseNames()
 	{
+		return coursesNames;
+	}
+	
+	public Course findCourse(String name)
+	{
+		for(int i = 0; i < coursesNames.length; i++)
+		{
+			if(name.equalsIgnoreCase(coursesNames[i]))
+				return courses[i];
+		}
+		return null;
+	}
+	
+	
+	private void processCourseNames()
+	{
 		ArrayList<String> names = new ArrayList<String>();
 		for (int i = 0; i < courses.length; i++) {
 			names.add(( courses[i]).getCourseSection());
 		}
 		String[] ret = new String[names.size()];
 		names.toArray(ret);
-		return ret;
+		coursesNames = ret;
 	}
 	
 	public Room[] getRooms()

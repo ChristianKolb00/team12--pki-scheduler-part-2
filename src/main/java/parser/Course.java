@@ -57,7 +57,7 @@ public class Course extends Line{
 	{
 		if(parentC == 1)
 		{
-			parent.setRoom(room);
+			parent.setRoom(r);
 		}
 		diff[Constants.ROOM]=r;
 		parseRoomNum();
