@@ -1,13 +1,11 @@
 package Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,49 +35,45 @@ public class homePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
 		String field = request.getParameter("selection");
 		String course =  request.getParameter("course");
-		ArrayList<String> object = new ArrayList<>();
+		Utils u = (Utils)session.getAttribute("u");
 		
-		String Path = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BIOI1191.csv";
-		String Path2 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\BMI1191.csv";
-		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
-		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
-		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
-		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
-
-		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path7};
-	
-		Aggregator tester = new Aggregator(AllFile);
-		Course[] courses = tester.getCourses();
-		Utils u=new Utils();
-		
-		String courseTitle= course;
-		String[] courseName = courseTitle.split("-");
-		System.out.println(courseName[0]);
-		
+		Aggregator tester = u.getAggregator();
+		Course courseTitle = tester.findCourse(course);
 		int enrollment = Integer.parseInt(field);
-		int position=0;
-		for(int i=0; i<courses.length;i++) {
-			if(courses[i].getCourseSection().equalsIgnoreCase(courseTitle)) {
-					System.out.println(i);
-					position=i;
-					break;
-					
-				}
+		
+		//Find Open Rooms
+		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
+		ArrayList<String> roomSameTime = new ArrayList<String>(
+				Arrays.asList(roomSameTimeArray));
+		
+		//Find Swappable Classes
+		ArrayList<Course> OpenCourse = u.findCoursesSwap(courseTitle, enrollment);
+		ArrayList<String> formatCourse = new ArrayList<String>();
+		for( int i=0; i<OpenCourse.size();i++) {
+			String formatString = "Room: "+ OpenCourse.get(i).getRoom().getRoomNumber() + 
+					", Course: "+ OpenCourse.get(i).getCourseSection() +
+					", MaxCapacity: "+OpenCourse.get(i).getMaxEnrollment() + 
+					", Capacity: "+OpenCourse.get(i).getEnrollment() + 
+					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
+			formatCourse.add(formatString);
 		}
-		String[] roomSameTime=u.findRoomSameTime(courses[position], enrollment);
 		
 		
-		/*System.out.println("\n------ Reassign Courses with Same Time to a different Room --------\n");
-		System.out.println(u.reassignRoomSameTime(courses[position],"252"));
-		System.out.println("---------  --------- --------  -------- ---------  -------- ---------  --------");
-		*/
-		HttpSession session = request.getSession();
+		
+		String courseTime = courseTitle.getCourseMeeting();
+		String roomNum = courseTitle.getRoom().getRoomNumber();
+		int enroll = courseTitle.getEnrollment();
 		session.setAttribute("course", course);
-		session.setAttribute("field", field);
-		session.setAttribute("object", roomSameTime);
+		session.setAttribute("MaxEnroll", enrollment);
+		session.setAttribute("enroll", enroll);
+		session.setAttribute("object2", formatCourse); //array of swappable classes
+		session.setAttribute("object", roomSameTime); //array of open classes
+		session.setAttribute("courseTime", courseTime);
+		session.setAttribute("roomNum", roomNum);
 		response.sendRedirect("change.jsp?course="+course+"&field="+field);
 		
 		

@@ -30,7 +30,7 @@ public class TimeTable {
 	public Course[] checkAvailable(int d, int t, int du)
 	{
 		ArrayList<Course> courses = new ArrayList<Course>();
-		for (int k = t-1; k < t + du + 1; k++)
+		for (int k = t-1; k < t + du + 1; k++) 
 		{
 			if(table[d][k] != null && !courses.contains(table[d][k]))
 				courses.add(table[d][k]);

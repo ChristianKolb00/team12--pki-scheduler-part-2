@@ -2,7 +2,7 @@ package parser;
 
 public final class Constants {
 	
-	private Constants()
+	public Constants()
 	{
 	}
 	
