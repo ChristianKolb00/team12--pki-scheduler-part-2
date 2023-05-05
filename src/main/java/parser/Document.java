@@ -13,10 +13,21 @@ import java.util.Scanner;
  *
  */
 public class Document {
+	/**
+	 * The file path to the file this Document represents
+	 */
 	private String file;
+	/**
+	 * All the rows that compose this CSV
+	 */
 	protected ArrayList<Line> docLines;//First index correlates to index of files
 	
-	
+	/**
+	 * Initialized the Document, using a BufferedReader to parse the file into separate lines. Each line is then checked for type, and then
+	 * used to create a Line or Course object.
+	 * @param path - the filepath to the source file
+	 * @param rooms - an array of all valid Rooms
+	 */
 	public Document(String path, Room[] rooms) {
 		docLines = new ArrayList<Line>();
 		String line = "";
@@ -44,6 +55,9 @@ public class Document {
 		file = path;
 	}
 	
+	/**
+	 * Standard output format for debugging
+	 */
 	@Override
 	public String toString() {
 		String ret = "";
@@ -51,8 +65,5 @@ public class Document {
 			ret = ret.concat(docLines.get(i).toString() + "\n\n");
 		}
 		return ret;
-	}
-	protected ArrayList<Line> getLines(){
-		return docLines;
 	}
 }

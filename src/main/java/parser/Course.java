@@ -24,7 +24,7 @@ public class Course extends Line{
 	 */
 	private boolean changed;
 	
-	//Likely being moved to new subtypes if time
+	//Likely being moved to new child class if time
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
 	private Course parent, childOne, childTwo, childThree;
 	private int aggEnroll, aggEnrollOriginal;
