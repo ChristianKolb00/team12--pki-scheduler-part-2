@@ -71,11 +71,11 @@ public class Course extends Line{
 	 * Sets the meeting pattern for this course
 	 * @param patt - a new meeting pattern in String form
 	 */
-	public void setMeetingPattern(String patt)
+	public void setCourseMeeting(String patt)
 	{
 		if(parentC == 1)
 		{
-			parent.setMeetingPattern(patt);
+			parent.setCourseMeeting(patt);
 		}
 		diff[Constants.MEET_PATT]=patt;
 		parseDayTime();

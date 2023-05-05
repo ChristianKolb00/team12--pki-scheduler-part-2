@@ -94,8 +94,8 @@ public class Utils {
 				b.release();
 				
 				String temp = a.getCourseMeeting();
-				a.setMeetingPattern(b.getCourseMeeting());
-				b.setMeetingPattern(temp);
+				a.setCourseMeeting(b.getCourseMeeting());
+				b.setCourseMeeting(temp);
 				
 				Room temp2 = a.getRoom();
 				a.setRoom(b.getRoom());
