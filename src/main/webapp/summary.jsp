@@ -26,13 +26,11 @@
 		</td></tr>
 		
 		<tr><td><%= session.getAttribute("selection")  %></td></tr>
-		
+		<tr><td><%= session.getAttribute("result")  %></td></tr>
 		<tr><td>
 			<Strong>Final Change:</Strong> 
 		</td></tr>
 		
-		
-		<tr><td><%= session.getAttribute("result")  %></td></tr>
 		<tr><td><%= session.getAttribute("feedback")  %></td></tr>
 		</table>
 	</section>

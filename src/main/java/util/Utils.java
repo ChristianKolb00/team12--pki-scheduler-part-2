@@ -21,16 +21,16 @@ public class Utils {
 	public Aggregator getAggregator() {
 		return A;
 	}
-	//Reassign Courses with Same Time to a different Room 
-	public String reassignRoomSameTime(String courseTitle,String newRoomNum){
 
-		int position=getCourseIndex (courseTitle);
+	//Reassign Courses with Same Time to a different Room 
+	public String reassignRoomSameTime(Course courseTitle, String newRoomNum){
 		
-		String oldRoomNum=course[position].getRoom().getRoomNumber();
+		String oldRoomNum=courseTitle.getRoom().getRoomNumber();
+		
 		int length = oldRoomNum.length();
 	    oldRoomNum = oldRoomNum.substring(length - 3);
 	    
-		course[position].setRoom("Peter Kiewit Institute "+newRoomNum);
+		courseTitle.setRoom("Peter Kiewit Institute "+newRoomNum);
 		
 		String result=courseTitle+" Room PKI "+oldRoomNum+" was reassigned to Room PKI "+ newRoomNum+"";
 		return result;
@@ -40,7 +40,6 @@ public class Utils {
 	
 	// Finds a list of rooms that are open at the same time as the course passed.
 	public  String[] findRoomSameTime(Course c,int maxEnrollement){
-		
 		
 		Room[] filtered=findRoomsLargerThanMaxEnrollment(maxEnrollement);
 		ArrayList<String> findRoomSameTime=new ArrayList<String>();
@@ -84,68 +83,76 @@ public class Utils {
 		}
 		return diffTimeArray;
 	}
-	// Finds a list of rooms that are open at a different time at a different room.
-	// It should work as MW and TTH instead of each of single day
-	//
-	public ArrayList<String> findDiffRoomDiffTime(int Day,int maxEnrollement){
-		ArrayList<String> timeArray= new ArrayList<>();
-		ArrayList<Integer> timeArr = new ArrayList<Integer>();
-		 for(int i=0;i<course.length ;i++) {
-			 if(course[i].getRoom()!=null && course[i].getRoom().getCapacity()>=maxEnrollement ) {
-				 System.out.println("\nRoom: "+course[i].getRoom().getRoomNumber()+ " and on "+Day);
-		        	
-		            for (int timeSlot = 32; timeSlot < 88; timeSlot++) {
-		                if (course[i].getRoom().getCourseAt(Day, timeSlot) == null) {
-		                	if(timeSlot==33) {timeArr.add(timeSlot-1);};		         
-		                	timeArr.add(timeSlot);              
-		                }
-		            }
-		   		 String[] ranges = getRanges(timeArr);
-				 
-				 timeArray=new ArrayList<String>();
+	public String timeSwap(Course a, Course b) {
+		
+		try {
+			String output;
+			
+			if(a.getMeetingDuration() == b.getMeetingDuration()) {
 				
-				 for (String range : ranges) {
-					    String[] times = range.split("-");
-					    if(times.length>1) {
-					    String startTime = getTimeFromSlot(Integer.parseInt(times[0]));
-					    String endTime = getTimeFromSlot(Integer.parseInt(times[1]));
-					    String timeRange = startTime + " - " + endTime;	
-					    timeArray.add(timeRange);
-					    
-					    
-					    }
-					    //System.out.println(timeRange);
-					}
-				 
-				 	
-				 	System.out.println(timeArray);
-		            timeArr.clear();		
-		           
-		        }
-		    }
-		 return timeArray;
-		}	
-
-	//Reassign Different Room Different Time
-	//reassign that work on everything
-	public String reassignDiffTimeDiffRoom(String courseTitle, String newRoomNum, String newTime) {
-	    int position = getCourseIndex(courseTitle);
-	    
-	    String oldRoomNum1=course[position].getRoom().getRoomNumber();
-		int length = oldRoomNum1.length();
-	    oldRoomNum1 = oldRoomNum1.substring(length - 3);
-	    //String oldRoomNum1 = course[position].getRoomNum();
-	    int oldTime = course[position].getMeetingTime();
-	    // Update course information
-	    course[position].setRoom("Peter Kiewit Institute " + newRoomNum);
-	    //course[position].setCourseTime(newTime);
-	    //course[position].setMeetingPattern(meetingPattern);
-	    // Construct result message
-	    String result = courseTitle + " in Room PKI " + oldRoomNum1 +  " at " + oldTime +
-	                    " has been reassigned to Room PKI " + newRoomNum + 
-	                    " at " + newTime + ".";
-	    return result;
-	}		
+				a.release();
+				b.release();
+				
+				String temp = a.getCourseMeeting();
+				a.setMeetingPattern(b.getCourseMeeting());
+				b.setMeetingPattern(temp);
+				
+				Room temp2 = a.getRoom();
+				a.setRoom(b.getRoom());
+				b.setRoom(temp2);
+				
+				a.schedule(rooms);
+				b.schedule(rooms);
+				output = a.getCourseSection() +", Time: "+a.getCourseMeeting() + ", "
+						+ "Room: PKI "+ a.getRoom().getRoomNumber() + " <br><br> "
+						+ b.getCourseSection()+": Time: "+b.getCourseMeeting() + ", "
+								+ "Room: PKI "+ b.getRoom().getRoomNumber();
+						
+			}else {
+				output= "Unable to swap";
+			}
+			
+			return output;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	public String roomSwap(Course a, Course b) {
+		
+		try {
+			String output;
+			
+			if(a.getMeetingDuration() == b.getMeetingDuration()) {
+				
+				output = a.getCourseSection() +": "+a.getRoom().getRoomNumber() + " and "
+						+b.getCourseSection()+": "+b.getRoom().getRoomNumber();
+				
+				a.release();
+				b.release();
+				
+				Room temp = a.getRoom();
+				a.setRoom(b.getRoom());
+				b.setRoom(temp);
+				
+				a.schedule(rooms);
+				b.schedule(rooms);
+				
+				
+				
+			}else {
+				output= "Unable to swap becuase class time different in length";
+			}
+			
+			return output;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	// Swap two classes
 	public  String roomSwap(String courseTitle1,String courseTitle2){
 
@@ -234,18 +241,6 @@ public class Utils {
 		}
 		return position;
 	}
-	
-	//Reassign Courses with Same Time to a different Room 
-	public String reassignRoomSameTime(Course c,String roomNum){
-		for (int i=0;i<course.length;i++) {
-			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting()) ) {
-				course[i].setRoom(roomNum);
-			}
-			}
-		String result=c.getCourseMeeting()+" Room: "+c.getRoom().getRoomNumber()+" was reassigned to Room: Peter Kiewit Institute "+ roomNum;
-		return result;
-	  }
-	
 	
 
 	private String getTimeFromSlot(int timeSlot) {

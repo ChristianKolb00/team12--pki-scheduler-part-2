@@ -18,10 +18,10 @@ public class UtilTest {
 		String Path3 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CIST_EMIT1191.csv";
 		String Path4 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CSCI1191.csv";
 		String Path5 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\CYBR1191.csv";
-		//String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
+		String Path6 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ISQA1191.csv";
 		String Path7 = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\ITIN1191.csv";
 		
-		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, /*Path6,*/ Path7};
+		String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
 		Aggregator tester = new Aggregator(AllFile);
 		
 		Utils u=new Utils(tester);
@@ -52,7 +52,8 @@ public class UtilTest {
 		String reassignFeedback1=u.reassignDiffTimeDiffRoom("CIST 2100-001","276", "MW 8:15am-10:15am");
 		System.out.println(reassignFeedback1);
 		*/
-		ArrayList<Course> OpenCourse = u.findCoursesSwap(tester.getCourses()[8], 10);
+		
+		ArrayList<Course> OpenCourse = u.findCoursesSwap(tester.getCourses()[22], 20);
 		System.out.println(tester.getCourses()[8].getEnrollment()
 				+ ", "+tester.getCourses()[8].getMaxEnrollment());
 		ArrayList<String> formatCourse = new ArrayList<String>();
@@ -68,7 +69,14 @@ public class UtilTest {
 			System.out.println(formatCourse.get(j));
 		}
 		
-
+		
+		String timeSwapping = u.timeSwap(tester.getCourses()[1], tester.getCourses()[2]);
+		System.out.println(timeSwapping);
+		String timeSwapping2 = u.timeSwap(tester.getCourses()[2], tester.getCourses()[1]);
+		System.out.println(timeSwapping2);
+		
+		
+		
 		
 	}
 }

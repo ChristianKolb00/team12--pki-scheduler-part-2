@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import parser.Aggregator;
+import parser.Course;
 import util.Utils;
 
 /**
@@ -46,18 +47,29 @@ public class changesPage extends HttpServlet {
 			@SuppressWarnings("unchecked")
 			ArrayList<String> results2 =(ArrayList<String>) request.getSession().getAttribute("object2");
 			String result;
+			String feedback;
+			String courseTitle = (String) session.getAttribute("course");
+			Course courseTitles = (Course) u.getAggregator().findCourse(courseTitle);
+			
 			if(selection > results.size()) {
-				 result = results2.get(selection-results.size()-1);
+				result = results2.get(selection-results.size()-1);
+				String[] parser = result.split(",");
+				String[] parseCourseTitle = parser[1].split(":");
+				Course courseTwo = u.getAggregator().findCourse(parseCourseTitle[1].trim());
+				 feedback= u.timeSwap(courseTitles, courseTwo);
 			}else {
-				 result = results.get(selection-1);
+				result = results.get(selection-1);
+				String[] parseRoom = result.split(",");
+				String[] parseRoomNumber = parseRoom[0].split(":");
+				 
+				 feedback = u.reassignRoomSameTime(courseTitles, parseRoomNumber[1].trim());
 			}
 			
-			String[] parseRoom = result.split(",");
-			String[] parseRoomNumber = parseRoom[0].split(":");
 			
-			String courseTitle = (String) session.getAttribute("course");
 			
-			String feedback = u.reassignRoomSameTime(courseTitle, parseRoomNumber[1]);
+			
+			
+			
 			
 			System.out.println(feedback);
 			
