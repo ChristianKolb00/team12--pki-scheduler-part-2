@@ -3,20 +3,23 @@ package parser;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Line is an immutable storage for the parsed CSV, multiple lines make up a document
+ * @author jwillson
+ *
+ */
 public class Line {
-	protected boolean type;//Is this a class line(true) or filler line(false)?
 	protected int oday, otime, oduration;
 	protected String[] line;
 	protected int aggEnrollOriginal;
 
+	
 	public Line()
 	{
 	}
 	
 	public Line(String input)
 	{
-		//Set this a non-class line
-		type = false;
 		line = new String[Constants.COL_COUNT];
 		Scanner parser = new Scanner(input);
 		//Fancy regex to ignore , within " " to handle fields containing ,
@@ -30,7 +33,6 @@ public class Line {
 			//Set this as a class line if it has purely numeric content in CLSS ID, and shift
 			if(line[0].matches("[0-9]+"))
 			{
-				type=true;
 				line[1]=line[0];
 				line[0]="";
 				i++;
@@ -47,9 +49,6 @@ public class Line {
 				line[j]="";
 		}
 		parser.close();
-		//Set this a class line if it has purely numeric content in CLSS ID(this excludes header line)
-		if(line[1].contains("[a-zA-Z]+") == false )
-			type=true;
 	}
 	
 	@Override

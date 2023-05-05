@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Document is a single csv file composed of Line objects with an immutable order for outputting
+ * @author jwillson
+ *
+ */
 public class Document {
 	private String file;
 	protected ArrayList<Line> docLines;//First index correlates to index of files
