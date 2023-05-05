@@ -37,13 +37,13 @@ public class homePage extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		String field = request.getParameter("selection");
+		String selection = request.getParameter("selection");
 		String course =  request.getParameter("course");
 		Utils u = (Utils)session.getAttribute("u");
 		
 		Aggregator tester = u.getAggregator();
 		Course courseTitle = tester.findCourse(course);
-		int enrollment = Integer.parseInt(field);
+		int enrollment = Integer.parseInt(selection);
 		
 		//Find Open Rooms
 		String[] roomSameTimeArray=u.findRoomSameTime(courseTitle, enrollment);
@@ -56,7 +56,7 @@ public class homePage extends HttpServlet {
 		for( int i=0; i<OpenCourse.size();i++) {
 			String formatString = "Room: "+ OpenCourse.get(i).getRoom().getRoomNumber() + 
 					", Course: "+ OpenCourse.get(i).getCourseSection() +
-					", MaxCapacity: "+OpenCourse.get(i).getMaxEnrollment() + 
+					", Max Capacity: "+OpenCourse.get(i).getMaxEnrollment() + 
 					", Capacity: "+OpenCourse.get(i).getEnrollment() + 
 					", Open at " + OpenCourse.get(i).getCourseMeeting() + ":Yes";
 			formatCourse.add(formatString);
@@ -66,15 +66,18 @@ public class homePage extends HttpServlet {
 		
 		String courseTime = courseTitle.getCourseMeeting();
 		String roomNum = courseTitle.getRoom().getRoomNumber();
+		int maxEnrollment=courseTitle.getMaxEnrollment();
 		int enroll = courseTitle.getEnrollment();
+		
 		session.setAttribute("course", course);
-		session.setAttribute("MaxEnroll", enrollment);
+		session.setAttribute("MaxEnrollWanted", enrollment);
 		session.setAttribute("enroll", enroll);
 		session.setAttribute("object2", formatCourse); //array of swappable classes
 		session.setAttribute("object", roomSameTime); //array of open classes
 		session.setAttribute("courseTime", courseTime);
+		session.setAttribute("MaxEnroll", maxEnrollment);
 		session.setAttribute("roomNum", roomNum);
-		response.sendRedirect("change.jsp?course="+course+"&field="+field);
+		response.sendRedirect("change.jsp?course="+course+"&enrollment="+enrollment);
 		
 		
 	}

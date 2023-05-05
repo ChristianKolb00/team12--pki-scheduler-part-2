@@ -14,11 +14,18 @@
 	<% if(session.getAttribute("course")==null)response.sendRedirect("home.jsp"); %>
 	<section style="margin:5% auto; ">
 		<h1>Here are some potential changes</h1>
-		<h2>Course: <%= session.getAttribute("course")  %> </h2>
-		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>
-		<h4 >Course Room Number: <%= session.getAttribute("roomNum")  %> </h4>
-		<h4 >Current Enrollment Change: <%= session.getAttribute("enroll")  %> </h4>
-		<h4 >Max Enrollment Change: <%= session.getAttribute("MaxEnroll")  %> </h4>
+		<hr> <br><br>
+		<section class="fieldOne"> 
+		<h2>Course Change: <%= session.getAttribute("course")  %> </h2>
+		<p>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </p>
+		<p>Course Room Number: <%= session.getAttribute("roomNum")  %> </p>
+		<p>
+			Current Enrollment: <%= session.getAttribute("enroll") %>
+			, Room Capacity: <%= session.getAttribute("MaxEnroll") %>
+		 </p>
+		 <p>Max Enrollment Wanted: <%= session.getAttribute("MaxEnrollWanted") %> </p>
+		</section>
+		
 		<% String errorMessage = (String)request.getAttribute("errorMessage");
 		if(errorMessage != null){%>
 			<p style="text-align:center; color:red;"> <%=errorMessage %></p>
@@ -127,10 +134,11 @@ border-radius:20px; text-align:center;}
 }
 h1,h2,h4{
 	text-align:center;
-}
-h1{ font-size:50px;} 
+} 
+h1{ font-size: 3rem;text-align:center; color:#a55a51}
+hr{margin-top:0; width: 60%; border-top: 2px solid red;}
 
-h1:hover,h2:hover,h4:hover,th:hover{color:#370e9b ;}
+h1:hover,h2:hover,h4:hover,p:hover, th:hover{color:#370e9b ;}
 
 .buttons:hover{ transform:scale(1.02);background:#370e9b; color:white;}
 
