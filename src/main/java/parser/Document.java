@@ -56,6 +56,32 @@ public class Document {
 	}
 	
 	/**
+	 * Final call that triggers document to output change log, backup copy, and new file.
+	 * @return true if successful
+	 */
+	public boolean output()
+	{
+		return outputChanges() && outputBackup() && outputNew();
+		
+	}
+	
+	//TODO: Implement
+	private boolean outputChanges()
+	{
+		return true;
+	}
+	
+	private boolean outputBackup()
+	{
+		return true;
+	}
+	
+	private boolean outputNew()
+	{
+		return true;
+	}
+	
+	/**
 	 * Standard output format for debugging
 	 */
 	@Override

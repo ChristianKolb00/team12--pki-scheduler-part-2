@@ -374,7 +374,7 @@ public class Course extends Line{
 		{
 			ret = ret.concat(diff[i] + ",");
 		}
-		return ret;
+		return ret.concat("/n");
 	}
 	
 	/**

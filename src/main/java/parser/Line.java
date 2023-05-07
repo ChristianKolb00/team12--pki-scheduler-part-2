@@ -115,7 +115,7 @@ public class Line {
 		{
 			ret = ret.concat(line[i] + ",");
 		}
-		return ret;
+		return ret.concat("/n");
 	}
 	
 	/**
