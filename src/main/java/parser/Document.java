@@ -36,6 +36,7 @@ public class Document {
 		String line = "";
 		//Make a line object for every line in the document into a 2d array
 		try {
+			//System.out.println(path);
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			while ((line = br.readLine())!= null) {
 				//To handle the \n in some comment fields
@@ -127,7 +128,7 @@ public class Document {
 		return origFile.renameTo(backupFile);Fix this it does not work for some reason
 		*/
 		//Workaround
-		File backupFile = new File(Constants.PATH + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
+		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
 		try
 		{
 			backupFile.createNewFile();
@@ -177,5 +178,10 @@ public class Document {
 			ret = ret.concat(docLines.get(i).toString() + "\n\n");
 		}
 		return ret;
+	}
+	
+	public ArrayList<Line> getDocLines()
+	{
+		return docLines;
 	}
 }

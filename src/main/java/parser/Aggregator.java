@@ -255,4 +255,9 @@ public class Aggregator {
 		return ret;
 	}
 	
+	public Document getDocOne()
+	{
+		return documents[0];
+	}
+	
 }
