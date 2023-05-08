@@ -8,6 +8,8 @@ public final class Constants {
 	{
 	}
 	
+	protected static final String PATH = "C:\\Users\\cmlko\\eclipse-workspace\\pkiClassroom\\src\\main\\java\\csvFiles\\";
+	
 	private static final Timestamp openTime = new Timestamp(System.currentTimeMillis());
 	protected static final String backupTime = openTime.getMonth() + "_" + openTime.getDate() + "_" + openTime.getHours() + "_" + openTime.getMinutes();
 	

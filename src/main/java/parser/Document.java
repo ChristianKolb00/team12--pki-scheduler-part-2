@@ -88,7 +88,7 @@ public class Document {
 	private boolean outputChanges()
 	{
 		File sourceFile = new File(file);
-		File changeLog = new File(sourceFile.getParent()+"changelog.txt");
+		File changeLog = new File(Constants.PATH+"changelog.txt");
 		try {
 			if(!changeLog.exists())
 				changeLog.createNewFile();
@@ -127,7 +127,7 @@ public class Document {
 		return origFile.renameTo(backupFile);Fix this it does not work for some reason
 		*/
 		//Workaround
-		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
+		File backupFile = new File(Constants.PATH + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
 		try
 		{
 			backupFile.createNewFile();
