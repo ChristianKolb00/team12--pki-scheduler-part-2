@@ -253,11 +253,5 @@ public class Aggregator {
 			ret = ret.concat(documents[i].toString() + "\n\n");
 		}
 		return ret;
-	}
-	
-	public Document getDocOne()
-	{
-		return documents[0];
-	}
-	
+	}	
 }

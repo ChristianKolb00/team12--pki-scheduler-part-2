@@ -179,9 +179,4 @@ public class Document {
 		}
 		return ret;
 	}
-	
-	public ArrayList<Line> getDocLines()
-	{
-		return docLines;
-	}
 }
