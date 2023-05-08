@@ -28,9 +28,9 @@ public class Utils {
 		String oldRoomNum=courseTitle.getRoom().getRoomNumber();
 		
 		int length = oldRoomNum.length();
-	    oldRoomNum = oldRoomNum.substring(length - 3);
+	    oldRoomNum = oldRoomNum.substring(length - 3);//TODO: this doesnt work as there are 3 and 4 character long rooms
 	    
-		courseTitle.setRoom("Peter Kiewit Institute "+newRoomNum);
+	    courseTitle.setRoom(A.findRoomByNum(oldRoomNum));
 		
 		String result=courseTitle+" Room PKI "+oldRoomNum+" was reassigned to Room PKI "+ newRoomNum+"";
 		return result;
@@ -94,15 +94,15 @@ public class Utils {
 				b.release();
 				
 				String temp = a.getCourseMeeting();
-				a.setMeetingPattern(b.getCourseMeeting());
-				b.setMeetingPattern(temp);
+				a.setCourseMeeting(b.getCourseMeeting());
+				b.setCourseMeeting(temp);
 				
 				Room temp2 = a.getRoom();
 				a.setRoom(b.getRoom());
 				b.setRoom(temp2);
 				
-				a.schedule(rooms);
-				b.schedule(rooms);
+				a.schedule();
+				b.schedule();
 				output = a.getCourseSection() +", Time: "+a.getCourseMeeting() + ", "
 						+ "Room: PKI "+ a.getRoom().getRoomNumber() + " <br><br> "
 						+ b.getCourseSection()+": Time: "+b.getCourseMeeting() + ", "
@@ -136,8 +136,8 @@ public class Utils {
 				a.setRoom(b.getRoom());
 				b.setRoom(temp);
 				
-				a.schedule(rooms);
-				b.schedule(rooms);
+				a.schedule();
+				b.schedule();
 				
 				
 				
@@ -174,20 +174,18 @@ public class Utils {
 		
 		if (courseTitle1MaxEnrollment<=courseTitle2Capacity && courseTitle2MaxEnrollment<=courseTitle1Capacity) {
 			
-			String classRoom1=course[position1].getRoom().getRoomNumber();
-			String classRoom2=course[position2].getRoom().getRoomNumber();
-			String tempRoom=classRoom1;
+			Room classRoom1=course[position1].getRoom();
+			Room classRoom2=course[position2].getRoom();
+			Room tempRoom=classRoom1;
 			
 			//Swap rooms
 			course[position1].setRoom(classRoom2);
 			course[position2].setRoom(tempRoom);
 			
-			int length = classRoom1.length();
-			
-			String ret="Course <"+courseTitle1+"> was moved from Room<PKI "+classRoom1.substring(length - 3)+
-					"> to Room<PKI "+course[position1].getRoom().getRoomNumber().substring(length - 3)+
-					">\nCourse <"+courseTitle2+"> was moved from Room<PKI "+classRoom2.substring(length - 3)+
-					"> to Room<PKI "+course[position2].getRoom().getRoomNumber().substring(length - 3)+">";
+			String ret="Course <"+courseTitle1+"> was moved from Room<PKI "+classRoom1.getRoomNumber()+
+					"> to Room<PKI "+course[position1].getRoom().getRoomNumber()+
+					">\nCourse <"+courseTitle2+"> was moved from Room<PKI "+classRoom2.getRoomNumber()+
+					"> to Room<PKI "+course[position2].getRoom().getRoomNumber()+">";
 			
 			return ret;
 			

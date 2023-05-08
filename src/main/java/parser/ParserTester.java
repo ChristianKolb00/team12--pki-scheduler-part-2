@@ -28,9 +28,41 @@ public class ParserTester {
 			
 			System.out.println(i);
 			System.out.println("Course:" + saniCourses[i].getCourseSection());
+			System.out.println(saniCourses[i].toString());
 			System.out.println(saniCourses[i].getRoom().getRoomNumber());
 		}
-		
+		try
+		{
+			saniCourses[1].release();
+			saniCourses[2].release();
+			Room temp1 = saniCourses[1].getRoom();
+			String temp2 = saniCourses[1].getCourseMeeting();
+			saniCourses[1].setRoom(saniCourses[2].getRoom());
+			saniCourses[1].setCourseMeeting(saniCourses[2].getCourseMeeting());
+			saniCourses[2].setRoom(temp1);
+			saniCourses[2].setCourseMeeting(temp2);
+			saniCourses[1].schedule();
+			saniCourses[2].schedule();
+			System.out.println("Rescheduled");
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		try
+		{
+			saniCourses[1].release();
+			saniCourses[2].release();
+			saniCourses[1].revert();
+			saniCourses[2].revert();
+			saniCourses[1].schedule();
+			saniCourses[2].schedule();
+			System.out.println("Reverted");
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 }
