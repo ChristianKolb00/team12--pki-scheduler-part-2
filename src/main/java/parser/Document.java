@@ -116,14 +116,33 @@ public class Document {
 	}
 	
 	/**
-	 * Renames starting file to a backup file
+	 * Creates a backup file using the original Line storage
 	 * @return true if rename is successful
 	 */
 	private boolean outputBackup()
 	{
+		/*
 		File origFile = new File(file);
 		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
-		return origFile.renameTo(backupFile);//TODO: Fix this it does not work for some reason
+		return origFile.renameTo(backupFile);Fix this it does not work for some reason
+		*/
+		//Workaround
+		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
+		try
+		{
+			backupFile.createNewFile();
+			FileWriter outting = new FileWriter(backupFile,false);
+			for(int i = 0; i < docLines.size(); i++)
+			{
+					outting.write(docLines.get(i).outputOriginal());
+			}
+			outting.close();
+		}
+		catch(Exception e){
+			System.out.println(e);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
