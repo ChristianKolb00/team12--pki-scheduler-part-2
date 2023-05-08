@@ -1,10 +1,15 @@
 package parser;
 
+import java.sql.Timestamp;
+
 public final class Constants {
 	
 	public Constants()
 	{
 	}
+	
+	private static final Timestamp openTime = new Timestamp(System.currentTimeMillis());
+	protected static final String backupTime = openTime.getMonth() + "_" + openTime.getDate() + "_" + openTime.getHours() + "_" + openTime.getMinutes();
 	
 	protected static final int NUM_DAYS = 5;//M,T,W,Th,F (Sa is ignored)
 	protected static final int NUM_FIFTEENS = 96;//0:00-0:15, 0:15-0:30,...,23:45-0:00

@@ -22,7 +22,7 @@ public class Course extends Line{
 	/**
 	 * Flag boolean for when Course diverges from Line. Can be used to find the pieces for a changelog.
 	 */
-	private boolean changed;
+	protected boolean changed;
 	
 	//Likely being moved to new child class if time
 	private int parentC;//-1 when neither, 0 when parent, 1 when child
@@ -368,7 +368,7 @@ public class Course extends Line{
 	 * Converts the String array of a row back into CSV format as a single String
 	 * @return a csv formatted row
 	 */
-	protected String finalOutput() {
+	protected String output() {
 		String ret = "";
 		for (int i =0; i<diff.length; i++)
 		{
