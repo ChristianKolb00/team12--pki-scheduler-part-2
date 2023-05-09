@@ -31,8 +31,10 @@ public class updataCSV extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utils u = (Utils)session.getAttribute("u");
+		//finalOutput create New csv files that replace old csv files as backup files
 		u.getAggregator().finalOutput();
 		response.sendRedirect("home.jsp");
+		//redirect to homepage and user can check old and new csv file and the text log for changes
 	}
 
 	/**
