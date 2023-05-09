@@ -126,7 +126,10 @@ public class Line {
 		String ret = "";
 		for (int i =0; i<line.length; i++)
 		{
-			ret = ret.concat("\"" + line[i] + "\",");
+			if(line[i].contentEquals(""))
+				ret = ret.concat(",");
+			else
+				ret = ret.concat("\"" + line[i] + "\",");
 		}
 		return ret.concat("\n");
 	}
