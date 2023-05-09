@@ -10,11 +10,14 @@
 </head>
 <body>
 	<% if(session.getAttribute("course")==null)response.sendRedirect("home.jsp"); %>
+	<section style="margin:5% auto; ">
 	<h1>This is the Summary Page!</h1>
+	<hr> <br><br>
+	<section class="fieldThree" >
 		<h2>Course: <%= session.getAttribute("course")  %> </h2>
-		<h4>Course Meeting Time:<%= session.getAttribute("courseTime")  %> </h4>
-		<h4 >Course Room Number: <%= session.getAttribute("roomNum")  %> </h4>
-		<h4 >Max Enrollment Change: <%= session.getAttribute("field")  %> </h4>
+		<p >Max Enrollment Wanted: <%= session.getAttribute("MaxEnrollWanted")  %> </p>
+	</section>
+	</section>	
 	<section class="fieldOne" style="margin-top:5%;">
 	
 		<table class="table">
@@ -92,6 +95,8 @@
 	display:start;
 	padding:10px 30px;
 	border-top:1px solid #fff;}
+h1{ font-size: 3rem;text-align:center; color:#a55a51}
+hr{margin-top:0; width: 60%; border-top: 2px solid red;}
 h1, h2, h4{
 	margin-top:1%;
 	text-align:center;}
@@ -103,9 +108,22 @@ h1, h2, h4{
 	justify-content:center;
 	text-align:center;
 	}
+.fieldThree{
+	margin:auto 50%;
+	padding:2rem;
+	width:40%;
+	height:auto;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	text-align:center;
+	border-radius:10px;
+	transform:translate(-50%);
+	border:2px solid #00b560;}
 .large{
 	width:150px;}
-h1:hover{color: #370e9b; }
+h1:hover, h2:hover,p:hover{color: #370e9b; }
 td:hover{ transform:scale(1.05); color:#00b560;
 }
 .buttons:hover{ transform:scale(1.05);background:#370e9b; color:white;}

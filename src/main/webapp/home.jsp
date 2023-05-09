@@ -14,8 +14,8 @@
 <body>
 <div>
 
-	<h1>Welcome, Here is the Home page where you can change Enrollments</h1>
-
+	<h1>Welcome, Here is the Home page where course can change Enrollments</h1>
+	<hr>
 	<section class= "fieldOne" style="margin-top:10%;">
 		<form action="homePage" method="post">
 	<table >
@@ -101,8 +101,8 @@
 	padding:10px 30px;
 	border-top:1px solid #fff;}
 	
-	h1{ text-align:center;}
-	
+	h1{ font-size: 3rem;text-align:center; color:#a55a51}
+	hr{width: 60%; border-top: 2px solid red;}
 	.selection{font-size:16px; width:70px; height:40px; border-radius:20px; text-align:center;}
 	
 	.buttons{ margin-left:50%;}

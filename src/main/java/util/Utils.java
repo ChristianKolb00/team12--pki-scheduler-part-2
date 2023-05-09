@@ -1,10 +1,8 @@
 package util;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import parser.Aggregator;
-import parser.Constants;
 import parser.Course;
 import parser.Room;
 
@@ -22,23 +20,11 @@ public class Utils {
 		return A;
 	}
 
-	//Reassign Courses with Same Time to a different Room 
-	public String reassignRoomSameTime(Course courseTitle, String newRoomNum){
-		
-		String oldRoomNum=courseTitle.getRoom().getRoomNumber();
-		
-		int length = oldRoomNum.length();
-	    oldRoomNum = oldRoomNum.substring(length - 3);//TODO: this doesnt work as there are 3 and 4 character long rooms
-	    
-	    courseTitle.setRoom(A.findRoomByNum(oldRoomNum));
-		
-		String result=courseTitle+" Room PKI "+oldRoomNum+" was reassigned to Room PKI "+ newRoomNum+"";
-		return result;
-	  }
+	/*
+	 * Params: c is course and max enrollment is the wanted enrollment to expand
+	 * Return: A string array of string contain room, capacity, and time
+	 */
 	
-	
-	
-	// Finds a list of rooms that are open at the same time as the course passed.
 	public  String[] findRoomSameTime(Course c,int maxEnrollement){
 		
 		Room[] filtered=findRoomsLargerThanMaxEnrollment(maxEnrollement);
@@ -46,8 +32,8 @@ public class Utils {
 		
 		for (int i=0;i<filtered.length;i++) {
 			if (!course[i].getCourseMeeting().equals(c.getCourseMeeting())) {
-				String ret="Room: "+filtered[i].getRoomNumber()+" ,Capacity: "+
-			filtered[i].getCapacity()+" ,Open at "+c.getCourseMeeting()+" : Yes";
+				String ret="Room: "+filtered[i].getRoomNumber()+", Max Capacity: "+
+			filtered[i].getCapacity()+", Open at "+c.getCourseMeeting()+" : Yes";
 				findRoomSameTime.add(ret);
 			}	
 		}
@@ -75,7 +61,8 @@ public class Utils {
 	    			if(c.getMeetingPattern()<4) { current = 0;}
 	    			else { current = 1;}
 	    			if(rand == current) {
-	    				if(course[i].getMeetingDuration() == c.getMeetingDuration()) {
+	    				if(course[i].getMeetingDuration() == c.getMeetingDuration()
+	    						&&course[i]!=c) {
 		    				diffTimeArray.add(course[i]);
 		    			}
 	    			}
@@ -83,6 +70,11 @@ public class Utils {
 		}
 		return diffTimeArray;
 	}
+	/*
+	 * Params: a and b are two courses to be swapped
+	 * This method return a string showing what two classrooms and time are swapped
+	 * When swapping, two courses' time and room are swapped
+	 */
 	public String timeSwap(Course a, Course b) {
 		
 		try {
@@ -119,6 +111,10 @@ public class Utils {
 		
 		return null;
 	}
+	/*
+	 * Param: a and b are two courses
+	 * Return: a string that tell what two rooms are swapped
+	 */
 	public String roomSwap(Course a, Course b) {
 		
 		try {
@@ -151,47 +147,6 @@ public class Utils {
 		}
 		
 		return null;
-	}
-	
-	// Swap two classes
-	public  String roomSwap(String courseTitle1,String courseTitle2){
-
-		// Find index of each course
-		int position1=getCourseIndex (courseTitle1);
-		int position2=getCourseIndex (courseTitle2);
-		if (position1<0 || position2<0 ) {
-			return "ERROR: course title does not exist"; 
-		}
-		
-		// Capacity of each course
-		int courseTitle1Capacity=course[position1].getRoom().getCapacity();
-		int courseTitle2Capacity=course[position2].getRoom().getCapacity();
-		
-		// Max enrollment of each course
-		int courseTitle1MaxEnrollment = course[position1].getMaxEnrollment();
-		int courseTitle2MaxEnrollment = course[position2].getMaxEnrollment();
-		
-		
-		if (courseTitle1MaxEnrollment<=courseTitle2Capacity && courseTitle2MaxEnrollment<=courseTitle1Capacity) {
-			
-			Room classRoom1=course[position1].getRoom();
-			Room classRoom2=course[position2].getRoom();
-			Room tempRoom=classRoom1;
-			
-			//Swap rooms
-			course[position1].setRoom(classRoom2);
-			course[position2].setRoom(tempRoom);
-			
-			String ret="Course <"+courseTitle1+"> was moved from Room<PKI "+classRoom1.getRoomNumber()+
-					"> to Room<PKI "+course[position1].getRoom().getRoomNumber()+
-					">\nCourse <"+courseTitle2+"> was moved from Room<PKI "+classRoom2.getRoomNumber()+
-					"> to Room<PKI "+course[position2].getRoom().getRoomNumber()+">";
-			
-			return ret;
-			
-		}
-
-		return "ERROR: Max Enrollment Exceeds Rooms Capacity";
 	}
 	
 	
@@ -228,57 +183,25 @@ public class Utils {
     	return lroom;
 	}
 	
-	// Find course index/position in Course[] using courseTitle
-	private int getCourseIndex (String courseTitle) {
-		int position=-1;
-		for(int i=0; i<course.length;i++) {
-			if(course[i].getCourseSection().equals(courseTitle)) {
-				position=i;
-				break;	
+	//Reassign Courses with Same Time to a different Room 
+		public String reassignRoomSameTime(Course courseTitle, String newRoomNum){
+			try {
+				String oldRoomNum=courseTitle.getRoom().getRoomNumber();
+				
+				int length = oldRoomNum.length();
+				oldRoomNum = oldRoomNum.substring(length - 3);//TODO: this doesnt work as there are 3 and 4 character long rooms
+				courseTitle.release();
+				courseTitle.setRoom(A.findRoomByNum(oldRoomNum));
+				courseTitle.setCourseMeeting(courseTitle.getCourseMeeting());
+				courseTitle.schedule();
+				String result=courseTitle.getCourseSection()+", Room PKI "+oldRoomNum
+						+" was reassigned to Room PKI "+ newRoomNum+", Same Time";
+				return result;
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-		}
-		return position;
-	}
-	
-
-	private String getTimeFromSlot(int timeSlot) {
-	    int hour = (timeSlot / 4);
-	    int minute = (timeSlot % 4) * 15;
-	    String ampm = (hour < 12) ? "am" : "pm";
-	    if (hour == 0) {
-	        hour = 12;
-	    } else if (hour > 12) {
-	        hour -= 12;
-	    }
-	    return String.format("%d:%02d%s", hour, minute, ampm);
-	}
-	private static String[] getRanges(List<Integer> numbers) {
-	        if (numbers == null || numbers.isEmpty()) {
-	            return new String[0];
-	        }
-
-	        List<String> ranges = new ArrayList<>();
-	        int start = numbers.get(0);
-	        int end = numbers.get(0);
-
-	        for (int i = 1; i < numbers.size(); i++) {
-	            int current = numbers.get(i);
-	            if (current == end + 1) {
-	                end = current;
-	            } else {
-	                ranges.add(buildRangeString(start, end));
-	                start = end = current;
-	            }
-	        }
-	        ranges.add(buildRangeString(start, end));
-	        return ranges.toArray(new String[0]);
-	    }
-
-	    private static String buildRangeString(int start, int end) {
-	        if (start == end) {
-	            return String.valueOf(start);
-	        } else {
-	            return start + "-" + end;
-	        }
-	    }	
+			return null;
+		  }
+		
+		
 }

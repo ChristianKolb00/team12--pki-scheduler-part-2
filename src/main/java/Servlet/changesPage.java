@@ -50,36 +50,31 @@ public class changesPage extends HttpServlet {
 			String feedback;
 			String courseTitle = (String) session.getAttribute("course");
 			Course courseTitles = (Course) u.getAggregator().findCourse(courseTitle);
-			
+			//if selection is for open rooms
 			if(selection > results.size()) {
 				result = results2.get(selection-results.size()-1);
 				String[] parser = result.split(",");
 				String[] parseCourseTitle = parser[1].split(":");
 				Course courseTwo = u.getAggregator().findCourse(parseCourseTitle[1].trim());
-				 feedback= u.timeSwap(courseTitles, courseTwo);
-			}else {
+				 feedback= u.timeSwap(courseTitles, courseTwo); 
+				 //timeswap include time and classroom swap
+			}else { //if selection is from swappable courses
 				result = results.get(selection-1);
 				String[] parseRoom = result.split(",");
 				String[] parseRoomNumber = parseRoom[0].split(":");
 				 
 				 feedback = u.reassignRoomSameTime(courseTitles, parseRoomNumber[1].trim());
+				 //roomchange essentially
 			}
-			
-			
-			
-			
-			
-			
-			
 			System.out.println(feedback);
 			
 			if(selection == -1) {
-				
+				//check for impossible selection, but it wont happen
 			} else {
 				session.setAttribute("feedback", feedback);
 				session.setAttribute("selection", selection);
 				session.setAttribute("result", result);
-				response.sendRedirect("summary.jsp?selection="+selection+"&result="+result);
+				response.sendRedirect("summary.jsp?selection="+selection);
 			}
 		}catch(NumberFormatException e) {
 			request.setAttribute("errorMessage", "Please select a different choice");
