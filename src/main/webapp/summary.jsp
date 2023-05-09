@@ -42,13 +42,22 @@
 	
 		<div class="container2">
 		
+			
+			<form action="updataCSV" method="post">
+			<table>
+			<tr> <td>
 			<a href="/pkiClassroom/home.jsp">
 				<button class="buttons">Back</button>
 			</a>
+				<input style="font-size:20px;" type="submit" class="buttons" 
+				name= "submit" value="Updata CSV Files"/>
+			</td></tr>
+			</table>
 			
-			<button class="buttons">Download CSV</button>
+			</form>
+			
 		
-			<button class="buttons large"> Download per room schedule</button>
+		
 		
 		</div>
 	</section>
