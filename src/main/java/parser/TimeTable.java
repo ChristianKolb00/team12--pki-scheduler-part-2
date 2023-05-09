@@ -117,6 +117,31 @@ public class TimeTable {
 		}
 	}
 	
+	/**
+	 * Converts this TimeTable's full schedule into a time column day row csv.
+	 * @return a csv ready String of the entire table's descriptors
+	 */
+	protected String output()
+	{
+		String ret = "";
+		String[] days = new String[] {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		for (int i = 0; i < table.length; i++)
+		{
+			ret = ret.concat(days[i] + ",");//First column day
+			for (int j = 0; j < table[i].length; j++)
+			{
+				if(table[i][j] == blocker)//Blackout time check
+					ret = ret.concat("Unavailable,");
+				else if(table[i][j] == null)//Available check
+					ret = ret.concat("Available,");
+				else//Course check
+					ret = ret.concat(table[i][j].getCourseSection() + ",");
+			}
+			ret = ret.concat("\n");//Next line for next day
+		}
+		return ret;
+	}
+	
 	//Helpers
 	/**
 	 * Used to checking if time slots are available. The length of the returned array can be used to easily define some cases:

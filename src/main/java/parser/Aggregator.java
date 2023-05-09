@@ -81,6 +81,21 @@ public class Aggregator {
 		return rooms;
 	}
 	
+	//Functional Methods
+	/**
+	 * Aggregator level call to output all file changes, application should be closed after execution
+	 * @return true if output is successful
+	 */
+	public boolean finalOutput()
+	{
+		boolean flag = true;
+		for(int i = 0; i<documents.length; i++)
+		{
+			flag = flag && documents[i].output();
+		}
+		return flag;
+	}
+	
 	//Finders
 	/**
 	 * Lookup by String to find the associated relevant Course
@@ -238,6 +253,5 @@ public class Aggregator {
 			ret = ret.concat(documents[i].toString() + "\n\n");
 		}
 		return ret;
-	}
-	
+	}	
 }

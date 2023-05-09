@@ -1,8 +1,11 @@
 package parser;
 
 import java.io.BufferedReader;
+import java.sql.Timestamp;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,6 +36,7 @@ public class Document {
 		String line = "";
 		//Make a line object for every line in the document into a 2d array
 		try {
+			//System.out.println(path);
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			while ((line = br.readLine())!= null) {
 				//To handle the \n in some comment fields
@@ -53,6 +57,115 @@ public class Document {
 			e.printStackTrace();
 		}
 		file = path;
+	}
+	
+	/**
+	 * Final call that triggers document to output change log, backup copy, and new file.
+	 * @return true if successful
+	 */
+	public boolean output()
+	{
+		boolean proceed = true;
+		proceed = outputBackup();
+		if(!proceed)
+		{
+			System.out.println("Rename failure");
+			return proceed;
+		}
+		proceed = outputNew();
+		if(!proceed)
+		{
+			System.out.println("Creation failure");
+			return proceed;
+		}
+		proceed = outputChanges();
+		return proceed;
+	}
+	
+	/**
+	 * Outputs changes to file to change log file, creates change log if it does not exist
+	 * @return true if log appended successfully
+	 */
+	private boolean outputChanges()
+	{
+		File sourceFile = new File(file);
+		File changeLog = new File(Constants.PATH+"changelog.txt");
+		try {
+			if(!changeLog.exists())
+				changeLog.createNewFile();
+			FileWriter outting = new FileWriter(changeLog,true);
+			for(int i = 0; i < docLines.size(); i++)
+			{
+				if(docLines.get(i) instanceof Course)
+				{
+					if(((Course)docLines.get(i)).changed)
+					{
+						outting.write(docLines.get(i).outputOriginal());
+						outting.write("Changed to:\n");
+						outting.write(docLines.get(i).output());
+					}
+				}
+			}
+			outting.close();
+		}
+		catch(Exception e){
+			System.out.println(e);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Creates a backup file using the original Line storage
+	 * @return true if rename is successful
+	 */
+	private boolean outputBackup()
+	{
+		/*
+		File origFile = new File(file);
+		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
+		return origFile.renameTo(backupFile);Fix this it does not work for some reason
+		*/
+		//Workaround
+		File backupFile = new File(file.substring(0,file.length()-4) + "_backup_" + Constants.backupTime + file.substring(file.length()-4));
+		try
+		{
+			backupFile.createNewFile();
+			FileWriter outting = new FileWriter(backupFile,false);
+			for(int i = 0; i < docLines.size(); i++)
+			{
+					outting.write(docLines.get(i).outputOriginal());
+			}
+			outting.close();
+		}
+		catch(Exception e){
+			System.out.println(e);
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Overwrites original file with the new schedule
+	 * @return true if the write is successful
+	 */
+	private boolean outputNew()
+	{
+		File origFile = new File(file);
+		try
+		{
+			FileWriter outting = new FileWriter(origFile,false);
+			for (int i = 0; i < docLines.size(); i++)
+				outting.write(docLines.get(i).output());
+			outting.close();
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
