@@ -1,4 +1,15 @@
 <map id="parser.Room.getRoomNumber" name="parser.Room.getRoomNumber">
-<area shape="rect" id="node1" title=" " alt="" coords="212,5,409,31"/>
-<area shape="rect" id="node2" href="$classparser_1_1_course.html#affbe45f37d12a7710b34fa56d5677404" title=" " alt="" coords="5,5,164,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="739,162,936,188"/>
+<area shape="rect" id="node2" href="$class_servlet_1_1home_page.html#a1507f3064a196bc96e05f6b76f59c7bb" title=" " alt="" coords="264,7,429,34"/>
+<area shape="rect" id="node3" href="$classparser_1_1_aggregator.html#add012aa37ffa0c12da8ac1592a95aef9" title=" " alt="" coords="506,124,688,167"/>
+<area shape="rect" id="node4" href="$classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92" title=" " alt="" coords="238,192,455,219"/>
+<area shape="rect" id="node7" href="$classutil_1_1_utils.html#aae88c52b2cd5a34b704c0c79fda4d819" title=" " alt="" coords="503,74,691,100"/>
+<area shape="rect" id="node9" href="$classparser_1_1_course.html#affbe45f37d12a7710b34fa56d5677404" title=" " alt="" coords="518,266,676,292"/>
+<area shape="rect" id="node11" href="$classutil_1_1_utils.html#aff4e38d34282e1957a77888a27ba5fac" title=" " alt="" coords="282,315,411,342"/>
+<area shape="rect" id="node5" href="$class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="6,255,189,282"/>
+<area shape="rect" id="node6" href="$classtesting_1_1_test_util_methods.html#a198bde59ff04bc5e0229e0523a9b2016" title=" " alt="" coords="5,184,190,227"/>
+<area shape="rect" id="node8" href="$classtesting_1_1_test_util_methods.html#a3f29233a28fe070c53c4a9c0ada75d04" title=" " alt="" coords="254,66,439,108"/>
+<area shape="rect" id="node10" href="$classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="263,264,430,291"/>
+<area shape="rect" id="node12" href="$classutil_1_1_util_test.html#ac3bed8605f808eb4783794f5a1eba31b" title=" " alt="" coords="38,314,157,340"/>
+<area shape="rect" id="node13" href="$classtesting_1_1_test_util_methods.html#ac6cb347edbab453c9ecd10b983e71241" title=" " alt="" coords="5,364,190,407"/>
 </map>

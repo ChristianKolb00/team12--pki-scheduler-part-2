@@ -106,10 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af4ae2ccdb9971b541a495d4e12098789"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bcb42ce9fa48282eed634c96bc17356"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classparser_1_1_room.html">Room</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_aggregator.html#a5bcb42ce9fa48282eed634c96bc17356">getRooms</a> ()</td></tr>
 <tr class="separator:a5bcb42ce9fa48282eed634c96bc17356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f68f80b7a95f3078101afb69060d38"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_aggregator.html#ad7f68f80b7a95f3078101afb69060d38">finalOutput</a> ()</td></tr>
+<tr class="separator:ad7f68f80b7a95f3078101afb69060d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2f16c8a1521f9f8c18f35f1a457c4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classparser_1_1_course.html">Course</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_aggregator.html#a6b2f16c8a1521f9f8c18f35f1a457c4b">findCourse</a> (String name)</td></tr>
+<tr class="separator:a6b2f16c8a1521f9f8c18f35f1a457c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add012aa37ffa0c12da8ac1592a95aef9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classparser_1_1_room.html">Room</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_aggregator.html#add012aa37ffa0c12da8ac1592a95aef9">findRoomByNum</a> (String name)</td></tr>
+<tr class="separator:add012aa37ffa0c12da8ac1592a95aef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c5e732d1b138a79dc8fe265c063aee0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_aggregator.html#a9c5e732d1b138a79dc8fe265c063aee0">toString</a> ()</td></tr>
 <tr class="separator:a9c5e732d1b138a79dc8fe265c063aee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The master controller class, that handles taking in multiple CSVs, turning each into its own Document. Creates a master list of Rooms, finds all Courses, filters Courses to relevant ones, schedules those Courses, and creates an easy access list. Also contains lookup methods for Courses and Rooms. </p><dl class="section author"><dt>Author</dt><dd>jwillson </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a85523ee2b221de1d5e508e256d64e314" name="a85523ee2b221de1d5e508e256d64e314"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85523ee2b221de1d5e508e256d64e314">&#9670;&#160;</a></span>Aggregator()</h2>
 
@@ -125,10 +133,136 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor of aggregator, uses an array of file paths as Strings </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">paths</td><td>- an array of file paths </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad7f68f80b7a95f3078101afb69060d38" name="ad7f68f80b7a95f3078101afb69060d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f68f80b7a95f3078101afb69060d38">&#9670;&#160;</a></span>finalOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean parser.Aggregator.finalOutput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Aggregator level call to output all file changes, application should be closed after execution </p><dl class="section return"><dt>Returns</dt><dd>true if output is successful </dd></dl>
+
+<p class="reference">References <a class="el" href="classparser_1_1_document.html#a829162dafdf4adba6dfe9a0ef1a0de23">parser.Document.output()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_cgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_cgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_cgraph" id="aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,196,32"/>
+<area shape="rect" href="classparser_1_1_document.html#a829162dafdf4adba6dfe9a0ef1a0de23" title=" " alt="" coords="244,5,404,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_icgraph" id="aclassparser_1_1_aggregator_ad7f68f80b7a95f3078101afb69060d38_icgraph">
+<area shape="rect" title=" " alt="" coords="223,5,413,32"/>
+<area shape="rect" href="class_servlet_1_1updata_c_s_v.html#ac53c96296433c8eb657b4bd2b8008255" title=" " alt="" coords="5,5,175,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6b2f16c8a1521f9f8c18f35f1a457c4b" name="a6b2f16c8a1521f9f8c18f35f1a457c4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b2f16c8a1521f9f8c18f35f1a457c4b">&#9670;&#160;</a></span>findCourse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classparser_1_1_course.html">Course</a> parser.Aggregator.findCourse </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lookup by String to find the associated relevant Course </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>- the name of the Course being looked for in XXXX YYYY-ZZZ format </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the associated relevant Course object </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_a6b2f16c8a1521f9f8c18f35f1a457c4b_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_a6b2f16c8a1521f9f8c18f35f1a457c4b_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_a6b2f16c8a1521f9f8c18f35f1a457c4b_icgraph" id="aclassparser_1_1_aggregator_a6b2f16c8a1521f9f8c18f35f1a457c4b_icgraph">
+<area shape="rect" title=" " alt="" coords="236,31,425,57"/>
+<area shape="rect" href="class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="5,5,188,32"/>
+<area shape="rect" href="class_servlet_1_1home_page.html#a1507f3064a196bc96e05f6b76f59c7bb" title=" " alt="" coords="14,56,179,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="add012aa37ffa0c12da8ac1592a95aef9" name="add012aa37ffa0c12da8ac1592a95aef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add012aa37ffa0c12da8ac1592a95aef9">&#9670;&#160;</a></span>findRoomByNum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classparser_1_1_room.html">Room</a> parser.Aggregator.findRoomByNum </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lookup by String to find the associated valid Room </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>- the number of the room </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the associated Room object </dd></dl>
+
+<p class="reference">References <a class="el" href="classparser_1_1_room.html#a88f259563290ed669ab9924eab006db3">parser.Room.getRoomNumber()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_cgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_cgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_cgraph" id="aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,188,48"/>
+<area shape="rect" href="classparser_1_1_room.html#a88f259563290ed669ab9924eab006db3" title=" " alt="" coords="236,13,432,40"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_icgraph" id="aclassparser_1_1_aggregator_add012aa37ffa0c12da8ac1592a95aef9_icgraph">
+<area shape="rect" title=" " alt="" coords="503,27,685,69"/>
+<area shape="rect" href="classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92" title=" " alt="" coords="238,35,455,61"/>
+<area shape="rect" href="class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="6,5,189,32"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#a198bde59ff04bc5e0229e0523a9b2016" title=" " alt="" coords="5,56,190,99"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="af4ae2ccdb9971b541a495d4e12098789" name="af4ae2ccdb9971b541a495d4e12098789"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4ae2ccdb9971b541a495d4e12098789">&#9670;&#160;</a></span>getCourseNames()</h2>
 
@@ -143,15 +277,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classutil_1_1_tester.html#a7ef94d79f7d437212c75077abab65bdc">util.Tester.main()</a>.</p>
+<p>Accessor for the array of all Course names </p><dl class="section return"><dt>Returns</dt><dd>all relevant Course names </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparser_1_1_aggregator_af4ae2ccdb9971b541a495d4e12098789_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_af4ae2ccdb9971b541a495d4e12098789_icgraph" alt=""/></div>
 <map name="aclassparser_1_1_aggregator_af4ae2ccdb9971b541a495d4e12098789_icgraph" id="aclassparser_1_1_aggregator_af4ae2ccdb9971b541a495d4e12098789_icgraph">
-<area shape="rect" title=" " alt="" coords="164,5,352,45"/>
-<area shape="rect" href="classutil_1_1_tester.html#a7ef94d79f7d437212c75077abab65bdc" title=" " alt="" coords="5,13,116,38"/>
+<area shape="rect" title=" " alt="" coords="221,23,408,65"/>
+<area shape="rect" href="classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="5,5,173,32"/>
+<area shape="rect" href="classutil_1_1_tester.html#a7ef94d79f7d437212c75077abab65bdc" title=" " alt="" coords="34,56,144,83"/>
 </map>
 </div>
 
@@ -171,6 +305,18 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Accessor for the array of relevant Courses </p><dl class="section return"><dt>Returns</dt><dd>all relevant Courses </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_a3d67b2906c31f0da087a8e3760c8c1fb_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_a3d67b2906c31f0da087a8e3760c8c1fb_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_a3d67b2906c31f0da087a8e3760c8c1fb_icgraph" id="aclassparser_1_1_aggregator_a3d67b2906c31f0da087a8e3760c8c1fb_icgraph">
+<area shape="rect" title=" " alt="" coords="221,56,415,83"/>
+<area shape="rect" href="classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="5,5,173,32"/>
+<area shape="rect" href="classutil_1_1_util_test.html#ac3bed8605f808eb4783794f5a1eba31b" title=" " alt="" coords="30,56,148,83"/>
+<area shape="rect" href="classutil_1_1_utils.html#aa069760e2f3e6709cfe858892e56dd0f" title=" " alt="" coords="40,107,138,133"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -188,6 +334,16 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Accessor for the array of all valid Rooms </p><dl class="section return"><dt>Returns</dt><dd>all valid Rooms </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_aggregator_a5bcb42ce9fa48282eed634c96bc17356_icgraph.png" border="0" usemap="#aclassparser_1_1_aggregator_a5bcb42ce9fa48282eed634c96bc17356_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_aggregator_a5bcb42ce9fa48282eed634c96bc17356_icgraph" id="aclassparser_1_1_aggregator_a5bcb42ce9fa48282eed634c96bc17356_icgraph">
+<area shape="rect" title=" " alt="" coords="152,5,339,32"/>
+<area shape="rect" href="classutil_1_1_utils.html#aa069760e2f3e6709cfe858892e56dd0f" title=" " alt="" coords="5,5,104,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -205,10 +361,9 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Standard output format for debugging </p>
 
 <p class="reference">References <a class="el" href="classparser_1_1_aggregator.html#a9c5e732d1b138a79dc8fe265c063aee0">parser.Aggregator.toString()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_aggregator.html#a9c5e732d1b138a79dc8fe265c063aee0">parser.Aggregator.toString()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

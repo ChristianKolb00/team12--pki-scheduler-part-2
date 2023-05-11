@@ -213,10 +213,9 @@ public class Utils {
 		
 		return null;
 	}
-	/*
+	/*Not used
 	 * Param: a and b are two courses
 	 * Return: a string that tell what two rooms are swapped
-	 */
 	public String roomSwap(Course a, Course b) {
 		
 		try {
@@ -250,7 +249,7 @@ public class Utils {
 		
 		return null;
 	}
-	
+	*/
 	
 	
 	//Reassign Courses with Same Time to a different Room 

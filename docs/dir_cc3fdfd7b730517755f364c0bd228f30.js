@@ -5,6 +5,7 @@ var dir_cc3fdfd7b730517755f364c0bd228f30 =
     [ "Course.java", "_course_8java.html", "_course_8java" ],
     [ "Document.java", "_document_8java.html", "_document_8java" ],
     [ "Line.java", "_line_8java.html", "_line_8java" ],
+    [ "ParserTester.java", "_parser_tester_8java.html", "_parser_tester_8java" ],
     [ "Professor.java", "_professor_8java.html", "_professor_8java" ],
     [ "Room.java", "_room_8java.html", "_room_8java" ],
     [ "ScheduleException.java", "_schedule_exception_8java.html", "_schedule_exception_8java" ],

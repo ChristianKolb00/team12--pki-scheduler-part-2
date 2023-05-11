@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['release_0',['release',['../classparser_1_1_course.html#af37e8ef06ee62194d40c5457af1f2c4e',1,'parser.Course.release()'],['../classparser_1_1_time_table.html#a0164d1bca8a955c1a2b127b66297d1eb',1,'parser.TimeTable.release()']]],
-  ['releaseoriginal_1',['releaseOriginal',['../classparser_1_1_course.html#a4916e0a79fe9f13e95560d89d9ed39ad',1,'parser::Course']]],
-  ['restore_2',['restore',['../classparser_1_1_time_table.html#a6873135bd2b0639e88c75850b960d469',1,'parser::TimeTable']]],
-  ['restorerelease_3',['restoreRelease',['../classparser_1_1_time_table.html#a89b10097477f809e351868f623cf32ed',1,'parser::TimeTable']]],
-  ['revert_4',['revert',['../classparser_1_1_course.html#a079665dad66922d48d9316c40231cf6a',1,'parser::Course']]],
-  ['room_5',['Room',['../classparser_1_1_room.html#ac0d52d98088d05bc0dde7870bbd8ba74',1,'parser.Room.Room(String b, String n, int ca, int co)'],['../classparser_1_1_room.html#a50651bee38804958756819c0bea0f213',1,'parser.Room.Room(Object[] a)']]]
+  ['output_0',['output',['../classparser_1_1_course.html#a59d4a64ec5f0f01bf85332b37398aedd',1,'parser.Course.output()'],['../classparser_1_1_document.html#a829162dafdf4adba6dfe9a0ef1a0de23',1,'parser.Document.output()'],['../classparser_1_1_line.html#a98251634ec78c639ecb60c3e0307cda5',1,'parser.Line.output()'],['../classparser_1_1_time_table.html#ac952dbd86cdaac25feb094141c094931',1,'parser.TimeTable.output()']]],
+  ['outputoriginal_1',['outputOriginal',['../classparser_1_1_line.html#a67d9f2f12daf2354d37e2eb10d40842e',1,'parser::Line']]]
 ];

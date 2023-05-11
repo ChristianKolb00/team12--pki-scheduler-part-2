@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['testservlet_0',['TestServlet',['../class_test_servlet.html#aa4de6076e1c6e87483816d87bdd11630',1,'TestServlet']]],
-  ['timetable_1',['TimeTable',['../classparser_1_1_time_table.html#a3cae31dac18af68a25f979260465ab09',1,'parser::TimeTable']]],
-  ['tostring_2',['toString',['../classparser_1_1_aggregator.html#a9c5e732d1b138a79dc8fe265c063aee0',1,'parser.Aggregator.toString()'],['../classparser_1_1_course.html#aa794fd1c72454f684e480b885d394077',1,'parser.Course.toString()'],['../classparser_1_1_document.html#aa574e8dc2bc287b913575fab5e392289',1,'parser.Document.toString()'],['../classparser_1_1_line.html#a2c34e695eef0591451618fa704a76465',1,'parser.Line.toString()']]]
+  ['reassignroomsametime_0',['reassignRoomSameTime',['../classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92',1,'util::Utils']]],
+  ['release_1',['release',['../classparser_1_1_course.html#af37e8ef06ee62194d40c5457af1f2c4e',1,'parser.Course.release()'],['../classparser_1_1_time_table.html#a0164d1bca8a955c1a2b127b66297d1eb',1,'parser.TimeTable.release(Course c)']]],
+  ['restore_2',['restore',['../classparser_1_1_time_table.html#a6873135bd2b0639e88c75850b960d469',1,'parser::TimeTable']]],
+  ['revert_3',['revert',['../classparser_1_1_course.html#a079665dad66922d48d9316c40231cf6a',1,'parser::Course']]],
+  ['room_4',['Room',['../classparser_1_1_room.html#ac0d52d98088d05bc0dde7870bbd8ba74',1,'parser.Room.Room(String b, String n, int ca, int co)'],['../classparser_1_1_room.html#a50651bee38804958756819c0bea0f213',1,'parser.Room.Room(Object[] a)']]]
 ];

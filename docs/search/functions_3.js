@@ -1,22 +1,9 @@
 var searchData=
 [
-  ['getbuilding_0',['getBuilding',['../classparser_1_1_course.html#a2f335bb465d263dd55d7cc13427aa324',1,'parser.Course.getBuilding()'],['../classparser_1_1_room.html#a6f6b18943ac13e8f9018b99b17f0cb0a',1,'parser.Room.getBuilding()']]],
-  ['getcapacity_1',['getCapacity',['../classparser_1_1_room.html#aa56a819c0735bf83cb4e1a99d38cfe18',1,'parser::Room']]],
-  ['getcomputercapacity_2',['getComputerCapacity',['../classparser_1_1_room.html#a367f7f126637efdd10657a7e87332d24',1,'parser::Room']]],
-  ['getcourseat_3',['getCourseAt',['../classparser_1_1_time_table.html#a9c772c22c17cd20ccbb233e546366915',1,'parser::TimeTable']]],
-  ['getcoursenames_4',['getCourseNames',['../classparser_1_1_aggregator.html#af4ae2ccdb9971b541a495d4e12098789',1,'parser::Aggregator']]],
-  ['getcourses_5',['getCourses',['../classparser_1_1_aggregator.html#a3d67b2906c31f0da087a8e3760c8c1fb',1,'parser::Aggregator']]],
-  ['getcoursesection_6',['getCourseSection',['../classparser_1_1_course.html#ae0ef188c5f5b3a0bbb0a3a7117baefbc',1,'parser::Course']]],
-  ['getdays_7',['getDays',['../classparser_1_1_course.html#a8913b8348b62525957a4cf0a5068553b',1,'parser::Course']]],
-  ['getenrollment_8',['getEnrollment',['../classparser_1_1_course.html#ae31d03862b491d7441f1e8915dc16148',1,'parser::Course']]],
-  ['getlines_9',['getLines',['../classparser_1_1_document.html#a799ac49ff1fb3219465d7e6d118afdd6',1,'parser::Document']]],
-  ['getmaxenrollment_10',['getMaxEnrollment',['../classparser_1_1_course.html#a7ab49ab87f0cd4b7fbfae004cb914b2b',1,'parser::Course']]],
-  ['getmeetingpattern_11',['getMeetingPattern',['../classparser_1_1_course.html#ae1a87a305e9e098f2b8d88c1f02aa5cc',1,'parser::Course']]],
-  ['getname_12',['getName',['../classparser_1_1_professor.html#a23d2a1b47fb96cdc6c67d78f3495ca82',1,'parser::Professor']]],
-  ['getoriginaldays_13',['getOriginalDays',['../classparser_1_1_course.html#a6912aa51a5ca6f63963afc30d4e2ea7c',1,'parser::Course']]],
-  ['getoriginalwebdisplay_14',['getOriginalWebDisplay',['../classparser_1_1_course.html#a515a81915fd09a5564fdafedf6b5bce2',1,'parser::Course']]],
-  ['getroom_15',['getRoom',['../classparser_1_1_course.html#a86d60709f8bf674296ccafdd2f71e54e',1,'parser::Course']]],
-  ['getroomnumber_16',['getRoomNumber',['../classparser_1_1_room.html#a88f259563290ed669ab9924eab006db3',1,'parser::Room']]],
-  ['getrooms_17',['getRooms',['../classparser_1_1_aggregator.html#a5bcb42ce9fa48282eed634c96bc17356',1,'parser::Aggregator']]],
-  ['getwebdisplay_18',['getWebDisplay',['../classparser_1_1_course.html#a5ece347f92dd569800180630f85fa304',1,'parser::Course']]]
+  ['finaloutput_0',['finalOutput',['../classparser_1_1_aggregator.html#ad7f68f80b7a95f3078101afb69060d38',1,'parser::Aggregator']]],
+  ['findcourse_1',['findCourse',['../classparser_1_1_aggregator.html#a6b2f16c8a1521f9f8c18f35f1a457c4b',1,'parser::Aggregator']]],
+  ['findcoursesswap_2',['findCoursesSwap',['../classutil_1_1_utils.html#ad2f44891d38b43238dc3fd3fb65ba2c4',1,'util::Utils']]],
+  ['findroombynum_3',['findRoomByNum',['../classparser_1_1_aggregator.html#add012aa37ffa0c12da8ac1592a95aef9',1,'parser::Aggregator']]],
+  ['findroomsametime_4',['findRoomSameTime',['../classutil_1_1_utils.html#aae88c52b2cd5a34b704c0c79fda4d819',1,'util::Utils']]],
+  ['findroomslargerthanmaxenrollment_5',['findRoomsLargerThanMaxEnrollment',['../classutil_1_1_utils.html#a9888dc0f06701cfd5e6e517c6c5f42fd',1,'util::Utils']]]
 ];

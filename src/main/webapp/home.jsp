@@ -24,13 +24,13 @@
 		<td><select style="font-size:16px;width:150px; height:60px; border-radius:20px; text-align:center;"
 		class="selection" name = "course" id = "course" >
 				<%
-				String pathName = "C:\\Users\\cmlko_ki76ph6\\pkiClassroom\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles\\";
+				String pathName = "D:\\WorkSpaces\\PkiClassroom\\team12--pki-scheduler-part-2\\src\\main\\java\\csvFiles\\";
 				String Path = pathName+ "BIOI1191.csv";
 				String Path2 = pathName+ "BMI1191.csv";
 				String Path3 = pathName+ "CIST_EMIT1191.csv";
-				String Path4 = pathName+ "CSCI1191.csv";
+				String Path4 = pathName+ " CSCI1191.csv";
 				String Path5 = pathName+ "CYBR1191.csv";
-				String Path6 =pathName+ "ISQA1191.csv";
+				String Path6 = pathName+ "ISQA1191.csv";
 				String Path7 = pathName+ "ITIN1191.csv";
 				
 				String[] AllFile = new String[]{Path, Path2, Path3, Path4, Path5, Path6, Path7};
