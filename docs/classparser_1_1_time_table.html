@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classparser_1_1_time_table.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classparser_1_1_time_table-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">parser.TimeTable Class Reference</div></div>
 </div><!--header-->
@@ -112,18 +113,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3cae31dac18af68a25f979260465ab09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c772c22c17cd20ccbb233e546366915"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classparser_1_1_course.html">Course</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a9c772c22c17cd20ccbb233e546366915">getCourseAt</a> (int d, int t)</td></tr>
 <tr class="separator:a9c772c22c17cd20ccbb233e546366915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612a668951ee7af822721d1ce634f7d6"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a612a668951ee7af822721d1ce634f7d6">checkAvailable</a> (int d, int t, int du)</td></tr>
-<tr class="separator:a612a668951ee7af822721d1ce634f7d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6afe2ac4b8701fb1e3dc25a36cee785f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a6afe2ac4b8701fb1e3dc25a36cee785f">set</a> (<a class="el" href="classparser_1_1_course.html">Course</a> c)  throws ScheduleException 	</td></tr>
 <tr class="separator:a6afe2ac4b8701fb1e3dc25a36cee785f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0164d1bca8a955c1a2b127b66297d1eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a0164d1bca8a955c1a2b127b66297d1eb">release</a> (<a class="el" href="classparser_1_1_course.html">Course</a> c)  throws ScheduleException 	</td></tr>
 <tr class="separator:a0164d1bca8a955c1a2b127b66297d1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89b10097477f809e351868f623cf32ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a89b10097477f809e351868f623cf32ed">restoreRelease</a> (<a class="el" href="classparser_1_1_course.html">Course</a> c)  throws ScheduleException 	</td></tr>
-<tr class="separator:a89b10097477f809e351868f623cf32ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6873135bd2b0639e88c75850b960d469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a6873135bd2b0639e88c75850b960d469">restore</a> (<a class="el" href="classparser_1_1_course.html">Course</a> c)  throws ScheduleException 	</td></tr>
 <tr class="separator:a6873135bd2b0639e88c75850b960d469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5aab1f1cd2c962b7312d7fab8c381e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classparser_1_1_course.html">Course</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#a4a5aab1f1cd2c962b7312d7fab8c381e">checkAvailable</a> (int d, int t, int du)</td></tr>
+<tr class="separator:a4a5aab1f1cd2c962b7312d7fab8c381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ac952dbd86cdaac25feb094141c094931"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_time_table.html#ac952dbd86cdaac25feb094141c094931">output</a> ()</td></tr>
+<tr class="separator:ac952dbd86cdaac25feb094141c094931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The main function of this object is to create a timetable for M-Sa from 0:00 to 11:45pm using 15min segment, or 96 segment day time. Using this system, courses are scheduled into derivative object types to make sure there is no conflict in those derivatives(Rooms and Professors). </p><dl class="section author"><dt>Author</dt><dd>jwillson </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3cae31dac18af68a25f979260465ab09" name="a3cae31dac18af68a25f979260465ab09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cae31dac18af68a25f979260465ab09">&#9670;&#160;</a></span>TimeTable()</h2>
 
@@ -138,20 +144,21 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initializes the table by creating, and then applying blackout rules </p>
 
 <p class="reference">References <a class="el" href="classparser_1_1_constants.html#aaa69f1627cb3427592e0fd3c36275159">parser.Constants.NUM_DAYS</a>, and <a class="el" href="classparser_1_1_constants.html#ad22e503d4126525047b6646566d3db4c">parser.Constants.NUM_FIFTEENS</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a612a668951ee7af822721d1ce634f7d6" name="a612a668951ee7af822721d1ce634f7d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a612a668951ee7af822721d1ce634f7d6">&#9670;&#160;</a></span>checkAvailable()</h2>
+<a id="a4a5aab1f1cd2c962b7312d7fab8c381e" name="a4a5aab1f1cd2c962b7312d7fab8c381e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5aab1f1cd2c962b7312d7fab8c381e">&#9670;&#160;</a></span>checkAvailable()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean parser.TimeTable.checkAvailable </td>
+          <td class="memname"><a class="el" href="classparser_1_1_course.html">Course</a>[] parser.TimeTable.checkAvailable </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>d</em>, </td>
@@ -175,16 +182,30 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_time_table.html#a6afe2ac4b8701fb1e3dc25a36cee785f">parser.TimeTable.set()</a>.</p>
+<p>Used to checking if time slots are available. The length of the returned array can be used to easily define some cases: length = 0 means the slot is free and scheduling can occur, 1 means a single swap could be possible but needs to be checked in other direction and 2+ is a case not relevant in current implementation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>- day </td></tr>
+    <tr><td class="paramname">t</td><td>- time </td></tr>
+    <tr><td class="paramname">du</td><td>- duration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an array of all Courses that are occupying the checked time slots </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classparser_1_1_time_table_a612a668951ee7af822721d1ce634f7d6_icgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a612a668951ee7af822721d1ce634f7d6_icgraph" alt=""/></div>
-<map name="aclassparser_1_1_time_table_a612a668951ee7af822721d1ce634f7d6_icgraph" id="aclassparser_1_1_time_table_a612a668951ee7af822721d1ce634f7d6_icgraph">
-<area shape="rect" title=" " alt="" coords="403,5,613,31"/>
-<area shape="rect" href="classparser_1_1_time_table.html#a6afe2ac4b8701fb1e3dc25a36cee785f" title=" " alt="" coords="212,5,355,31"/>
-<area shape="rect" href="classparser_1_1_course.html#a9107a58ed826a0c38f976593d0f07f43" title=" " alt="" coords="5,5,164,31"/>
+<div class="center"><img src="classparser_1_1_time_table_a4a5aab1f1cd2c962b7312d7fab8c381e_icgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a4a5aab1f1cd2c962b7312d7fab8c381e_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_time_table_a4a5aab1f1cd2c962b7312d7fab8c381e_icgraph" id="aclassparser_1_1_time_table_a4a5aab1f1cd2c962b7312d7fab8c381e_icgraph">
+<area shape="rect" title=" " alt="" coords="900,72,1110,99"/>
+<area shape="rect" href="classparser_1_1_time_table.html#a6afe2ac4b8701fb1e3dc25a36cee785f" title=" " alt="" coords="709,72,852,99"/>
+<area shape="rect" href="classparser_1_1_course.html#a9107a58ed826a0c38f976593d0f07f43" title=" " alt="" coords="503,72,661,99"/>
+<area shape="rect" href="classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="263,21,430,48"/>
+<area shape="rect" href="classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92" title=" " alt="" coords="238,72,455,99"/>
+<area shape="rect" href="classutil_1_1_utils.html#aff4e38d34282e1957a77888a27ba5fac" title=" " alt="" coords="282,123,411,149"/>
+<area shape="rect" href="class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="6,72,189,99"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#a198bde59ff04bc5e0229e0523a9b2016" title=" " alt="" coords="5,5,190,48"/>
+<area shape="rect" href="classutil_1_1_util_test.html#ac3bed8605f808eb4783794f5a1eba31b" title=" " alt="" coords="38,123,157,149"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#ac6cb347edbab453c9ecd10b983e71241" title=" " alt="" coords="5,173,190,216"/>
 </map>
 </div>
 
@@ -215,6 +236,40 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves the Course object at the specified day and time in 96 segment day time </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>- the day </td></tr>
+    <tr><td class="paramname">t</td><td>- the time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the Course at specified day and time </dd></dl>
+
+</div>
+</div>
+<a id="ac952dbd86cdaac25feb094141c094931" name="ac952dbd86cdaac25feb094141c094931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac952dbd86cdaac25feb094141c094931">&#9670;&#160;</a></span>output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String parser.TimeTable.output </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts this TimeTable's full schedule into a time column day row csv. </p><dl class="section return"><dt>Returns</dt><dd>a csv ready String of the entire table's descriptors </dd></dl>
 
 </div>
 </div>
@@ -233,15 +288,32 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#a4916e0a79fe9f13e95560d89d9ed39ad">parser.Course.releaseOriginal()</a>.</p>
+<p>Deschedules a course at its specified time and days. Double checks to make sure the course is not already descheduled. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>- the Course to be descheduled </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ScheduleException</td><td>- if the Course is not currently scheduled, then an exception is thrown </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparser_1_1_time_table_a0164d1bca8a955c1a2b127b66297d1eb_icgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a0164d1bca8a955c1a2b127b66297d1eb_icgraph" alt=""/></div>
 <map name="aclassparser_1_1_time_table_a0164d1bca8a955c1a2b127b66297d1eb_icgraph" id="aclassparser_1_1_time_table_a0164d1bca8a955c1a2b127b66297d1eb_icgraph">
-<area shape="rect" title=" " alt="" coords="247,5,413,31"/>
-<area shape="rect" href="classparser_1_1_course.html#a4916e0a79fe9f13e95560d89d9ed39ad" title=" " alt="" coords="5,5,199,31"/>
+<area shape="rect" title=" " alt="" coords="699,72,866,99"/>
+<area shape="rect" href="classparser_1_1_course.html#af37e8ef06ee62194d40c5457af1f2c4e" title=" " alt="" coords="503,72,651,99"/>
+<area shape="rect" href="classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="263,21,430,48"/>
+<area shape="rect" href="classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92" title=" " alt="" coords="238,72,455,99"/>
+<area shape="rect" href="classutil_1_1_utils.html#aff4e38d34282e1957a77888a27ba5fac" title=" " alt="" coords="282,123,411,149"/>
+<area shape="rect" href="class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="6,72,189,99"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#a198bde59ff04bc5e0229e0523a9b2016" title=" " alt="" coords="5,5,190,48"/>
+<area shape="rect" href="classutil_1_1_util_test.html#ac3bed8605f808eb4783794f5a1eba31b" title=" " alt="" coords="38,123,157,149"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#ac6cb347edbab453c9ecd10b983e71241" title=" " alt="" coords="5,173,190,216"/>
 </map>
 </div>
 
@@ -262,35 +334,18 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a89b10097477f809e351868f623cf32ed" name="a89b10097477f809e351868f623cf32ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89b10097477f809e351868f623cf32ed">&#9670;&#160;</a></span>restoreRelease()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void parser.TimeTable.restoreRelease </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classparser_1_1_course.html">Course</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td> throws <a class="el" href="classparser_1_1_schedule_exception.html">ScheduleException</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#af37e8ef06ee62194d40c5457af1f2c4e">parser.Course.release()</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classparser_1_1_time_table_a89b10097477f809e351868f623cf32ed_icgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a89b10097477f809e351868f623cf32ed_icgraph" alt=""/></div>
-<map name="aclassparser_1_1_time_table_a89b10097477f809e351868f623cf32ed_icgraph" id="aclassparser_1_1_time_table_a89b10097477f809e351868f623cf32ed_icgraph">
-<area shape="rect" title=" " alt="" coords="203,5,368,45"/>
-<area shape="rect" href="classparser_1_1_course.html#af37e8ef06ee62194d40c5457af1f2c4e" title=" " alt="" coords="5,13,155,38"/>
-</map>
-</div>
+<p>A special variant of schedule, this version uses the immutable Line details to reschedule this Course at its original day and time. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>- the Course to be rescheduled </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ScheduleException</td><td>- if the Course is attempted to be rescheduled, before itself and blockers are descheduled, then an exception is thrown </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -309,17 +364,27 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Schedules a course at its specified time and days. Uses checkAvailable to ensure it is a valid scheduling. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>- the Course to be scheduled </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ScheduleException</td><td>- if the needed time slots are not available, then an exception is thrown with details </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classparser_1_1_time_table.html#a612a668951ee7af822721d1ce634f7d6">parser.TimeTable.checkAvailable()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#a9107a58ed826a0c38f976593d0f07f43">parser.Course.schedule()</a>.</p>
+<p class="reference">References <a class="el" href="classparser_1_1_time_table.html#a4a5aab1f1cd2c962b7312d7fab8c381e">parser.TimeTable.checkAvailable()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_cgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_cgraph" alt=""/></div>
 <map name="aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_cgraph" id="aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" href="classparser_1_1_time_table.html#a612a668951ee7af822721d1ce634f7d6" title=" " alt="" coords="196,5,407,31"/>
+<area shape="rect" title=" " alt="" coords="5,5,148,32"/>
+<area shape="rect" href="classparser_1_1_time_table.html#a4a5aab1f1cd2c962b7312d7fab8c381e" title=" " alt="" coords="196,5,406,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -327,8 +392,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_icgraph.png" border="0" usemap="#aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_icgraph" alt=""/></div>
 <map name="aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_icgraph" id="aclassparser_1_1_time_table_a6afe2ac4b8701fb1e3dc25a36cee785f_icgraph">
-<area shape="rect" title=" " alt="" coords="212,5,355,31"/>
-<area shape="rect" href="classparser_1_1_course.html#a9107a58ed826a0c38f976593d0f07f43" title=" " alt="" coords="5,5,164,31"/>
+<area shape="rect" title=" " alt="" coords="709,72,852,99"/>
+<area shape="rect" href="classparser_1_1_course.html#a9107a58ed826a0c38f976593d0f07f43" title=" " alt="" coords="503,72,661,99"/>
+<area shape="rect" href="classparser_1_1_parser_tester.html#afe9b67bf75ee617263c75fc16182df1e" title=" " alt="" coords="263,21,430,48"/>
+<area shape="rect" href="classutil_1_1_utils.html#a43b55e8a52cf659b564924510b0ded92" title=" " alt="" coords="238,72,455,99"/>
+<area shape="rect" href="classutil_1_1_utils.html#aff4e38d34282e1957a77888a27ba5fac" title=" " alt="" coords="282,123,411,149"/>
+<area shape="rect" href="class_servlet_1_1changes_page.html#ab7d668ddcc69c523370a5ab5b5f1779e" title=" " alt="" coords="6,72,189,99"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#a198bde59ff04bc5e0229e0523a9b2016" title=" " alt="" coords="5,5,190,48"/>
+<area shape="rect" href="classutil_1_1_util_test.html#ac3bed8605f808eb4783794f5a1eba31b" title=" " alt="" coords="38,123,157,149"/>
+<area shape="rect" href="classtesting_1_1_test_util_methods.html#ac6cb347edbab453c9ecd10b983e71241" title=" " alt="" coords="5,173,190,216"/>
 </map>
 </div>
 

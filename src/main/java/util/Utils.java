@@ -27,7 +27,7 @@ public class Utils {
 	
 	public  String[] findRoomSameTime(Course c,int maxEnrollement){
 		
-		Room[] filtered=findRoomsLargerThanMaxEnrollment(maxEnrollement);
+		Room[] filtered=findRoomsLargerThanMaxEnrollment(c,maxEnrollement);
 		ArrayList<String> findRoomSameTime=new ArrayList<String>();
 		
 		for (int i=0;i<filtered.length;i++) {
@@ -41,6 +41,108 @@ public class Utils {
 		findRoomSameTime.toArray(ret);
 		return ret;
 	}		
+
+	/*
+	 * param: maxEnrollment is the maxEnrollment given to find larger rooms
+	 * return a Room array based on maxEnrollment,
+	 * maxEnrollment return based on three divisions, maxEnrollment+7 < 30 or 40 or greater than 40
+	 * for example: if maxEnrollment is 10-23, then it return room arrays of room size between 10-29
+	 * if maxEnrollment is 24-38, then it return room arrays of room size between 24-44
+	 * if maxEnrollment is 39-60, then it return room arrays of room size between 39-60
+	 */
+	public  Room[] findRoomsLargerThanMaxEnrollment(Course cc, int maxEnrollment) {
+    	ArrayList<Room> largerRooms = new ArrayList<>();
+    	
+    	for (int i=0;i<rooms.length;i++) {
+    		if(maxEnrollment + 7 <= 30) {
+    			if (rooms[i].getCapacity() >=maxEnrollment && rooms[i].getCapacity()< 30) {
+    				if(cc.getMeetingPattern()==5) {
+    					if(rooms[i].checkAvailable(0, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+    						if(rooms[i].checkAvailable(2, 
+            						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+            					largerRooms.add(rooms[i]);
+            				}
+        				}
+    				}
+    				else if(cc.getMeetingPattern()==6) {
+    					if(rooms[i].checkAvailable(1, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+    						if(rooms[i].checkAvailable(3, 
+            						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+            					largerRooms.add(rooms[i]);
+            				}
+        				}
+    				}
+    				else {
+    					if(rooms[i].checkAvailable(cc.getMeetingPattern(), 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+        					largerRooms.add(rooms[i]);
+        				}
+    				}
+    				
+            		
+    	    	}
+    		}
+    		else if(maxEnrollment + 7 <= 45) {
+    			if(cc.getMeetingPattern()==5) {
+					if(rooms[i].checkAvailable(0, 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+						if(rooms[i].checkAvailable(2, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+        					largerRooms.add(rooms[i]);
+        				}
+    				}
+				}
+				else if(cc.getMeetingPattern()==6) {
+					if(rooms[i].checkAvailable(1, 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+						if(rooms[i].checkAvailable(3, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+        					largerRooms.add(rooms[i]);
+        				}
+    				}
+				}
+				else {
+					if(rooms[i].checkAvailable(cc.getMeetingPattern(), 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+    					largerRooms.add(rooms[i]);
+    				}
+				}
+				
+    		}else {
+    			if(cc.getMeetingPattern()==5) {
+					if(rooms[i].checkAvailable(0, 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+						if(rooms[i].checkAvailable(2, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+        					largerRooms.add(rooms[i]);
+        				}
+    				}
+				}
+				else if(cc.getMeetingPattern()==6) {
+					if(rooms[i].checkAvailable(1, 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+						if(rooms[i].checkAvailable(3, 
+        						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+        					largerRooms.add(rooms[i]);
+        				}
+    				}
+				}
+				else {
+					if(rooms[i].checkAvailable(cc.getMeetingPattern(), 
+    						cc.getMeetingPattern(), cc.getMeetingDuration()).length ==0) {
+    					largerRooms.add(rooms[i]);
+    				}
+				}
+				
+    		}
+    	}
+    	Room[] lroom=new Room[largerRooms.size()];
+    	largerRooms.toArray(lroom);
+		
+    	return lroom;
+	}
 	/*
 	 * param: c is the course to find other course to swap
 	 * param: enrollment is the max enrollment wanted to expand
@@ -111,10 +213,9 @@ public class Utils {
 		
 		return null;
 	}
-	/*
+	/*Not used
 	 * Param: a and b are two courses
 	 * Return: a string that tell what two rooms are swapped
-	 */
 	public String roomSwap(Course a, Course b) {
 		
 		try {
@@ -148,40 +249,8 @@ public class Utils {
 		
 		return null;
 	}
+	*/
 	
-	
-	/*
-	 * param: maxEnrollment is the maxEnrollment given to find larger rooms
-	 * return a Room array based on maxEnrollment,
-	 * maxEnrollment return based on three divisions, maxEnrollment+7 < 30 or 40 or greater than 40
-	 * for example: if maxEnrollment is 10-23, then it return room arrays of room size between 10-29
-	 * if maxEnrollment is 24-38, then it return room arrays of room size between 24-44
-	 * if maxEnrollment is 39-60, then it return room arrays of room size between 39-60
-	 */
-	public  Room[] findRoomsLargerThanMaxEnrollment( int maxEnrollment) {
-    	ArrayList<Room> largerRooms = new ArrayList<>();
-    	
-    	for (int i=0;i<rooms.length;i++) {
-    		if(maxEnrollment + 7 <= 30) {
-    			if (rooms[i].getCapacity() >=maxEnrollment && rooms[i].getCapacity()< 30) {
-            		largerRooms.add(rooms[i]);
-    	    	}
-    		}
-    		else if(maxEnrollment + 7 <= 45) {
-    			if (rooms[i].getCapacity() >=maxEnrollment && rooms[i].getCapacity()< 45) {
-            		largerRooms.add(rooms[i]);
-    	    	}
-    		}else {
-    			if (rooms[i].getCapacity() >=maxEnrollment) {
-            		largerRooms.add(rooms[i]);
-    	    	}
-    		}
-    	}
-    	Room[] lroom=new Room[largerRooms.size()];
-    	largerRooms.toArray(lroom);
-		
-    	return lroom;
-	}
 	
 	//Reassign Courses with Same Time to a different Room 
 		public String reassignRoomSameTime(Course courseTitle, String newRoomNum){

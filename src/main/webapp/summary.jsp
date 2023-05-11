@@ -45,10 +45,14 @@
 			<a href="/pkiClassroom/home.jsp">
 				<button class="buttons">Back</button>
 			</a>
+			<form action="updataCSV" method="post">
+				<input style="font-size:20px;" type="submit" class="buttons" 
+				name= "submit" value="Updata CSV Files"/>
 			
-			<button class="buttons">Download CSV</button>
+			</form>
+			
 		
-			<button class="buttons large"> Download per room schedule</button>
+		
 		
 		</div>
 	</section>

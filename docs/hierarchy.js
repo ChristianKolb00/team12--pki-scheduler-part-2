@@ -10,14 +10,19 @@ var hierarchy =
     [ "parser.Line", "classparser_1_1_line.html", [
       [ "parser.Course", "classparser_1_1_course.html", null ]
     ] ],
-    [ "testCSV", "classtest_c_s_v.html", null ],
+    [ "parser.ParserTester", "classparser_1_1_parser_tester.html", null ],
     [ "util.Tester", "classutil_1_1_tester.html", null ],
+    [ "testing.TestUtilMethods", "classtesting_1_1_test_util_methods.html", null ],
     [ "parser.TimeTable", "classparser_1_1_time_table.html", [
       [ "parser.Professor", "classparser_1_1_professor.html", null ],
       [ "parser.Room", "classparser_1_1_room.html", null ]
     ] ],
+    [ "util.Utils", "classutil_1_1_utils.html", null ],
+    [ "util.UtilTest", "classutil_1_1_util_test.html", null ],
     [ "HttpServlet", null, [
-      [ "TestServlet", "class_test_servlet.html", null ],
-      [ "util.home", "classutil_1_1home.html", null ]
+      [ "Servlet.changesPage", "class_servlet_1_1changes_page.html", null ],
+      [ "Servlet.homePage", "class_servlet_1_1home_page.html", null ],
+      [ "Servlet.updataCSV", "class_servlet_1_1updata_c_s_v.html", null ],
+      [ "TestServlet", "class_test_servlet.html", null ]
     ] ]
 ];

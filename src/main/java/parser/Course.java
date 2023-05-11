@@ -372,7 +372,10 @@ public class Course extends Line{
 		String ret = "";
 		for (int i =0; i<diff.length; i++)
 		{
-			ret = ret.concat("\"" + diff[i] + "\",");
+			if(diff[i].contentEquals(""))
+				ret = ret.concat(",");
+			else
+				ret = ret.concat("\"" + diff[i] + "\",");
 		}
 		return ret.concat("\n");
 	}

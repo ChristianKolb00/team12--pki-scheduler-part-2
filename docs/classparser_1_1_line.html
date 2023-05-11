@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classparser_1_1_line.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classparser_1_1_line-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">parser.Line Class Reference</div></div>
@@ -115,10 +116,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c34e695eef0591451618fa704a76465"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a2c34e695eef0591451618fa704a76465">toString</a> ()</td></tr>
 <tr class="separator:a2c34e695eef0591451618fa704a76465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:adf82c7c256ce236361aff1e64538a206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#adf82c7c256ce236361aff1e64538a206">parseOriginalDayTime</a> ()</td></tr>
+<tr class="separator:adf82c7c256ce236361aff1e64538a206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05168d60d9009a219f7d28c2715038f8"><td class="memItemLeft" align="right" valign="top">int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a05168d60d9009a219f7d28c2715038f8">getOriginalDays</a> ()</td></tr>
+<tr class="separator:a05168d60d9009a219f7d28c2715038f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98251634ec78c639ecb60c3e0307cda5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a98251634ec78c639ecb60c3e0307cda5">output</a> ()</td></tr>
+<tr class="separator:a98251634ec78c639ecb60c3e0307cda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d9f2f12daf2354d37e2eb10d40842e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a67d9f2f12daf2354d37e2eb10d40842e">outputOriginal</a> ()</td></tr>
+<tr class="separator:a67d9f2f12daf2354d37e2eb10d40842e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a0d2a1ddbdfd24cca296ac89602aee07b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a0d2a1ddbdfd24cca296ac89602aee07b">type</a></td></tr>
-<tr class="separator:a0d2a1ddbdfd24cca296ac89602aee07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42715ca8c8e0479507727436df41f783"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a42715ca8c8e0479507727436df41f783">oday</a></td></tr>
 <tr class="separator:a42715ca8c8e0479507727436df41f783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a647ba8990e4aa7d196072c22816c6811"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a647ba8990e4aa7d196072c22816c6811">otime</a></td></tr>
@@ -127,10 +137,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a099ac489dca0b35d61a61ed42d64a09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a460de0b60b086aa743ed4919824c49f0"><td class="memItemLeft" align="right" valign="top">String[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">line</a></td></tr>
 <tr class="separator:a460de0b60b086aa743ed4919824c49f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0db64eb9a2e33544d0985790e049c6ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparser_1_1_line.html#a0db64eb9a2e33544d0985790e049c6ed">aggEnrollOriginal</a></td></tr>
-<tr class="separator:a0db64eb9a2e33544d0985790e049c6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Line is an immutable storage for the parsed CSV, multiple lines make up a document </p><dl class="section author"><dt>Author</dt><dd>jwillson </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acf2fd3960a176280316377cd8e970962" name="acf2fd3960a176280316377cd8e970962"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf2fd3960a176280316377cd8e970962">&#9670;&#160;</a></span>Line() <span class="overload">[1/2]</span></h2>
 
@@ -145,6 +155,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Empty Constructor, only use is for Blocker object for time tables </p>
 
 </div>
 </div>
@@ -163,12 +174,151 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor that takes the given row of a csv as a String, then splits it to each column piece. Fixes shift issue in class lines with empty first columns </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>- a row from the Document as a String </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="classparser_1_1_constants.html#a06d688564b4b959a30e0fe31e1a94f60">parser.Constants.COL_COUNT</a>, <a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">parser.Line.line</a>, and <a class="el" href="classparser_1_1_line.html#a0d2a1ddbdfd24cca296ac89602aee07b">parser.Line.type</a>.</p>
+<p class="reference">References <a class="el" href="classparser_1_1_constants.html#a06d688564b4b959a30e0fe31e1a94f60">parser.Constants.COL_COUNT</a>, and <a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">parser.Line.line</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a05168d60d9009a219f7d28c2715038f8" name="a05168d60d9009a219f7d28c2715038f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05168d60d9009a219f7d28c2715038f8">&#9670;&#160;</a></span>getOriginalDays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int[] parser.Line.getOriginalDays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts the original day pattern into an array of days </p><dl class="section return"><dt>Returns</dt><dd>an array containing the numeric value of days this course is on </dd></dl>
+
+<p class="reference">References <a class="el" href="classparser_1_1_constants.html#a4a92508c6647f5d5004b96b6be831763">parser.Constants.M</a>, <a class="el" href="classparser_1_1_line.html#a42715ca8c8e0479507727436df41f783">parser.Line.oday</a>, <a class="el" href="classparser_1_1_constants.html#a015cac6082ba0d52a6042bb0af26e7ff">parser.Constants.T</a>, <a class="el" href="classparser_1_1_constants.html#a80542dc75bc31a2888f749cf61701828">parser.Constants.T_TH</a>, and <a class="el" href="classparser_1_1_constants.html#a23acea5b59a360c910038b766f77a4d6">parser.Constants.W</a>.</p>
+
+</div>
+</div>
+<a id="a98251634ec78c639ecb60c3e0307cda5" name="a98251634ec78c639ecb60c3e0307cda5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98251634ec78c639ecb60c3e0307cda5">&#9670;&#160;</a></span>output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String parser.Line.output </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts the String array of a row back into CSV format as a single String </p><dl class="section return"><dt>Returns</dt><dd>a csv formated row </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classparser_1_1_course.html#a59d4a64ec5f0f01bf85332b37398aedd">parser.Course</a>.</p>
+
+<p class="reference">References <a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">parser.Line.line</a>.</p>
+
+</div>
+</div>
+<a id="a67d9f2f12daf2354d37e2eb10d40842e" name="a67d9f2f12daf2354d37e2eb10d40842e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d9f2f12daf2354d37e2eb10d40842e">&#9670;&#160;</a></span>outputOriginal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String parser.Line.outputOriginal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts the original String array of a row back into CSV format as a single String </p><dl class="section return"><dt>Returns</dt><dd>a csv formated row </dd></dl>
+
+<p class="reference">References <a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">parser.Line.line</a>.</p>
+
+</div>
+</div>
+<a id="adf82c7c256ce236361aff1e64538a206" name="adf82c7c256ce236361aff1e64538a206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf82c7c256ce236361aff1e64538a206">&#9670;&#160;</a></span>parseOriginalDayTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parser.Line.parseOriginalDayTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts the Meeting Pattern field from a String to a multipiece int representation of the meeting pattern </p>
+
+<p class="reference">References <a class="el" href="classparser_1_1_line.html#a460de0b60b086aa743ed4919824c49f0">parser.Line.line</a>, <a class="el" href="classparser_1_1_constants.html#a8e718021254babc396410af1239a6903">parser.Constants.MEET_PATT</a>, <a class="el" href="classparser_1_1_line.html#a42715ca8c8e0479507727436df41f783">parser.Line.oday</a>, <a class="el" href="classparser_1_1_line.html#a099ac489dca0b35d61a61ed42d64a09e">parser.Line.oduration</a>, <a class="el" href="classparser_1_1_line.html#a647ba8990e4aa7d196072c22816c6811">parser.Line.otime</a>, <a class="el" href="classutil_1_1helper.html#a8f595a90f742e47d4ac43d33fd9289a9">util.helper.parseDays()</a>, and <a class="el" href="classutil_1_1helper.html#aaae81f32232e54d607975f71c0bf7f83">util.helper.parseTime()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_line_adf82c7c256ce236361aff1e64538a206_cgraph.png" border="0" usemap="#aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_cgraph" alt=""/></div>
+<map name="aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_cgraph" id="aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_cgraph">
+<area shape="rect" title=" " alt="" coords="5,23,171,65"/>
+<area shape="rect" href="classutil_1_1helper.html#a8f595a90f742e47d4ac43d33fd9289a9" title=" " alt="" coords="219,5,362,32"/>
+<area shape="rect" href="classutil_1_1helper.html#aaae81f32232e54d607975f71c0bf7f83" title=" " alt="" coords="220,56,361,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classparser_1_1_line_adf82c7c256ce236361aff1e64538a206_icgraph.png" border="0" usemap="#aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_icgraph" alt=""/></div>
+<map name="aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_icgraph" id="aclassparser_1_1_line_adf82c7c256ce236361aff1e64538a206_icgraph">
+<area shape="rect" title=" " alt="" coords="201,5,366,48"/>
+<area shape="rect" href="classparser_1_1_course.html#a4a4b5c864741acedcbd700e476357a01" title=" " alt="" coords="5,13,153,40"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a2c34e695eef0591451618fa704a76465" name="a2c34e695eef0591451618fa704a76465"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c34e695eef0591451618fa704a76465">&#9670;&#160;</a></span>toString()</h2>
 
@@ -183,6 +333,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Standard output format for debugging </p>
 
 <p>Reimplemented in <a class="el" href="classparser_1_1_course.html#aa794fd1c72454f684e480b885d394077">parser.Course</a>.</p>
 
@@ -191,30 +342,6 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a0db64eb9a2e33544d0985790e049c6ed" name="a0db64eb9a2e33544d0985790e049c6ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0db64eb9a2e33544d0985790e049c6ed">&#9670;&#160;</a></span>aggEnrollOriginal</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int parser.Line.aggEnrollOriginal</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#a11f8909d874735047b4596e2c933f140">parser.Course.Course()</a>, <a class="el" href="classparser_1_1_course.html#a515a81915fd09a5564fdafedf6b5bce2">parser.Course.getOriginalWebDisplay()</a>, and <a class="el" href="classparser_1_1_course.html#aff3429596ac492fb1a8d8448aa713b5c">parser.Course.processWebOriginal()</a>.</p>
-
-</div>
-</div>
 <a id="a460de0b60b086aa743ed4919824c49f0" name="a460de0b60b086aa743ed4919824c49f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a460de0b60b086aa743ed4919824c49f0">&#9670;&#160;</a></span>line</h2>
 
@@ -234,8 +361,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#a11f8909d874735047b4596e2c933f140">parser.Course.Course()</a>, <a class="el" href="classparser_1_1_course.html#a2f335bb465d263dd55d7cc13427aa324">parser.Course.getBuilding()</a>, <a class="el" href="classparser_1_1_course.html#ae0ef188c5f5b3a0bbb0a3a7117baefbc">parser.Course.getCourseSection()</a>, <a class="el" href="classparser_1_1_course.html#a515a81915fd09a5564fdafedf6b5bce2">parser.Course.getOriginalWebDisplay()</a>, <a class="el" href="classparser_1_1_line.html#a7b6f1f0033bb1c6d2ff84229df71526f">parser.Line.Line()</a>, <a class="el" href="classparser_1_1_course.html#aff3429596ac492fb1a8d8448aa713b5c">parser.Course.processWebOriginal()</a>, <a class="el" href="classparser_1_1_course.html#a079665dad66922d48d9316c40231cf6a">parser.Course.revert()</a>, and <a class="el" href="classparser_1_1_line.html#a2c34e695eef0591451618fa704a76465">parser.Line.toString()</a>.</p>
+<p>An array that is the split row of the csv </p>
 
 </div>
 </div>
@@ -258,8 +384,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_course.html#a6912aa51a5ca6f63963afc30d4e2ea7c">parser.Course.getOriginalDays()</a>.</p>
+<p>The original day pattern, time, and duration </p>
 
 </div>
 </div>
@@ -304,30 +429,6 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0d2a1ddbdfd24cca296ac89602aee07b" name="a0d2a1ddbdfd24cca296ac89602aee07b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d2a1ddbdfd24cca296ac89602aee07b">&#9670;&#160;</a></span>type</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean parser.Line.type</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="reference">Referenced by <a class="el" href="classparser_1_1_line.html#a7b6f1f0033bb1c6d2ff84229df71526f">parser.Line.Line()</a>.</p>
 
 </div>
 </div>
