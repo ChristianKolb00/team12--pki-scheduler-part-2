@@ -77,7 +77,6 @@ public class pki_test {
 
 		scrollDown();
 		clickBack();
-		System.out.println("#####################################");
 		assert verifyScreenTitle("Welcome, Here is the Home page where course can change Enrollments");
 
 	}
@@ -145,7 +144,6 @@ public class pki_test {
 		if (currentScreenTitle == expectedScreenTitle) {
 			return true;
 		}
-		System.out.println("#####################################");
 		return false;
 	}
 
