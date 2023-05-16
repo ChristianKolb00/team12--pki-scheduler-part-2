@@ -1,4 +1,4 @@
-package PKI_Testing;
+package testing;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
