@@ -127,14 +127,14 @@ public class pki_test {
 
 	private static String getFinalChangeNewRoomNum() {
 		String newRoomNum = getText(FINAL_CHANGE_ROOM_NUM);
-		newRoomNum = newRoomNum.substring(50, 53);
+		newRoomNum = newRoomNum.substring(50, 54);
 		logMessage("Success: Retrieved -- Final Change new room: " + newRoomNum);
 		return newRoomNum;
 	}
 
 	private static String getFinalChangeOldRoomNum() {
 		String oldRoomNum = getText(FINAL_CHANGE_ROOM_NUM);
-		oldRoomNum = oldRoomNum.substring(105, 108);
+		oldRoomNum = oldRoomNum.substring(105, 109);
 		logMessage("Success: Retrieved -- Final Change old room: " + oldRoomNum);
 		return oldRoomNum;
 	}

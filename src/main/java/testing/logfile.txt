@@ -4,8 +4,8 @@
 2023-05-16 16:31:09 - Success: Retrieved -- Course Room Number: 276
 2023-05-16 16:31:09 - Success: Scrolled down
 2023-05-16 16:31:09 - Success: Clicked: Confirm
-2023-05-16 16:31:09 - Success: Retrieved -- Final Change old room:  27
-2023-05-16 16:31:09 - Success: Retrieved -- Final Change new room:  15
+2023-05-16 16:31:09 - Success: Retrieved -- Final Change old room:  276
+2023-05-16 16:31:09 - Success: Retrieved -- Final Change new room:  153
 2023-05-16 16:31:10 - Success: Scrolled down
 2023-05-16 16:31:10 - Success: Clicked: Updata CSV Files
 2023-05-16 16:31:10 - Success: Selected: CIST 1300-001
